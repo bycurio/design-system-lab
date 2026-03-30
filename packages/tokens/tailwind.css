@@ -1,0 +1,145 @@
+@import "tailwindcss";
+
+@theme {
+  /* ── PRIMITIVES: Colors ── */
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  --color-blue-50:  #eff6ff;
+  --color-blue-100: #dbeafe;
+  --color-blue-200: #bfdbfe;
+  --color-blue-300: #93c5fd;
+  --color-blue-400: #60a5fa;
+  --color-blue-500: #3b82f6;
+  --color-blue-600: #2563eb;
+  --color-blue-700: #1d4ed8;
+  --color-blue-800: #1e40af;
+  --color-blue-900: #1e3a8a;
+
+  --color-slate-50:  #f8fafc;
+  --color-slate-100: #f1f5f9;
+  --color-slate-200: #e2e8f0;
+  --color-slate-300: #cbd5e1;
+  --color-slate-400: #94a3b8;
+  --color-slate-500: #64748b;
+  --color-slate-600: #475569;
+  --color-slate-700: #334155;
+  --color-slate-800: #1e293b;
+  --color-slate-900: #0f172a;
+  --color-slate-950: #020617;
+
+  --color-green-50:  #f0fdf4;
+  --color-green-100: #dcfce7;
+  --color-green-200: #bbf7d0;
+  --color-green-500: #22c55e;
+  --color-green-600: #16a34a;
+  --color-green-700: #15803d;
+  --color-green-900: #14532d;
+
+  --color-red-50:  #fef2f2;
+  --color-red-100: #fee2e2;
+  --color-red-200: #fecaca;
+  --color-red-500: #ef4444;
+  --color-red-600: #dc2626;
+  --color-red-700: #b91c1c;
+  --color-red-900: #7f1d1d;
+
+  --color-amber-50:  #fffbeb;
+  --color-amber-100: #fef3c7;
+  --color-amber-200: #fde68a;
+  --color-amber-500: #f59e0b;
+  --color-amber-600: #d97706;
+  --color-amber-700: #b45309;
+  --color-amber-900: #78350f;
+
+  --color-sky-50:  #f0f9ff;
+  --color-sky-100: #e0f2fe;
+  --color-sky-200: #bae6fd;
+  --color-sky-500: #0ea5e9;
+  --color-sky-600: #0284c7;
+  --color-sky-700: #0369a1;
+  --color-sky-900: #0c4a6e;
+
+  /* ── PRIMITIVES: Typography ── */
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  --text-xs:   0.75rem;
+  --text-sm:   0.875rem;
+  --text-base: 1rem;
+  --text-lg:   1.125rem;
+  --text-xl:   1.25rem;
+  --text-2xl:  1.5rem;
+  --text-3xl:  1.875rem;
+  --text-4xl:  2.25rem;
+
+  /* ── PRIMITIVES: Spacing ── */
+  --size-1:  0.25rem;
+  --size-2:  0.5rem;
+  --size-3:  0.75rem;
+  --size-4:  1rem;
+  --size-5:  1.25rem;
+  --size-6:  1.5rem;
+  --size-8:  2rem;
+  --size-10: 2.5rem;
+  --size-12: 3rem;
+  --size-16: 4rem;
+
+  /* ── PRIMITIVES: Radius ── */
+  --radius-sm:   2px;
+  --radius-md:   4px;
+  --radius-lg:   8px;
+  --radius-xl:   12px;
+  --radius-full: 9999px;
+
+  /* ── PRIMITIVES: Shadows ── */
+  --shadow-none: none;
+  --shadow-sm:   0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md:   0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg:   0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl:   0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+
+  /* ── SEMANTIC: Light mode defaults ── */
+  --color-bg:             var(--color-white);
+  --color-surface:        var(--color-slate-50);
+  --color-brand:          var(--color-blue-600);
+  --color-brand-hover:    var(--color-blue-700);
+  --color-text-primary:   var(--color-slate-900);
+  --color-text-secondary: var(--color-slate-600);
+  --color-text-inverse:   var(--color-white);
+  --color-border:         var(--color-slate-200);
+  --color-danger:         var(--color-red-600);
+  --color-danger-hover:   var(--color-red-700);
+  --color-success:        var(--color-green-600);
+  --color-warning:        var(--color-amber-600);
+  --color-info:           var(--color-sky-600);
+
+  /* ── COMPONENT: Button ── */
+  --button-bg:     var(--color-brand);
+  --button-radius: var(--radius-md);
+
+  /* ── COMPONENT: Badge / Chip ── */
+  --badge-radius: var(--radius-full);
+  --chip-radius:  var(--radius-full);
+
+  /* ── COMPONENT: Input ── */
+  --input-border: var(--color-border);
+  --input-radius: var(--radius-md);
+}
+
+/* ── SEMANTIC: Dark mode overrides ── */
+.dark {
+  --color-bg:             var(--color-slate-950);
+  --color-surface:        var(--color-slate-800);
+  --color-brand:          var(--color-blue-500);
+  --color-brand-hover:    var(--color-blue-400);
+  --color-text-primary:   var(--color-slate-100);
+  --color-text-secondary: var(--color-slate-400);
+  --color-text-inverse:   var(--color-slate-900);
+  --color-border:         var(--color-slate-700);
+  --color-danger:         var(--color-red-500);
+  --color-danger-hover:   var(--color-red-400);
+  --color-success:        var(--color-green-500);
+  --color-warning:        var(--color-amber-500);
+  --color-info:           var(--color-sky-500);
+}

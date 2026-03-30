@@ -1,0 +1,6 @@
+{
+  "name": "@ds/tokens",
+  "version": "0.0.1",
+  "main": "tailwind.css",
+  "files": ["tailwind.css"]
+}
