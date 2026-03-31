@@ -1,7 +1,7 @@
 import figma from '@figma/code-connect'
 import { Checkbox } from './Checkbox'
 
-figma.connect(Checkbox, 'https://www.figma.com/design/ITyTagLQEj5b75iqsmPyl6/Design-System-Lab?node-id=REPLACE_WITH_NODE_ID', {
+figma.connect(Checkbox, 'https://www.figma.com/design/ITyTagLQEj5b75iqsmPyl6/Design-System-Lab?node-id=34-29', {
   props: {
     label: figma.string('label'),
     checked: figma.boolean('checked'),

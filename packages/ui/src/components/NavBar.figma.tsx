@@ -1,7 +1,7 @@
 import figma from '@figma/code-connect'
 import { NavBar } from './NavBar'
 
-figma.connect(NavBar, 'https://www.figma.com/design/ITyTagLQEj5b75iqsmPyl6/Design-System-Lab?node-id=REPLACE_WITH_NODE_ID', {
+figma.connect(NavBar, 'https://www.figma.com/design/ITyTagLQEj5b75iqsmPyl6/Design-System-Lab?node-id=34-45', {
   props: {
     brand: figma.string('brand'),
   },

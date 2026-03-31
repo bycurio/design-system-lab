@@ -1,7 +1,7 @@
 import figma from '@figma/code-connect'
 import { Table } from './Table'
 
-figma.connect(Table, 'https://www.figma.com/design/ITyTagLQEj5b75iqsmPyl6/Design-System-Lab?node-id=REPLACE_WITH_NODE_ID', {
+figma.connect(Table, 'https://www.figma.com/design/ITyTagLQEj5b75iqsmPyl6/Design-System-Lab?node-id=34-99', {
   props: {
     loading: figma.boolean('loading'),
   },

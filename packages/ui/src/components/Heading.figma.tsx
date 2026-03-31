@@ -1,7 +1,7 @@
 import figma from '@figma/code-connect'
 import { Heading } from './Heading'
 
-figma.connect(Heading, 'https://www.figma.com/design/ITyTagLQEj5b75iqsmPyl6/Design-System-Lab?node-id=REPLACE_WITH_NODE_ID', {
+figma.connect(Heading, 'https://www.figma.com/design/ITyTagLQEj5b75iqsmPyl6/Design-System-Lab?node-id=34-112', {
   props: {
     as: figma.enum('as', {
       display: 'display',

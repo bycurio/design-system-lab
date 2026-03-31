@@ -1,7 +1,7 @@
 import figma from '@figma/code-connect'
 import { Slider } from './Slider'
 
-figma.connect(Slider, 'https://www.figma.com/design/ITyTagLQEj5b75iqsmPyl6/Design-System-Lab?node-id=REPLACE_WITH_NODE_ID', {
+figma.connect(Slider, 'https://www.figma.com/design/ITyTagLQEj5b75iqsmPyl6/Design-System-Lab?node-id=34-38', {
   props: {
     disabled: figma.boolean('disabled'),
   },

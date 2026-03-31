@@ -1,7 +1,7 @@
 import figma from '@figma/code-connect'
 import { SplitButton } from './SplitButton'
 
-figma.connect(SplitButton, 'https://www.figma.com/design/ITyTagLQEj5b75iqsmPyl6/Design-System-Lab?node-id=REPLACE_WITH_NODE_ID', {
+figma.connect(SplitButton, 'https://www.figma.com/design/ITyTagLQEj5b75iqsmPyl6/Design-System-Lab?node-id=34-16', {
   props: {
     label: figma.string('label'),
     variant: figma.enum('variant', {

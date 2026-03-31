@@ -1,7 +1,7 @@
 import figma from '@figma/code-connect'
 import { Link } from './Link'
 
-figma.connect(Link, 'https://www.figma.com/design/ITyTagLQEj5b75iqsmPyl6/Design-System-Lab?node-id=REPLACE_WITH_NODE_ID', {
+figma.connect(Link, 'https://www.figma.com/design/ITyTagLQEj5b75iqsmPyl6/Design-System-Lab?node-id=34-10', {
   props: {
     external: figma.boolean('external'),
   },

@@ -1,7 +1,7 @@
 import figma from '@figma/code-connect'
 import { Input } from './Input'
 
-figma.connect(Input, 'https://www.figma.com/design/ITyTagLQEj5b75iqsmPyl6/Design-System-Lab?node-id=REPLACE_WITH_NODE_ID', {
+figma.connect(Input, 'https://www.figma.com/design/ITyTagLQEj5b75iqsmPyl6/Design-System-Lab?node-id=34-20', {
   props: {
     placeholder: figma.string('placeholder'),
     error: figma.boolean('error'),

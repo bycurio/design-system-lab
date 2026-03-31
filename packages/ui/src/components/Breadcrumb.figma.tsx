@@ -1,7 +1,7 @@
 import figma from '@figma/code-connect'
 import { Breadcrumb } from './Breadcrumb'
 
-figma.connect(Breadcrumb, 'https://www.figma.com/design/ITyTagLQEj5b75iqsmPyl6/Design-System-Lab?node-id=REPLACE_WITH_NODE_ID', {
+figma.connect(Breadcrumb, 'https://www.figma.com/design/ITyTagLQEj5b75iqsmPyl6/Design-System-Lab?node-id=34-51', {
   props: {
     separator: figma.string('separator'),
   },

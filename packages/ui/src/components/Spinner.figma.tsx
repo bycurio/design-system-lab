@@ -1,7 +1,7 @@
 import figma from '@figma/code-connect'
 import { Spinner } from './Spinner'
 
-figma.connect(Spinner, 'https://www.figma.com/design/ITyTagLQEj5b75iqsmPyl6/Design-System-Lab?node-id=REPLACE_WITH_NODE_ID', {
+figma.connect(Spinner, 'https://www.figma.com/design/ITyTagLQEj5b75iqsmPyl6/Design-System-Lab?node-id=34-79', {
   props: {
     size: figma.enum('size', {
       sm: 'sm',

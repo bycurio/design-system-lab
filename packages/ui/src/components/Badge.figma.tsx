@@ -1,7 +1,7 @@
 import figma from '@figma/code-connect'
 import { Badge } from './Badge'
 
-figma.connect(Badge, 'https://www.figma.com/design/ITyTagLQEj5b75iqsmPyl6/Design-System-Lab?node-id=REPLACE_WITH_NODE_ID', {
+figma.connect(Badge, 'https://www.figma.com/design/ITyTagLQEj5b75iqsmPyl6/Design-System-Lab?node-id=34-61', {
   props: {
     variant: figma.enum('variant', {
       info: 'info',
