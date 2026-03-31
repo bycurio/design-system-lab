@@ -21,8 +21,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             'focus:outline-none focus:ring-2 focus:ring-(--color-border-focus) focus:ring-offset-1',
             'disabled:opacity-50 disabled:cursor-not-allowed',
             error && 'border-(--color-danger) focus:ring-(--color-danger)',
-            leadingIcon && 'pl-9',
-            trailingIcon && 'pr-9',
+            !!leadingIcon && 'pl-9',
+            !!trailingIcon && 'pr-9',
             className,
           )}
           {...props}

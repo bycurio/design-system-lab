@@ -1,3 +1,4 @@
+'use client'
 import { forwardRef, useId } from 'react'
 import { cn } from '../utils'
 import type { ToggleProps } from './Toggle.types'
