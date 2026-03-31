@@ -21,7 +21,7 @@ describe('Button', () => {
 
   it('applies ghost variant classes', () => {
     render(<Button variant="ghost">Click me</Button>)
-    expect(screen.getByRole('button').className).toContain('bg-transparent')
+    expect(screen.getByRole('button').className).toContain('hover:bg-(--color-surface-hover)')
   })
 
   it('applies danger variant classes', () => {

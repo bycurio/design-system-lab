@@ -3,10 +3,10 @@ import { cn } from '../utils'
 import type { ButtonProps } from './Button.types'
 
 const variantClasses = {
-  primary: 'bg-(--color-brand) text-(--color-text-inverse) hover:bg-(--color-brand-hover)',
-  secondary: 'border border-(--color-border) text-(--color-text-primary) hover:bg-(--color-surface)',
-  ghost: 'bg-transparent text-(--color-text-primary) hover:bg-(--color-surface)',
-  danger: 'bg-(--color-danger) text-(--color-text-inverse) hover:bg-(--color-danger-hover)',
+  primary: 'bg-(--color-brand) text-(--color-text-inverse) hover:bg-(--color-brand-hover) active:bg-(--color-brand-pressed)',
+  secondary: 'border border-(--color-border) text-(--color-text-primary) hover:bg-(--color-surface-hover) active:bg-(--color-surface-pressed)',
+  ghost: 'text-(--color-text-primary) hover:bg-(--color-surface-hover) active:bg-(--color-surface-pressed)',
+  danger: 'bg-(--color-danger) text-(--color-text-inverse) hover:bg-(--color-danger-hover) active:bg-(--color-danger-pressed)',
 }
 
 const sizeClasses = {

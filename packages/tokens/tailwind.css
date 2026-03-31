@@ -43,6 +43,7 @@
   --color-red-500: #ef4444;
   --color-red-600: #dc2626;
   --color-red-700: #b91c1c;
+  --color-red-800: #991b1b;
   --color-red-900: #7f1d1d;
 
   --color-amber-50:  #fffbeb;
@@ -101,19 +102,23 @@
   --shadow-xl:   0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
 
   /* ── SEMANTIC: Light mode defaults ── */
-  --color-bg:             var(--color-white);
-  --color-surface:        var(--color-slate-50);
-  --color-brand:          var(--color-blue-600);
-  --color-brand-hover:    var(--color-blue-700);
-  --color-text-primary:   var(--color-slate-900);
-  --color-text-secondary: var(--color-slate-600);
-  --color-text-inverse:   var(--color-white);
-  --color-border:         var(--color-slate-200);
-  --color-danger:         var(--color-red-600);
-  --color-danger-hover:   var(--color-red-700);
-  --color-success:        var(--color-green-600);
-  --color-warning:        var(--color-amber-600);
-  --color-info:           var(--color-sky-600);
+  --color-bg:               var(--color-white);
+  --color-surface:          var(--color-slate-50);
+  --color-surface-hover:    var(--color-slate-100);
+  --color-surface-pressed:  var(--color-slate-200);
+  --color-brand:            var(--color-blue-600);
+  --color-brand-hover:      var(--color-blue-700);
+  --color-brand-pressed:    var(--color-blue-800);
+  --color-text-primary:     var(--color-slate-900);
+  --color-text-secondary:   var(--color-slate-600);
+  --color-text-inverse:     var(--color-white);
+  --color-border:           var(--color-slate-200);
+  --color-danger:           var(--color-red-600);
+  --color-danger-hover:     var(--color-red-700);
+  --color-danger-pressed:   var(--color-red-800);
+  --color-success:          var(--color-green-600);
+  --color-warning:          var(--color-amber-600);
+  --color-info:             var(--color-sky-600);
 
   /* ── COMPONENT: Button ── */
   --button-bg:     var(--color-brand);
@@ -130,17 +135,21 @@
 
 /* ── SEMANTIC: Dark mode overrides ── */
 .dark {
-  --color-bg:             var(--color-slate-950);
-  --color-surface:        var(--color-slate-800);
-  --color-brand:          var(--color-blue-500);
-  --color-brand-hover:    var(--color-blue-400);
-  --color-text-primary:   var(--color-slate-100);
-  --color-text-secondary: var(--color-slate-400);
-  --color-text-inverse:   var(--color-slate-900);
-  --color-border:         var(--color-slate-700);
-  --color-danger:         var(--color-red-500);
-  --color-danger-hover:   var(--color-red-400);
-  --color-success:        var(--color-green-500);
-  --color-warning:        var(--color-amber-500);
+  --color-bg:               var(--color-slate-950);
+  --color-surface:          var(--color-slate-800);
+  --color-surface-hover:    var(--color-slate-700);
+  --color-surface-pressed:  var(--color-slate-600);
+  --color-brand:            var(--color-blue-500);
+  --color-brand-hover:      var(--color-blue-400);
+  --color-brand-pressed:    var(--color-blue-600);
+  --color-text-primary:     var(--color-slate-100);
+  --color-text-secondary:   var(--color-slate-400);
+  --color-text-inverse:     var(--color-slate-900);
+  --color-border:           var(--color-slate-700);
+  --color-danger:           var(--color-red-500);
+  --color-danger-hover:     var(--color-red-400);
+  --color-danger-pressed:   var(--color-red-600);
+  --color-success:          var(--color-green-500);
+  --color-warning:          var(--color-amber-500);
   --color-info:           var(--color-sky-500);
 }
