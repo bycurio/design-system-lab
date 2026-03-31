@@ -1,4 +1,5 @@
 @import '@ds/tokens/tailwind.css';
+@source '../../../packages/ui/src';
 
 /* Shiki dual-theme dark mode support */
 .dark .shiki,
