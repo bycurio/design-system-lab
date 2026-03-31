@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Typography Direction</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Geist:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Geist+Mono:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Inter, sans-serif; background: #fff; color: #0f172a; padding: 2rem; }
+  @media (prefers-color-scheme: dark) {
+    body { background: #0f172a; color: #f1f5f9; }
+    .card { background: #1e293b; border-color: #334155; }
+    .card:hover { border-color: #64748b; }
+    .card.selected { border-color: #3b82f6; background: #1e3a5f; }
+    .tag { background: #334155; color: #94a3b8; }
+    .mono-eg { background: #0f172a; color: #7dd3fc; border-color: #1e3a5f; }
+    .rec { color: #4ade80; }
+    .subtitle { color: #94a3b8; }
+    .meta { color: #64748b; }
+    .selected-bar { background: #1e3a5f; border-color: #3b82f6; color: #93c5fd; }
+  }
+  h1 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.25rem; }
+  .subtitle { color: #64748b; font-size: 0.9rem; margin-bottom: 2rem; }
+  .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+  .card {
+    border: 2px solid #e2e8f0; border-radius: 12px; padding: 1.5rem;
+    cursor: pointer; transition: all 0.15s; position: relative;
+  }
+  .card:hover { border-color: #94a3b8; }
+  .card.selected { border-color: #3b82f6; background: #eff6ff; }
+  .rec {
+    position: absolute; top: 1rem; right: 1rem;
+    font-size: 0.7rem; font-weight: 700; color: #16a34a; text-transform: uppercase; letter-spacing: 0.05em;
+  }
+  .letter {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 28px; height: 28px; border-radius: 6px; background: #f1f5f9;
+    font-size: 0.75rem; font-weight: 700; color: #475569; margin-bottom: 1rem;
+  }
+  .selected .letter { background: #dbeafe; color: #2563eb; }
+  .tag { display: inline-block; background: #f1f5f9; color: #64748b; font-size: 0.7rem; padding: 0.15rem 0.5rem; border-radius: 999px; margin-right: 0.3rem; margin-top: 0.25rem; }
+  .mono-eg { font-size: 0.72rem; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 0.4rem 0.6rem; margin-top: 0.75rem; color: #0369a1; }
+  .meta { font-size: 0.75rem; color: #94a3b8; margin-top: 0.75rem; line-height: 1.5; }
+  .selected-bar {
+    display: none; position: fixed; bottom: 0; left: 0; right: 0;
+    background: #eff6ff; border-top: 1px solid #bfdbfe;
+    padding: 0.75rem 2rem; font-size: 0.85rem; color: #1d4ed8; font-weight: 500;
+    z-index: 100;
+  }
+  .selected-bar.visible { display: block; }
+</style>
+</head>
+<body>
+<h1>Typography Direction</h1>
+<p class="subtitle">Font pairing for the design system — UI font + optional mono for code. Click to select.</p>
+
+<div class="grid">
+
+  <div class="card" onclick="select(this,'a')">
+    <div class="rec">RECOMMENDED</div>
+    <div class="letter">A</div>
+    <div style="font-family: 'Geist', sans-serif;">
+      <div style="font-size: 1.6rem; font-weight: 700; line-height: 1.15; margin-bottom: 0.4rem;">Geist</div>
+      <div style="font-size: 0.9rem; font-weight: 400; color: #64748b; margin-bottom: 0.75rem;">The quick brown fox jumps over the lazy dog. AaBbCc 0123</div>
+      <div style="display: flex; gap: 1rem; font-size: 0.78rem; color: #475569;">
+        <span style="font-weight: 400;">Regular</span>
+        <span style="font-weight: 500;">Medium</span>
+        <span style="font-weight: 600;">Semibold</span>
+        <span style="font-weight: 700;">Bold</span>
+      </div>
+    </div>
+    <div class="mono-eg" style="font-family: 'Geist Mono', monospace;">const brand = tokens.color.brand</div>
+    <div>
+      <span class="tag">Vercel's font</span>
+      <span class="tag">Sharp & modern</span>
+      <span class="tag">Geist Mono pair</span>
+    </div>
+    <div class="meta">UI: Geist · Code: Geist Mono — designed as a matched pair, excellent legibility, clean geometry. Made by Vercel.</div>
+  </div>
+
+  <div class="card" onclick="select(this,'b')">
+    <div class="letter">B</div>
+    <div style="font-family: 'Inter', sans-serif;">
+      <div style="font-size: 1.6rem; font-weight: 700; line-height: 1.15; margin-bottom: 0.4rem;">Inter</div>
+      <div style="font-size: 0.9rem; font-weight: 400; color: #64748b; margin-bottom: 0.75rem;">The quick brown fox jumps over the lazy dog. AaBbCc 0123</div>
+      <div style="display: flex; gap: 1rem; font-size: 0.78rem; color: #475569;">
+        <span style="font-weight: 400;">Regular</span>
+        <span style="font-weight: 500;">Medium</span>
+        <span style="font-weight: 600;">Semibold</span>
+        <span style="font-weight: 700;">Bold</span>
+      </div>
+    </div>
+    <div class="mono-eg" style="font-family: 'JetBrains Mono', monospace;">const brand = tokens.color.brand</div>
+    <div>
+      <span class="tag">Industry standard</span>
+      <span class="tag">Widely available</span>
+      <span class="tag">JetBrains Mono pair</span>
+    </div>
+    <div class="meta">UI: Inter · Code: JetBrains Mono — the most battle-tested UI font. Used by Tailwind, Linear, Figma itself.</div>
+  </div>
+
+  <div class="card" onclick="select(this,'c')">
+    <div class="letter">C</div>
+    <div style="font-family: 'Plus Jakarta Sans', sans-serif;">
+      <div style="font-size: 1.6rem; font-weight: 700; line-height: 1.15; margin-bottom: 0.4rem;">Plus Jakarta Sans</div>
+      <div style="font-size: 0.9rem; font-weight: 400; color: #64748b; margin-bottom: 0.75rem;">The quick brown fox jumps over the lazy dog. AaBbCc 0123</div>
+      <div style="display: flex; gap: 1rem; font-size: 0.78rem; color: #475569;">
+        <span style="font-weight: 400;">Regular</span>
+        <span style="font-weight: 500;">Medium</span>
+        <span style="font-weight: 600;">Semibold</span>
+        <span style="font-weight: 700;">Bold</span>
+      </div>
+    </div>
+    <div class="mono-eg" style="font-family: 'JetBrains Mono', monospace;">const brand = tokens.color.brand</div>
+    <div>
+      <span class="tag">Expressive</span>
+      <span class="tag">Slightly playful</span>
+      <span class="tag">Modern geometric</span>
+    </div>
+    <div class="meta">UI: Plus Jakarta Sans · Code: JetBrains Mono — more personality than Inter, still very professional. Used by Vercel's marketing (before Geist).</div>
+  </div>
+
+  <div class="card" onclick="select(this,'d')">
+    <div class="letter">D</div>
+    <div style="font-family: 'DM Sans', sans-serif;">
+      <div style="font-size: 1.6rem; font-weight: 700; line-height: 1.15; margin-bottom: 0.4rem;">DM Sans</div>
+      <div style="font-size: 0.9rem; font-weight: 400; color: #64748b; margin-bottom: 0.75rem;">The quick brown fox jumps over the lazy dog. AaBbCc 0123</div>
+      <div style="display: flex; gap: 1rem; font-size: 0.78rem; color: #475569;">
+        <span style="font-weight: 400;">Regular</span>
+        <span style="font-weight: 500;">Medium</span>
+        <span style="font-weight: 600;">Semibold</span>
+        <span style="font-weight: 700;">Bold</span>
+      </div>
+    </div>
+    <div class="mono-eg" style="font-family: 'JetBrains Mono', monospace;">const brand = tokens.color.brand</div>
+    <div>
+      <span class="tag">Soft & friendly</span>
+      <span class="tag">Low-contrast warm</span>
+      <span class="tag">Product-forward</span>
+    </div>
+    <div class="meta">UI: DM Sans · Code: JetBrains Mono — softer geometry, approachable. Used by Resend, Planetscale. Pairs well with the B aesthetic.</div>
+  </div>
+
+</div>
+
+<div class="selected-bar" id="bar"></div>
+
+<script>
+  let current = null;
+  function select(el, choice) {
+    document.querySelectorAll('.card').forEach(c => c.classList.remove('selected'));
+    el.classList.add('selected');
+    current = choice;
+    const labels = {
+      a: 'Selected: A — Geist + Geist Mono',
+      b: 'Selected: B — Inter + JetBrains Mono',
+      c: 'Selected: C — Plus Jakarta Sans + JetBrains Mono',
+      d: 'Selected: D — DM Sans + JetBrains Mono'
+    };
+    const bar = document.getElementById('bar');
+    bar.textContent = labels[choice] + ' — reply in terminal to confirm';
+    bar.classList.add('visible');
+    try {
+      fetch('/event', { method: 'POST', headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({type:'click', choice, text: labels[choice], timestamp: Date.now()})
+      });
+    } catch(e) {}
+  }
+</script>
+</body>
+</html>

@@ -193,7 +193,7 @@ Color, Typography, Spacing, Elevation, Icons (Lucide React)
 
 1. **Cover** — file overview, version number, last updated
 2. **Foundations** — colour swatches, type scale, spacing scale, radius, elevation — reference only
-3. **Components** — all 35 components, one section per category, component sets with properties panel
+3. **Components** — all 40 components, one section per category, component sets with properties panel
 4. **Documentation** — per-component usage notes, do/don't examples, prop reference
 5. **Playground** — scratch space for composition testing
 
@@ -250,8 +250,31 @@ figma.connect(Button, '<figma-node-url>', {
 
 1. Figma component property names match TypeScript prop values exactly
 2. One `.figma.tsx` per component, co-located in `packages/ui/src/components/`
-3. Run `figma connect publish` (manually or in CI)
+3. `figma connect publish` runs automatically on every merge to `main` via GitHub Actions
 4. Designers see real component snippets in Dev Mode immediately — no generated code
+
+### CI/CD — GitHub Actions
+
+A workflow at `.github/workflows/code-connect.yml` runs on every push to `main`:
+
+```yaml
+name: Publish Code Connect
+on:
+  push:
+    branches: [main]
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm ci
+      - run: npx figma connect publish --token ${{ secrets.FIGMA_ACCESS_TOKEN }}
+```
+
+**Setup required:** One Figma personal access token added as `FIGMA_ACCESS_TOKEN` in GitHub repo secrets. This ensures Figma Dev Mode never shows stale snippets — parity is guaranteed on every merge.
 
 ---
 
@@ -299,7 +322,6 @@ Every component page follows the same 6-section layout:
 ## What Is Out of Scope
 
 - npm publishing of `@ds/ui` (directory imports only for this lab)
-- CI/CD pipeline (Code Connect publish is manual for this lab)
 - Charts, marketing sections, complex patterns (Phase C — future)
 - Automated Figma Variables sync (manual sync for this lab, script can be added later)
 - Mobile/native outputs (web-only)
@@ -314,3 +336,4 @@ Every component page follows the same 6-section layout:
 4. Docs site runs locally, shows live previews, props, and code snippets for every component
 5. Selecting any component in Figma Dev Mode shows a real, copy-pasteable React snippet
 6. Light/dark mode works in both Figma (via Variable modes) and the docs site (via Tailwind)
+7. Merging to `main` automatically publishes Code Connect mappings to Figma via GitHub Actions

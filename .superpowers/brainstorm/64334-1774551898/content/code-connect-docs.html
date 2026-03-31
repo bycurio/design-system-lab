@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Code Connect + Docs</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Inter, system-ui, sans-serif; background: #fff; color: #0f172a; padding: 2rem; font-size: 14px; line-height: 1.5; }
+  @media (prefers-color-scheme: dark) {
+    body { background: #0f172a; color: #f1f5f9; }
+    .box { background: #1e293b; border-color: #334155; }
+    .code { background: #020617; border-color: #1e3a5f; }
+    .step { background: #1e293b; border-color: #334155; }
+    .note { background: #1e293b; border-color: #334155; color: #94a3b8; }
+    .file-tree { background: #020617; border-color: #1e293b; color: #94a3b8; }
+    .tree-dir { color: #7dd3fc; }
+    .tree-file { color: #a5b4fc; }
+    .tree-comment { color: #475569; }
+    .nav-mock { background: #1e293b; border-color: #334155; }
+    .nav-item { color: #94a3b8; }
+    .nav-item.active { color: #60a5fa; background: #1e3a5f; }
+    .page-mock { background: #020617; border-color: #1e293b; }
+    .comp-preview { background: #1e293b; border-color: #334155; }
+    h2 { border-color: #334155; }
+  }
+  h1 { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.25rem; }
+  .subtitle { color: #64748b; font-size: 0.875rem; margin-bottom: 1.75rem; }
+  h2 { font-size: 0.95rem; font-weight: 700; margin: 1.75rem 0 0.75rem; padding-bottom: 0.4rem; border-bottom: 1px solid #e2e8f0; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+  .box { border: 1.5px solid #e2e8f0; border-radius: 10px; padding: 1.1rem 1.25rem; }
+  .box-title { font-weight: 700; font-size: 0.8rem; margin-bottom: 0.6rem; }
+
+  .code {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.72rem;
+    background: #0f172a; color: #e2e8f0; border: 1px solid #1e3a5f;
+    border-radius: 8px; padding: 1rem; line-height: 1.7; white-space: pre;
+    overflow-x: auto; margin-top: 0.5rem;
+  }
+  .kw { color: #c792ea; }
+  .fn { color: #82aaff; }
+  .str { color: #c3e88d; }
+  .cm { color: #546e7a; }
+  .prop { color: #f07178; }
+  .val { color: #f78c6c; }
+  .imp { color: #89ddff; }
+
+  .steps { display: flex; flex-direction: column; gap: 0.6rem; margin-top: 0.5rem; }
+  .step { display: flex; gap: 0.75rem; align-items: flex-start; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 0.65rem 0.9rem; }
+  .step-num { width: 22px; height: 22px; border-radius: 50%; background: #2563eb; color: white; font-size: 0.7rem; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 0.05rem; }
+  .step-body { font-size: 0.8rem; }
+  .step-body strong { display: block; margin-bottom: 0.15rem; }
+  .step-body p { color: #64748b; font-size: 0.75rem; }
+  code { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; background: #f1f5f9; border: 1px solid #e2e8f0; border-radius: 3px; padding: 0.1rem 0.35rem; color: #0369a1; }
+
+  /* File tree */
+  .file-tree {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.72rem;
+    background: #0f172a; border: 1px solid #1e3a5f;
+    border-radius: 8px; padding: 1rem; line-height: 1.9; color: #94a3b8;
+  }
+  .tree-dir { color: #7dd3fc; font-weight: 600; }
+  .tree-file { color: #c4b5fd; }
+  .tree-comment { color: #475569; font-style: italic; }
+
+  /* Docs mockup */
+  .docs-mock { border: 1.5px solid #e2e8f0; border-radius: 10px; overflow: hidden; margin-top: 0.75rem; }
+  .docs-mock-header { background: #f8fafc; border-bottom: 1px solid #e2e8f0; padding: 0.6rem 1rem; font-size: 0.78rem; font-weight: 600; display: flex; align-items: center; gap: 0.5rem; }
+  .docs-mock-body { display: flex; min-height: 340px; }
+  .nav-mock { width: 180px; border-right: 1px solid #e2e8f0; padding: 0.75rem; flex-shrink: 0; }
+  .nav-section { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: #94a3b8; margin: 0.75rem 0 0.3rem; }
+  .nav-section:first-child { margin-top: 0; }
+  .nav-item { font-size: 0.75rem; padding: 0.25rem 0.5rem; border-radius: 4px; cursor: pointer; color: #475569; margin-bottom: 0.15rem; }
+  .nav-item.active { color: #2563eb; background: #eff6ff; font-weight: 600; }
+  .page-mock { flex: 1; padding: 1.25rem 1.5rem; background: white; }
+  .page-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.25rem; }
+  .page-desc { font-size: 0.78rem; color: #64748b; margin-bottom: 1rem; }
+  .comp-preview { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.25rem; display: flex; align-items: center; justify-content: center; gap: 0.75rem; margin-bottom: 0.75rem; }
+  .mock-btn { background: #2563eb; color: white; border: none; border-radius: 4px; padding: 0.4rem 0.9rem; font-size: 0.78rem; font-weight: 600; cursor: pointer; }
+  .mock-btn-ghost { background: transparent; color: #2563eb; border: 1.5px solid #2563eb; border-radius: 4px; padding: 0.4rem 0.9rem; font-size: 0.78rem; font-weight: 600; }
+  .mock-btn-danger { background: #dc2626; color: white; border: none; border-radius: 4px; padding: 0.4rem 0.9rem; font-size: 0.78rem; font-weight: 600; }
+  .code-snip { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; background: #0f172a; color: #c4b5fd; border-radius: 6px; padding: 0.6rem 0.75rem; line-height: 1.6; }
+
+  .note { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 0.75rem 1rem; font-size: 0.78rem; color: #475569; line-height: 1.6; margin-top: 1.25rem; }
+</style>
+</head>
+<body>
+
+<h1>Code Connect + Docs Web App</h1>
+<p class="subtitle">How Figma components link to real source — and what developers see in the docs site</p>
+
+<!-- Code Connect -->
+<h2>Code Connect — How It Works</h2>
+<div class="grid-2">
+  <div>
+    <div class="box-title">What a <code>.figma.tsx</code> file looks like</div>
+    <div class="code"><span class="imp">import</span> figma <span class="imp">from</span> <span class="str">'@figma/code-connect'</span>
+<span class="imp">import</span> { Button } <span class="imp">from</span> <span class="str">'./Button'</span>
+
+<span class="cm">// Links this Figma node → Button.tsx</span>
+figma.<span class="fn">connect</span>(Button, <span class="str">'https://figma.com/design/ITyTagL...'</span>, {
+  <span class="prop">props</span>: {
+    <span class="prop">variant</span>: figma.<span class="fn">enum</span>(<span class="str">'Variant'</span>, {
+      Primary: <span class="str">'primary'</span>,
+      Secondary: <span class="str">'secondary'</span>,
+      Ghost: <span class="str">'ghost'</span>,
+      Danger: <span class="str">'danger'</span>,
+    }),
+    <span class="prop">size</span>: figma.<span class="fn">enum</span>(<span class="str">'Size'</span>, {
+      Small: <span class="str">'sm'</span>, Medium: <span class="str">'md'</span>, Large: <span class="str">'lg'</span>
+    }),
+    <span class="prop">label</span>: figma.<span class="fn">string</span>(<span class="str">'Label'</span>),
+    <span class="prop">disabled</span>: figma.<span class="fn">boolean</span>(<span class="str">'Disabled'</span>),
+  },
+  <span class="prop">example</span>: ({ variant, size, label, disabled }) => (
+    &lt;<span class="fn">Button</span> <span class="prop">variant</span>={variant} <span class="prop">size</span>={size} <span class="prop">disabled</span>={disabled}&gt;
+      {label}
+    &lt;/<span class="fn">Button</span>&gt;
+  ),
+})</div>
+  </div>
+
+  <div>
+    <div class="box-title">Publish workflow</div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <strong>Figma component properties match code props</strong>
+          <p>Variant names in Figma ("Primary", "Ghost") map to TypeScript values ("primary", "ghost") via <code>figma.enum()</code></p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <strong>One <code>.figma.tsx</code> per component in <code>packages/ui</code></strong>
+          <p>Co-located next to the component source — <code>Button.tsx</code>, <code>Button.figma.tsx</code></p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <strong><code>figma connect publish</code> pushes all mappings</strong>
+          <p>Run manually or as a CI step. Designers immediately see real code in Dev Mode with no generated snippets.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <strong>Dev Mode experience</strong>
+          <p>Designer selects a Button → Dev Mode shows the exact <code>&lt;Button variant="primary"&gt;</code> snippet with correct props. Copy-paste ready.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Monorepo structure -->
+<h2>Monorepo File Structure</h2>
+<div class="grid-2">
+  <div class="file-tree">design-system-lab/
+├── <span class="tree-dir">packages/</span>
+│   ├── <span class="tree-dir">tokens/</span>
+│   │   ├── <span class="tree-file">tailwind.css</span>         <span class="tree-comment">@theme primitives + semantics</span>
+│   │   └── <span class="tree-file">package.json</span>
+│   └── <span class="tree-dir">ui/</span>
+│       ├── <span class="tree-dir">src/</span>
+│       │   ├── <span class="tree-dir">components/</span>
+│       │   │   ├── <span class="tree-file">Button.tsx</span>
+│       │   │   ├── <span class="tree-file">Button.figma.tsx</span>     <span class="tree-comment">Code Connect</span>
+│       │   │   ├── <span class="tree-file">Button.types.ts</span>
+│       │   │   └── <span class="tree-file">index.ts</span>             <span class="tree-comment">barrel export</span>
+│       │   └── <span class="tree-file">index.ts</span>               <span class="tree-comment">@ds/ui entry</span>
+│       └── <span class="tree-file">package.json</span>
+├── <span class="tree-dir">apps/</span>
+│   └── <span class="tree-dir">docs/</span>
+│       ├── <span class="tree-dir">app/</span>
+│       │   ├── <span class="tree-dir">foundations/</span>
+│       │   │   └── <span class="tree-dir">[slug]/page.tsx</span>
+│       │   ├── <span class="tree-dir">components/</span>
+│       │   │   └── <span class="tree-dir">[slug]/page.tsx</span>
+│       │   └── <span class="tree-file">layout.tsx</span>             <span class="tree-comment">nav + dark mode toggle</span>
+│       └── <span class="tree-file">package.json</span>
+├── <span class="tree-file">turbo.json</span>
+└── <span class="tree-file">package.json</span></div>
+
+  <div>
+    <div class="box-title" style="margin-bottom: 0.6rem;">Docs site — navigation structure</div>
+    <div class="docs-mock">
+      <div class="docs-mock-header">
+        <span>🧩</span> DS Lab — Documentation
+        <span style="margin-left: auto; font-size: 0.7rem; color: #94a3b8; font-weight: 400;">☀️ / 🌙</span>
+      </div>
+      <div class="docs-mock-body">
+        <div class="nav-mock">
+          <div class="nav-section">Getting Started</div>
+          <div class="nav-item">Introduction</div>
+          <div class="nav-item">Installation</div>
+          <div class="nav-section">Foundations</div>
+          <div class="nav-item">Colors</div>
+          <div class="nav-item">Typography</div>
+          <div class="nav-item">Spacing</div>
+          <div class="nav-item">Icons</div>
+          <div class="nav-section">Components</div>
+          <div class="nav-item active">Button</div>
+          <div class="nav-item">Input</div>
+          <div class="nav-item">Badge</div>
+          <div class="nav-item">Card</div>
+          <div class="nav-item" style="color:#94a3b8;">…32 more</div>
+        </div>
+        <div class="page-mock">
+          <div class="page-title">Button</div>
+          <div class="page-desc">Triggers an action or event. Use the primary variant for the most important action on a page.</div>
+          <div class="comp-preview">
+            <button class="mock-btn">Primary</button>
+            <button class="mock-btn-ghost">Secondary</button>
+            <button class="mock-btn-danger">Danger</button>
+          </div>
+          <div class="code-snip"><span style="color:#89ddff;">import</span> { Button } <span style="color:#89ddff;">from</span> <span style="color:#c3e88d;">'@ds/ui'</span>
+
+&lt;<span style="color:#82aaff;">Button</span> <span style="color:#f07178;">variant</span>=<span style="color:#c3e88d;">"primary"</span>&gt;Label&lt;/<span style="color:#82aaff;">Button</span>&gt;</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="note">
+  <strong>The handover loop:</strong> Designer picks a component in Figma → Dev Mode shows the real <code>&lt;Button&gt;</code> snippet → developer opens docs site → sees live preview, full prop table, and token reference. No ambiguity, no translation layer. Both surfaces stay in sync because they reference the same <code>packages/ui</code> source.
+</div>
+
+</body>
+</html>

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Components</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Inter, system-ui, sans-serif; background: #fff; color: #0f172a; padding: 2rem; font-size: 14px; line-height: 1.5; }
+  @media (prefers-color-scheme: dark) {
+    body { background: #0f172a; color: #f1f5f9; }
+    .group { background: #1e293b; border-color: #334155; }
+    .comp { background: #0f172a; border-color: #334155; }
+    .comp:hover { border-color: #64748b; }
+    code { background: #0f172a; color: #7dd3fc; border-color: #1e3a5f; }
+    .variant-tag { background: #1e293b; color: #94a3b8; }
+    .note { background: #1e293b; border-color: #334155; color: #94a3b8; }
+    h2 { color: #94a3b8; }
+    .figma-box { background: #1e293b; border-color: #334155; }
+    .figma-page { background: #0f172a; border-color: #334155; color: #94a3b8; }
+    .conn-line { border-color: #334155; }
+  }
+  h1 { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.25rem; }
+  .subtitle { color: #64748b; font-size: 0.875rem; margin-bottom: 1.5rem; }
+  h2 { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: #64748b; margin: 1.5rem 0 0.5rem; }
+  code { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; background: #f1f5f9; border: 1px solid #e2e8f0; border-radius: 3px; padding: 0.1rem 0.35rem; color: #0369a1; }
+  .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+  .group { border: 1.5px solid #e2e8f0; border-radius: 10px; padding: 1rem; background: #f8fafc; }
+  .group-title { font-weight: 700; font-size: 0.8rem; margin-bottom: 0.6rem; display: flex; align-items: center; gap: 0.4rem; }
+  .group-icon { font-size: 1rem; }
+  .comps { display: flex; flex-direction: column; gap: 0.35rem; }
+  .comp {
+    background: white; border: 1px solid #e2e8f0; border-radius: 6px;
+    padding: 0.4rem 0.6rem; font-size: 0.78rem; font-weight: 500;
+    display: flex; align-items: flex-start; justify-content: space-between; gap: 0.5rem;
+  }
+  .comp-name { flex: 1; }
+  .variants { display: flex; flex-wrap: wrap; gap: 0.2rem; margin-top: 0.2rem; }
+  .variant-tag { background: #f1f5f9; border-radius: 3px; padding: 0.05rem 0.3rem; font-size: 0.62rem; color: #64748b; font-weight: 400; }
+
+  .figma-section { margin-top: 2rem; }
+  .figma-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 0.75rem; }
+  .figma-box { border: 1.5px solid #e2e8f0; border-radius: 10px; padding: 1rem 1.25rem; }
+  .figma-box-title { font-weight: 700; font-size: 0.8rem; margin-bottom: 0.6rem; color: #e11d48; }
+  .figma-pages { display: flex; flex-direction: column; gap: 0.35rem; }
+  .figma-page { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 0.4rem 0.75rem; font-size: 0.78rem; display: flex; align-items: center; gap: 0.5rem; }
+  .page-icon { font-size: 0.9rem; }
+
+  .doc-convention { margin-top: 1.25rem; border: 1.5px solid #e2e8f0; border-radius: 10px; padding: 1rem 1.25rem; }
+  .doc-title { font-weight: 700; font-size: 0.8rem; margin-bottom: 0.75rem; }
+  .doc-items { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; }
+  .doc-item { font-size: 0.78rem; }
+  .doc-item strong { display: block; margin-bottom: 0.2rem; font-size: 0.75rem; }
+  .doc-item p { color: #64748b; font-size: 0.73rem; }
+
+  .note { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 0.75rem 1rem; font-size: 0.78rem; color: #475569; line-height: 1.6; margin-top: 1.25rem; }
+  .count { font-size: 0.68rem; font-weight: 400; color: #94a3b8; margin-left: 0.25rem; }
+</style>
+</head>
+<body>
+
+<h1>Component Organisation</h1>
+<p class="subtitle">35 components across 8 categories — each with variants, states, and a Figma counterpart</p>
+
+<div class="grid">
+
+  <div class="group">
+    <div class="group-title"><span class="group-icon">⚡</span> Actions <span class="count">5</span></div>
+    <div class="comps">
+      <div class="comp"><div><div class="comp-name">Button</div><div class="variants"><span class="variant-tag">primary</span><span class="variant-tag">secondary</span><span class="variant-tag">ghost</span><span class="variant-tag">danger</span><span class="variant-tag">sm/md/lg</span></div></div></div>
+      <div class="comp"><div><div class="comp-name">Icon Button</div><div class="variants"><span class="variant-tag">ghost</span><span class="variant-tag">outline</span><span class="variant-tag">sm/md/lg</span></div></div></div>
+      <div class="comp"><div><div class="comp-name">Link</div><div class="variants"><span class="variant-tag">inline</span><span class="variant-tag">standalone</span></div></div></div>
+      <div class="comp"><div><div class="comp-name">FAB</div><div class="variants"><span class="variant-tag">primary</span><span class="variant-tag">sm/lg</span></div></div></div>
+      <div class="comp"><div><div class="comp-name">Split Button</div><div class="variants"><span class="variant-tag">primary</span><span class="variant-tag">secondary</span></div></div></div>
+    </div>
+  </div>
+
+  <div class="group">
+    <div class="group-title"><span class="group-icon">📝</span> Forms <span class="count">8</span></div>
+    <div class="comps">
+      <div class="comp"><div><div class="comp-name">Input</div><div class="variants"><span class="variant-tag">default</span><span class="variant-tag">error</span><span class="variant-tag">disabled</span><span class="variant-tag">icon</span></div></div></div>
+      <div class="comp"><div><div class="comp-name">Textarea</div><div class="variants"><span class="variant-tag">default</span><span class="variant-tag">error</span></div></div></div>
+      <div class="comp"><div><div class="comp-name">Select</div><div class="variants"><span class="variant-tag">default</span><span class="variant-tag">error</span></div></div></div>
+      <div class="comp"><div><div class="comp-name">Checkbox</div><div class="variants"><span class="variant-tag">unchecked</span><span class="variant-tag">checked</span><span class="variant-tag">indeterminate</span></div></div></div>
+      <div class="comp"><div><div class="comp-name">Radio</div><div class="variants"><span class="variant-tag">unchecked</span><span class="variant-tag">checked</span></div></div></div>
+      <div class="comp"><div><div class="comp-name">Toggle</div><div class="variants"><span class="variant-tag">off</span><span class="variant-tag">on</span><span class="variant-tag">sm/md</span></div></div></div>
+      <div class="comp"><div><div class="comp-name">Slider</div><div class="variants"><span class="variant-tag">single</span><span class="variant-tag">range</span></div></div></div>
+      <div class="comp"><div><div class="comp-name">Date Picker</div><div class="variants"><span class="variant-tag">input</span><span class="variant-tag">calendar</span></div></div></div>
+    </div>
+  </div>
+
+  <div class="group">
+    <div class="group-title"><span class="group-icon">🧭</span> Navigation <span class="count">5</span></div>
+    <div class="comps">
+      <div class="comp"><div><div class="comp-name">Nav Bar</div><div class="variants"><span class="variant-tag">top</span><span class="variant-tag">with logo</span><span class="variant-tag">actions</span></div></div></div>
+      <div class="comp"><div><div class="comp-name">Tabs</div><div class="variants"><span class="variant-tag">line</span><span class="variant-tag">pill</span><span class="variant-tag">vertical</span></div></div></div>
+      <div class="comp"><div><div class="comp-name">Breadcrumb</div><div class="variants"><span class="variant-tag">slash</span><span class="variant-tag">chevron</span></div></div></div>
+      <div class="comp"><div><div class="comp-name">Sidebar</div><div class="variants"><span class="variant-tag">expanded</span><span class="variant-tag">collapsed</span></div></div></div>
+      <div class="comp"><div><div class="comp-name">Pagination</div><div class="variants"><span class="variant-tag">numbered</span><span class="variant-tag">prev/next</span></div></div></div>
+    </div>
+  </div>
+
+  <div class="group">
+    <div class="group-title"><span class="group-icon">🔔</span> Feedback <span class="count">7</span></div>
+    <div class="comps">
+      <div class="comp"><div><div class="comp-name">Badge</div><div class="variants"><span class="variant-tag">default</span><span class="variant-tag">success</span><span class="variant-tag">danger</span><span class="variant-tag">warning</span><span class="variant-tag">pill ✦</span></div></div></div>
+      <div class="comp"><div><div class="comp-name">Toast</div><div class="variants"><span class="variant-tag">info</span><span class="variant-tag">success</span><span class="variant-tag">danger</span></div></div></div>
+      <div class="comp"><div><div class="comp-name">Alert</div><div class="variants"><span class="variant-tag">info</span><span class="variant-tag">success</span><span class="variant-tag">danger</span><span class="variant-tag">warning</span></div></div></div>
+      <div class="comp"><div><div class="comp-name">Tooltip</div><div class="variants"><span class="variant-tag">top</span><span class="variant-tag">bottom</span><span class="variant-tag">left</span><span class="variant-tag">right</span></div></div></div>
+      <div class="comp"><div><div class="comp-name">Progress</div><div class="variants"><span class="variant-tag">bar</span><span class="variant-tag">circular</span></div></div></div>
+      <div class="comp"><div><div class="comp-name">Skeleton</div><div class="variants"><span class="variant-tag">text</span><span class="variant-tag">card</span><span class="variant-tag">avatar</span></div></div></div>
+      <div class="comp"><div><div class="comp-name">Spinner</div><div class="variants"><span class="variant-tag">sm/md/lg</span><span class="variant-tag">brand/white</span></div></div></div>
+    </div>
+  </div>
+
+  <div class="group">
+    <div class="group-title"><span class="group-icon">📦</span> Containers <span class="count">6</span></div>
+    <div class="comps">
+      <div class="comp"><div><div class="comp-name">Card</div><div class="variants"><span class="variant-tag">default</span><span class="variant-tag">bordered</span><span class="variant-tag">interactive</span></div></div></div>
+      <div class="comp"><div><div class="comp-name">Modal</div><div class="variants"><span class="variant-tag">sm/md/lg</span><span class="variant-tag">fullscreen</span></div></div></div>
+      <div class="comp"><div><div class="comp-name">Drawer</div><div class="variants"><span class="variant-tag">left</span><span class="variant-tag">right</span></div></div></div>
+      <div class="comp"><div><div class="comp-name">Popover</div><div class="variants"><span class="variant-tag">top</span><span class="variant-tag">bottom</span></div></div></div>
+      <div class="comp"><div><div class="comp-name">Accordion</div><div class="variants"><span class="variant-tag">single</span><span class="variant-tag">multiple</span></div></div></div>
+      <div class="comp"><div><div class="comp-name">Divider</div><div class="variants"><span class="variant-tag">horizontal</span><span class="variant-tag">vertical</span><span class="variant-tag">with label</span></div></div></div>
+    </div>
+  </div>
+
+  <div class="group">
+    <div class="group-title"><span class="group-icon">🗃️</span> Data <span class="count">4</span></div>
+    <div class="comps">
+      <div class="comp"><div><div class="comp-name">Table</div><div class="variants"><span class="variant-tag">default</span><span class="variant-tag">striped</span><span class="variant-tag">sortable</span></div></div></div>
+      <div class="comp"><div><div class="comp-name">List</div><div class="variants"><span class="variant-tag">unordered</span><span class="variant-tag">ordered</span><span class="variant-tag">description</span></div></div></div>
+      <div class="comp"><div><div class="comp-name">Avatar</div><div class="variants"><span class="variant-tag">image</span><span class="variant-tag">initials</span><span class="variant-tag">sm/md/lg</span><span class="variant-tag">group</span></div></div></div>
+      <div class="comp"><div><div class="comp-name">Chip / Tag</div><div class="variants"><span class="variant-tag">default</span><span class="variant-tag">removable</span><span class="variant-tag">pill ✦</span></div></div></div>
+    </div>
+  </div>
+
+  <div class="group">
+    <div class="group-title"><span class="group-icon">🔤</span> Typography <span class="count">5</span></div>
+    <div class="comps">
+      <div class="comp"><div><div class="comp-name">Heading</div><div class="variants"><span class="variant-tag">h1–h4</span><span class="variant-tag">display</span></div></div></div>
+      <div class="comp"><div><div class="comp-name">Body</div><div class="variants"><span class="variant-tag">sm/base/lg</span><span class="variant-tag">muted</span></div></div></div>
+      <div class="comp"><div><div class="comp-name">Label</div><div class="variants"><span class="variant-tag">sm/base</span><span class="variant-tag">required</span></div></div></div>
+      <div class="comp"><div><div class="comp-name">Caption</div><div class="variants"><span class="variant-tag">default</span><span class="variant-tag">muted</span></div></div></div>
+      <div class="comp"><div><div class="comp-name">Code</div><div class="variants"><span class="variant-tag">inline</span><span class="variant-tag">block</span></div></div></div>
+    </div>
+  </div>
+
+  <div class="group" style="border-color: #bfdbfe; background: #eff6ff;">
+    <div class="group-title"><span class="group-icon">🏗️</span> Foundations <span class="count">docs only</span></div>
+    <div class="comps">
+      <div class="comp"><div><div class="comp-name">Color</div><div class="variants"><span class="variant-tag">palette</span><span class="variant-tag">semantic</span><span class="variant-tag">dark mode</span></div></div></div>
+      <div class="comp"><div><div class="comp-name">Typography</div><div class="variants"><span class="variant-tag">scale</span><span class="variant-tag">weights</span></div></div></div>
+      <div class="comp"><div><div class="comp-name">Spacing</div><div class="variants"><span class="variant-tag">scale</span><span class="variant-tag">usage</span></div></div></div>
+      <div class="comp"><div><div class="comp-name">Elevation</div><div class="variants"><span class="variant-tag">shadow scale</span></div></div></div>
+      <div class="comp"><div><div class="comp-name">Icons</div><div class="variants"><span class="variant-tag">Lucide React</span></div></div></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Figma structure -->
+<div class="figma-section">
+  <h2>Figma File Structure</h2>
+  <div class="figma-grid">
+    <div class="figma-box">
+      <div class="figma-box-title">Pages in Design-System-Lab</div>
+      <div class="figma-pages">
+        <div class="figma-page"><span class="page-icon">🎨</span><div><strong>Cover</strong> — file overview, version</div></div>
+        <div class="figma-page"><span class="page-icon">🏗️</span><div><strong>Foundations</strong> — colour, type, spacing, radius, elevation displayed as reference</div></div>
+        <div class="figma-page"><span class="page-icon">🧩</span><div><strong>Components</strong> — all 35 components, one section per category, with variants frame</div></div>
+        <div class="figma-page"><span class="page-icon">📖</span><div><strong>Documentation</strong> — per-component usage notes, do/don't examples</div></div>
+        <div class="figma-page"><span class="page-icon">🔌</span><div><strong>Playground</strong> — scratch space for testing compositions</div></div>
+      </div>
+    </div>
+    <div class="figma-box">
+      <div class="figma-box-title">Per-Component Figma Convention</div>
+      <div class="figma-pages">
+        <div class="figma-page"><span class="page-icon">📐</span><div><strong>Component set</strong> — all variants in a single component set with properties panel</div></div>
+        <div class="figma-page"><span class="page-icon">🎭</span><div><strong>States</strong> — default, hover, focus, disabled, error shown side by side</div></div>
+        <div class="figma-page"><span class="page-icon">🌙</span><div><strong>Dark mode</strong> — variable modes applied, shown next to light</div></div>
+        <div class="figma-page"><span class="page-icon">📝</span><div><strong>Annotation</strong> — prop table + usage note directly on canvas below component</div></div>
+        <div class="figma-page"><span class="page-icon">🔗</span><div><strong>Code Connect</strong> — <code>.figma.tsx</code> file links to real <code>packages/ui</code> source</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Documentation convention -->
+<div class="doc-convention">
+  <div class="doc-title">Web App Docs — Per-Component Page Structure</div>
+  <div class="doc-items">
+    <div class="doc-item"><strong>1. Overview</strong><p>One-line description, when to use, when not to use</p></div>
+    <div class="doc-item"><strong>2. Live Preview</strong><p>Interactive component rendered in the browser, light/dark toggle</p></div>
+    <div class="doc-item"><strong>3. Variants</strong><p>All variant combinations shown with labels</p></div>
+    <div class="doc-item"><strong>4. Code</strong><p>Copy-ready import + usage snippet with JetBrains Mono code block</p></div>
+    <div class="doc-item"><strong>5. Props</strong><p>TypeScript prop table: name, type, default, description</p></div>
+    <div class="doc-item"><strong>6. Tokens</strong><p>Which component-tier tokens this component consumes</p></div>
+  </div>
+</div>
+
+<div class="note">✦ <strong>Pill convention</strong> — Badge, Chip/Tag use <code>--radius-full</code>. All other interactive components use <code>--radius-md</code> (4px). This distinction is enforced via component-tier tokens, not per-file overrides.</div>
+
+</body>
+</html>
