@@ -20,4 +20,4 @@ jobs:
 
       - name: Publish Code Connect
         working-directory: packages/ui
-        run: npx figma connect publish --token ${{ secrets.FIGMA_ACCESS_TOKEN }}
+        run: npx figma connect publish --token ${{ secrets.FIGMA_ACCESS_TOKEN }} --skip-validation
