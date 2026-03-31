@@ -1,0 +1,22 @@
+name: Sync Figma Tokens
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'packages/tokens/tailwind.css'
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Sync primitive color tokens to Figma
+        run: node scripts/sync-figma-tokens.mjs
+        env:
+          FIGMA_ACCESS_TOKEN: ${{ secrets.FIGMA_ACCESS_TOKEN }}
