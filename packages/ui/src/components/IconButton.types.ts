@@ -5,5 +5,6 @@ export interface IconButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>
   icon: ReactNode
   variant?: IconButtonVariant
   size?: IconButtonSize
+  loading?: boolean
   'aria-label': string
 }

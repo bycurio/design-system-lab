@@ -34,4 +34,16 @@ describe('IconButton', () => {
     render(<IconButton icon={icon} aria-label="Edit" disabled />)
     expect(screen.getByRole('button')).toBeDisabled()
   })
+
+  it('is disabled and aria-busy when loading', () => {
+    render(<IconButton icon={icon} aria-label="Edit" loading />)
+    const btn = screen.getByRole('button')
+    expect(btn).toBeDisabled()
+    expect(btn).toHaveAttribute('aria-busy', 'true')
+  })
+
+  it('hides icon and shows spinner when loading', () => {
+    render(<IconButton icon={icon} aria-label="Edit" loading />)
+    expect(screen.queryByTestId('icon')).not.toBeInTheDocument()
+  })
 })
