@@ -1,5 +1,5 @@
 import figma from '@figma/code-connect'
-import { Button } from './Button'
+import { Button, Icon } from './index'
 
 figma.connect(Button, 'https://www.figma.com/design/ITyTagLQEj5b75iqsmPyl6/Design-System-Lab?node-id=34-4', {
   props: {
@@ -14,11 +14,18 @@ figma.connect(Button, 'https://www.figma.com/design/ITyTagLQEj5b75iqsmPyl6/Desig
       md: 'md',
       lg: 'lg',
     }),
+    hasIcon: figma.boolean('Icon'),
     loading: figma.boolean('loading'),
     disabled: figma.boolean('disabled'),
   },
   example: (props) => (
-    <Button variant={props.variant} size={props.size} loading={props.loading} disabled={props.disabled}>
+    <Button
+      variant={props.variant}
+      size={props.size}
+      icon={props.hasIcon ? <Icon name="add" /> : undefined}
+      loading={props.loading}
+      disabled={props.disabled}
+    >
       Label
     </Button>
   ),
