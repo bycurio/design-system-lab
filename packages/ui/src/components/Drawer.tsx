@@ -21,7 +21,7 @@ export function Drawer({ open, onClose, title, children, placement = 'right', si
     <div className="fixed inset-0 z-50 flex" role="dialog" aria-modal="true" aria-labelledby="drawer-title">
       <div className="fixed inset-0 bg-black/50" onClick={onClose} aria-hidden="true" />
       <div className={cn(
-        'relative flex flex-col bg-(--color-bg) shadow-(--shadow-xl) h-full',
+        'relative flex flex-col bg-(--color-surface-raised) shadow-(--shadow-xl) h-full',
         sizeClasses[size],
         placement === 'right' ? 'ml-auto' : 'mr-auto',
         className,

@@ -67,9 +67,12 @@ export const cardDoc: ComponentDoc = {
     { name: 'className', type: 'string', description: 'Additional CSS classes.' },
   ],
   tokens: [
+    { name: '--color-surface-raised', value: 'light: #ffffff  /  dark: #0f172a', description: 'Card body background — elevated above the page surface.' },
+    { name: '--color-surface-raised-hover', value: 'light: #f8fafc  /  dark: #1e293b', description: 'Card background on hover — for interactive/clickable cards.' },
+    { name: '--color-surface-raised-pressed', value: 'light: #f1f5f9  /  dark: #334155', description: 'Card background on press.' },
     { name: '--card-radius', value: 'var(--radius-lg)', description: 'Card corner radius.' },
-    { name: '--color-border', value: '#e5e7eb', description: 'Card border and internal divider color.' },
-    { name: '--color-surface', value: '#f9fafb', description: 'Card.Footer background.' },
+    { name: '--color-border', value: 'light: #e2e8f0  /  dark: #334155', description: 'Card border and internal divider color.' },
+    { name: '--color-surface', value: 'light: #f8fafc  /  dark: #1e293b', description: 'Card.Footer background.' },
   ],
 }
 
@@ -149,8 +152,9 @@ export const modalDoc: ComponentDoc = {
     { name: 'size', type: "'sm' | 'md' | 'lg'", default: "'md'", description: 'Controls the modal max-width.' },
   ],
   tokens: [
+    { name: '--color-surface-raised', value: 'light: #ffffff  /  dark: #0f172a', description: 'Modal panel background.' },
     { name: '--card-radius', value: 'var(--radius-lg)', description: 'Modal panel border radius.' },
-    { name: '--color-bg', value: '#ffffff', description: 'Modal panel background.' },
+    { name: '--color-border', value: 'light: #e2e8f0  /  dark: #334155', description: 'Header and footer divider.' },
   ],
 }
 
@@ -217,8 +221,8 @@ export const drawerDoc: ComponentDoc = {
     { name: 'size', type: "'sm' | 'md' | 'lg'", default: "'md'", description: 'Drawer width.' },
   ],
   tokens: [
-    { name: '--color-bg', value: '#ffffff', description: 'Drawer panel background.' },
-    { name: '--color-border', value: '#e5e7eb', description: 'Drawer header and footer divider.' },
+    { name: '--color-surface-raised', value: 'light: #ffffff  /  dark: #0f172a', description: 'Drawer panel background.' },
+    { name: '--color-border', value: 'light: #e2e8f0  /  dark: #334155', description: 'Drawer header divider.' },
   ],
 }
 
@@ -281,9 +285,9 @@ export const popoverDoc: ComponentDoc = {
     { name: 'onOpenChange', type: '(open: boolean) => void', description: 'Called when open state changes.' },
   ],
   tokens: [
+    { name: '--color-surface-raised', value: 'light: #ffffff  /  dark: #0f172a', description: 'Popover panel background.' },
     { name: '--card-radius', value: 'var(--radius-lg)', description: 'Popover panel border radius.' },
-    { name: '--color-bg', value: '#ffffff', description: 'Panel background.' },
-    { name: '--color-border', value: '#e5e7eb', description: 'Panel border.' },
+    { name: '--color-border', value: 'light: #e2e8f0  /  dark: #334155', description: 'Panel border.' },
   ],
 }
 
@@ -340,8 +344,9 @@ export const accordionDoc: ComponentDoc = {
     { name: 'className', type: 'string', description: 'Additional CSS classes.' },
   ],
   tokens: [
-    { name: '--color-border', value: '#e5e7eb', description: 'Panel divider color.' },
-    { name: '--color-surface', value: '#f9fafb', description: 'Panel header hover background.' },
+    { name: '--color-border', value: 'light: #e2e8f0  /  dark: #334155', description: 'Panel divider color.' },
+    { name: '--color-interaction-hover', value: 'light: rgba(0,0,0,0.06)  /  dark: rgba(255,255,255,0.08)', description: 'Panel header hover overlay — surface-agnostic alpha.' },
+    { name: '--color-interaction-pressed', value: 'light: rgba(0,0,0,0.12)  /  dark: rgba(255,255,255,0.15)', description: 'Panel header pressed overlay.' },
   ],
 }
 

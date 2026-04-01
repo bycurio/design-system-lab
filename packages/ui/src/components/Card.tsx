@@ -15,7 +15,7 @@ function CardFooter({ children, className }: CardSectionProps) {
 
 export function Card({ children, className }: CardProps) {
   return (
-    <div className={cn('rounded-(--card-radius) border border-(--color-border) bg-(--color-bg) overflow-hidden', className)}>
+    <div className={cn('rounded-(--card-radius) border border-(--color-border) bg-(--color-surface-raised) overflow-hidden', className)}>
       {children}
     </div>
   )

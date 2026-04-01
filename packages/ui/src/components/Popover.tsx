@@ -36,7 +36,7 @@ export function Popover({ trigger, content, placement = 'bottom', open: controll
     <div ref={ref} className="relative inline-flex">
       <div onClick={toggle}>{trigger}</div>
       {open && (
-        <div className={cn('absolute z-40 rounded-(--popover-radius) border border-(--color-border) bg-(--color-bg) shadow-(--shadow-md)', placementClasses[placement])}>
+        <div className={cn('absolute z-40 rounded-(--popover-radius) border border-(--color-border) bg-(--color-surface-raised) shadow-(--shadow-md)', placementClasses[placement])}>
           {content}
         </div>
       )}

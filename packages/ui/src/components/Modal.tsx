@@ -25,7 +25,7 @@ export function Modal({ open, onClose, title, children, footer, size = 'md', cla
       aria-labelledby="modal-title"
     >
       <div className="fixed inset-0 bg-black/50" onClick={onClose} aria-hidden="true" />
-      <div className={cn('relative w-full rounded-(--modal-radius) bg-(--color-bg) shadow-(--shadow-xl)', sizeClasses[size], className)}>
+      <div className={cn('relative w-full rounded-(--modal-radius) bg-(--color-surface-raised) shadow-(--shadow-xl)', sizeClasses[size], className)}>
         <div className="flex items-center justify-between px-6 py-4 border-b border-(--color-border)">
           <h2 id="modal-title" className="text-lg font-semibold text-(--color-text-primary)">{title}</h2>
           <button onClick={onClose} aria-label="Close modal" className="text-(--color-text-secondary) hover:text-(--color-text-primary) transition-colors">
