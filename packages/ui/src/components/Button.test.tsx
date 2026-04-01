@@ -51,6 +51,20 @@ describe('Button', () => {
     expect(btn).toHaveAttribute('aria-busy', 'true')
   })
 
+  it('renders icon before label', () => {
+    render(<Button icon={<span data-testid="icon" />}>Click me</Button>)
+    const btn = screen.getByRole('button')
+    const icon = btn.querySelector('[data-testid="icon"]')
+    expect(icon).toBeInTheDocument()
+    expect(btn.firstElementChild).toBe(icon)
+  })
+
+  it('hides icon and shows spinner when loading', () => {
+    render(<Button icon={<span data-testid="icon" />} loading>Click me</Button>)
+    expect(screen.queryByTestId('icon')).not.toBeInTheDocument()
+    expect(screen.getByRole('button')).toHaveAttribute('aria-busy', 'true')
+  })
+
   it('calls onClick when clicked', async () => {
     const user = userEvent.setup()
     const handleClick = vi.fn()

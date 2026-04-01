@@ -17,7 +17,7 @@ const sizeClasses = {
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ variant = 'primary', size = 'md', loading = false, disabled, className, children, ...props }, ref) => (
+  ({ variant = 'primary', size = 'md', loading = false, icon, disabled, className, children, ...props }, ref) => (
     <button
       ref={ref}
       disabled={disabled || loading}
@@ -32,7 +32,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       )}
       {...props}
     >
-      {loading && <Icon name="progress_activity" size={16} className="animate-spin shrink-0" />}
+      {loading ? <Icon name="progress_activity" size={16} className="animate-spin shrink-0" /> : icon}
       {children}
     </button>
   ),

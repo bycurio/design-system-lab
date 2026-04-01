@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { createElement as h } from 'react'
-import { Button } from '@ds/ui'
+import { Button, Icon } from '@ds/ui'
 import type { ComponentDoc } from '@/lib/types'
 
 export const buttonDoc: ComponentDoc = {
@@ -47,6 +47,16 @@ export const buttonDoc: ComponentDoc = {
         ),
     },
     {
+      label: 'With Icon',
+      preview: () =>
+        h('div', { className: 'flex flex-wrap gap-3 items-center' },
+          h(Button, { variant: 'primary', icon: h(Icon, { name: 'add' }) }, 'Create'),
+          h(Button, { variant: 'secondary', icon: h(Icon, { name: 'download' }) }, 'Export'),
+          h(Button, { variant: 'ghost', icon: h(Icon, { name: 'settings' }) }, 'Settings'),
+          h(Button, { variant: 'danger', icon: h(Icon, { name: 'delete' }) }, 'Delete'),
+        ),
+    },
+    {
       label: 'States',
       preview: () =>
         h('div', { className: 'flex flex-wrap gap-3 items-center' },
@@ -60,15 +70,14 @@ export const buttonDoc: ComponentDoc = {
         ),
     },
   ],
-  usage: `import { Button } from '@ds/ui'
+  usage: `import { Button, Icon } from '@ds/ui'
 
 // Basic usage
 <Button variant="primary" size="md">Save changes</Button>
 
-// All variants
-<Button variant="secondary">Cancel</Button>
-<Button variant="ghost">Learn more</Button>
-<Button variant="danger">Delete account</Button>
+// With leading icon
+<Button variant="primary" icon={<Icon name="add" />}>Create</Button>
+<Button variant="danger" icon={<Icon name="delete" />}>Delete account</Button>
 
 // States
 <Button variant="primary" disabled>Disabled</Button>
@@ -91,10 +100,15 @@ export const buttonDoc: ComponentDoc = {
       description: 'Controls padding and font size.',
     },
     {
+      name: 'icon',
+      type: 'ReactNode',
+      description: 'Optional icon rendered before the label. Hidden when loading is true.',
+    },
+    {
       name: 'loading',
       type: 'boolean',
       default: 'false',
-      description: 'Shows a spinner and disables interaction. Sets aria-busy.',
+      description: 'Shows a spinner (replacing the icon if set) and disables interaction. Sets aria-busy.',
     },
     {
       name: 'disabled',
