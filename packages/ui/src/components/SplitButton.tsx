@@ -6,7 +6,7 @@ import type { SplitButtonProps } from './SplitButton.types'
 
 const variantClasses = {
   primary: 'bg-(--color-brand) text-(--color-text-inverse) hover:bg-(--color-brand-hover)',
-  secondary: 'border border-(--color-border) text-(--color-text-primary) hover:bg-(--color-surface)',
+  secondary: 'border border-(--color-border) text-(--color-text-primary) hover:bg-(--color-interaction-hover) active:bg-(--color-interaction-pressed)',
   danger: 'bg-(--color-danger) text-(--color-text-inverse) hover:bg-(--color-danger-hover)',
 }
 const sizeClasses = { sm: 'h-7 text-xs', md: 'h-9 text-sm', lg: 'h-11 text-base' }

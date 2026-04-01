@@ -5,6 +5,12 @@
   --color-white: #ffffff;
   --color-black: #000000;
 
+  /* ── PRIMITIVES: Alpha ── */
+  --color-black-a6:  rgba(0, 0, 0, 0.06);
+  --color-black-a12: rgba(0, 0, 0, 0.12);
+  --color-white-a8:  rgba(255, 255, 255, 0.08);
+  --color-white-a15: rgba(255, 255, 255, 0.15);
+
   --color-blue-50:  #eff6ff;
   --color-blue-100: #dbeafe;
   --color-blue-200: #bfdbfe;
@@ -104,8 +110,10 @@
   /* ── SEMANTIC: Light mode defaults ── */
   --color-bg:               var(--color-white);
   --color-surface:          var(--color-slate-50);
-  --color-surface-hover:    var(--color-slate-100);
-  --color-surface-pressed:  var(--color-slate-200);
+  --color-surface-hover:        var(--color-slate-100);
+  --color-surface-pressed:      var(--color-slate-200);
+  --color-interaction-hover:    var(--color-black-a6);
+  --color-interaction-pressed:  var(--color-black-a12);
   --color-brand:            var(--color-blue-600);
   --color-brand-hover:      var(--color-blue-700);
   --color-brand-pressed:    var(--color-blue-800);
@@ -137,8 +145,10 @@
 .dark {
   --color-bg:               var(--color-slate-950);
   --color-surface:          var(--color-slate-800);
-  --color-surface-hover:    var(--color-slate-700);
-  --color-surface-pressed:  var(--color-slate-600);
+  --color-surface-hover:        var(--color-slate-700);
+  --color-surface-pressed:      var(--color-slate-600);
+  --color-interaction-hover:    var(--color-white-a8);
+  --color-interaction-pressed:  var(--color-white-a15);
   --color-brand:            var(--color-blue-500);
   --color-brand-hover:      var(--color-blue-400);
   --color-brand-pressed:    var(--color-blue-600);

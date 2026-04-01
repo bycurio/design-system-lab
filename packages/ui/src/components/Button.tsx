@@ -5,8 +5,8 @@ import type { ButtonProps } from './Button.types'
 
 const variantClasses = {
   primary: 'bg-(--color-brand) text-(--color-text-inverse) hover:bg-(--color-brand-hover) active:bg-(--color-brand-pressed)',
-  secondary: 'border border-(--color-border) text-(--color-text-primary) hover:bg-(--color-surface-hover) active:bg-(--color-surface-pressed)',
-  ghost: 'text-(--color-text-primary) hover:bg-(--color-surface-hover) active:bg-(--color-surface-pressed)',
+  secondary: 'border border-(--color-border) text-(--color-text-primary) hover:bg-(--color-interaction-hover) active:bg-(--color-interaction-pressed)',
+  ghost: 'text-(--color-text-primary) hover:bg-(--color-interaction-hover) active:bg-(--color-interaction-pressed)',
   danger: 'bg-(--color-danger) text-(--color-text-inverse) hover:bg-(--color-danger-hover) active:bg-(--color-danger-pressed)',
 }
 
