@@ -140,6 +140,9 @@
   --button-padding-x-sm: var(--size-2);   /* 0.5rem  /  8px */
   --button-padding-x-md: var(--size-3);   /* 0.75rem / 12px */
   --button-padding-x-lg: var(--size-4);   /* 1rem    / 16px */
+  --button-size-sm:      1.75rem;         /* h-7  / size-7  = 28px */
+  --button-size-md:      2.25rem;         /* h-9  / size-9  = 36px */
+  --button-size-lg:      2.75rem;         /* h-11 / size-11 = 44px */
 
   /* ── COMPONENT: Badge / Chip ── */
   --badge-radius: var(--radius-full);
