@@ -24,13 +24,16 @@
 
   --color-slate-50:  #f8fafc;
   --color-slate-100: #f1f5f9;
+  --color-slate-150: #eaeff5;
   --color-slate-200: #e2e8f0;
   --color-slate-300: #cbd5e1;
   --color-slate-400: #94a3b8;
   --color-slate-500: #64748b;
   --color-slate-600: #475569;
   --color-slate-700: #334155;
+  --color-slate-750: #293548;
   --color-slate-800: #1e293b;
+  --color-slate-850: #172033;
   --color-slate-900: #0f172a;
   --color-slate-950: #020617;
 
@@ -110,8 +113,8 @@
   /* ── SEMANTIC: Light mode defaults ── */
   --color-bg:               var(--color-slate-50);   /* page canvas — slightly off-white */
   --color-surface:          var(--color-slate-100);  /* inset / recessed areas */
-  --color-surface-hover:        var(--color-slate-200);
-  --color-surface-pressed:      var(--color-slate-300);
+  --color-surface-hover:        var(--color-slate-150);
+  --color-surface-pressed:      var(--color-slate-200);
   --color-surface-raised:         var(--color-white);  /* elevated panels — cards, modals, popovers */
   --color-surface-raised-hover:   var(--color-slate-50);
   --color-surface-raised-pressed: var(--color-slate-100);
@@ -151,11 +154,11 @@
 .dark {
   --color-bg:               var(--color-slate-950);  /* page canvas — darkest */
   --color-surface:                var(--color-slate-900);  /* inset / recessed areas */
-  --color-surface-hover:          var(--color-slate-800);
-  --color-surface-pressed:        var(--color-slate-700);
+  --color-surface-hover:          var(--color-slate-850);
+  --color-surface-pressed:        var(--color-slate-800);
   --color-surface-raised:         var(--color-slate-800);  /* elevated panels */
-  --color-surface-raised-hover:   var(--color-slate-700);
-  --color-surface-raised-pressed: var(--color-slate-600);
+  --color-surface-raised-hover:   var(--color-slate-750);
+  --color-surface-raised-pressed: var(--color-slate-700);
   --color-interaction-hover:    var(--color-white-a8);
   --color-interaction-pressed:  var(--color-white-a15);
   --color-brand:            var(--color-blue-500);

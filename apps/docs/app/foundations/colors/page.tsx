@@ -1,6 +1,6 @@
 // Shades that are actually defined in tailwind.css — gaps intentional (design palette subset)
 const primitiveScales = [
-  { name: 'Slate',  prefix: 'slate',  shades: ['50','100','200','300','400','500','600','700','800','900','950'] },
+  { name: 'Slate',  prefix: 'slate',  shades: ['50','100','150','200','300','400','500','600','700','750','800','850','900','950'] },
   { name: 'Blue',   prefix: 'blue',   shades: ['50','100','200','300','400','500','600','700','800','900'] },
   { name: 'Green',  prefix: 'green',  shades: ['50','100','200','500','600','700','900'] },
   { name: 'Red',    prefix: 'red',    shades: ['50','100','200','400','500','600','700','800','900'] },
