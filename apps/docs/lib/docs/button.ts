@@ -53,6 +53,10 @@ export const buttonDoc: ComponentDoc = {
           h(Button, { variant: 'primary' }, 'Default'),
           h(Button, { variant: 'primary', disabled: true }, 'Disabled'),
           h(Button, { variant: 'primary', loading: true }, 'Loading'),
+          h(Button, { variant: 'secondary' }, 'Secondary'),
+          h(Button, { variant: 'secondary', disabled: true }, 'Disabled'),
+          h(Button, { variant: 'ghost' }, 'Ghost'),
+          h(Button, { variant: 'ghost', disabled: true }, 'Disabled'),
         ),
     },
   ],
@@ -118,5 +122,11 @@ export const buttonDoc: ComponentDoc = {
   tokens: [
     { name: '--button-bg', value: 'var(--color-brand)', description: 'Primary variant background' },
     { name: '--button-radius', value: 'var(--radius-md)', description: 'Border radius — 4px (sharp)' },
+    { name: '--color-interaction-hover', value: 'rgba(0,0,0,0.06)', description: 'Secondary and ghost hover fill — surface-agnostic alpha overlay' },
+    { name: '--color-interaction-pressed', value: 'rgba(0,0,0,0.12)', description: 'Secondary and ghost pressed fill — surface-agnostic alpha overlay' },
+    { name: '--color-brand-hover', value: 'var(--color-blue-700)', description: 'Primary hover background' },
+    { name: '--color-brand-pressed', value: 'var(--color-blue-800)', description: 'Primary pressed background' },
+    { name: '--color-danger-hover', value: 'var(--color-red-700)', description: 'Danger hover background' },
+    { name: '--color-danger-pressed', value: 'var(--color-red-800)', description: 'Danger pressed background' },
   ],
 }
