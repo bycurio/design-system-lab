@@ -3,10 +3,10 @@ import { cn } from '../utils'
 import type { IconButtonProps } from './IconButton.types'
 
 const variantClasses = {
-  primary: 'bg-(--color-brand) text-(--color-text-inverse) hover:bg-(--color-brand-hover)',
-  secondary: 'border border-(--color-border) text-(--color-text-primary) hover:bg-(--color-surface)',
-  ghost: 'bg-transparent text-(--color-text-primary) hover:bg-(--color-surface)',
-  danger: 'bg-(--color-danger) text-(--color-text-inverse) hover:bg-(--color-danger-hover)',
+  primary: 'bg-(--color-brand) text-(--color-text-inverse) hover:bg-(--color-brand-hover) active:bg-(--color-brand-pressed)',
+  secondary: 'border border-(--color-border) text-(--color-text-primary) hover:bg-(--color-interaction-hover) active:bg-(--color-interaction-pressed)',
+  ghost: 'bg-transparent text-(--color-text-primary) hover:bg-(--color-interaction-hover) active:bg-(--color-interaction-pressed)',
+  danger: 'bg-(--color-danger) text-(--color-text-inverse) hover:bg-(--color-danger-hover) active:bg-(--color-danger-pressed)',
 }
 const sizeClasses = { sm: 'size-7', md: 'size-9', lg: 'size-11' }
 

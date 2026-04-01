@@ -24,7 +24,7 @@ export function Pagination({ page, totalPages, onPageChange, siblingCount = 1, c
         onClick={() => onPageChange(page - 1)}
         disabled={page <= 1}
         aria-label="Previous page"
-        className={cn(btnBase, 'border border-(--color-border) text-(--color-text-secondary) hover:bg-(--color-surface) disabled:opacity-50 disabled:cursor-not-allowed')}
+        className={cn(btnBase, 'border border-(--color-border) text-(--color-text-secondary) hover:bg-(--color-interaction-hover) active:bg-(--color-interaction-pressed) disabled:opacity-50 disabled:cursor-not-allowed')}
       >
         <Icon name="chevron_left" size={14} />
       </button>
@@ -41,7 +41,7 @@ export function Pagination({ page, totalPages, onPageChange, siblingCount = 1, c
               btnBase,
               p === page
                 ? 'bg-(--color-brand) text-(--color-text-inverse)'
-                : 'border border-(--color-border) text-(--color-text-primary) hover:bg-(--color-surface)',
+                : 'border border-(--color-border) text-(--color-text-primary) hover:bg-(--color-interaction-hover) active:bg-(--color-interaction-pressed)',
             )}
           >
             {p}
@@ -52,7 +52,7 @@ export function Pagination({ page, totalPages, onPageChange, siblingCount = 1, c
         onClick={() => onPageChange(page + 1)}
         disabled={page >= totalPages}
         aria-label="Next page"
-        className={cn(btnBase, 'border border-(--color-border) text-(--color-text-secondary) hover:bg-(--color-surface) disabled:opacity-50 disabled:cursor-not-allowed')}
+        className={cn(btnBase, 'border border-(--color-border) text-(--color-text-secondary) hover:bg-(--color-interaction-hover) active:bg-(--color-interaction-pressed) disabled:opacity-50 disabled:cursor-not-allowed')}
       >
         <Icon name="chevron_right" size={14} />
       </button>

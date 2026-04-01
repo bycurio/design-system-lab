@@ -28,7 +28,7 @@ export function Accordion({ items, allowMultiple = false, defaultOpen = [], clas
             <button
               onClick={() => toggle(i)}
               aria-expanded={isOpen}
-              className="w-full flex items-center justify-between px-4 py-3 text-sm font-medium text-(--color-text-primary) hover:bg-(--color-surface) transition-colors text-left"
+              className="w-full flex items-center justify-between px-4 py-3 text-sm font-medium text-(--color-text-primary) hover:bg-(--color-interaction-hover) active:bg-(--color-interaction-pressed) transition-colors text-left"
             >
               {item.title}
               <Icon name="expand_more" size={16} className={cn('text-(--color-text-secondary) transition-transform shrink-0', isOpen && 'rotate-180')} />

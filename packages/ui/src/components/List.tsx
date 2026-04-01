@@ -9,7 +9,7 @@ export function List({ items, className }: ListProps) {
           {item.onClick ? (
             <button
               onClick={item.onClick}
-              className="w-full flex items-center gap-3 px-4 py-3 text-left hover:bg-(--color-surface) transition-colors"
+              className="w-full flex items-center gap-3 px-4 py-3 text-left hover:bg-(--color-interaction-hover) active:bg-(--color-interaction-pressed) transition-colors"
             >
               {item.icon && <span className="text-(--color-text-secondary) shrink-0">{item.icon}</span>}
               <div className="flex-1 min-w-0">
