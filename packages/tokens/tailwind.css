@@ -108,11 +108,11 @@
   --shadow-xl:   0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
 
   /* ── SEMANTIC: Light mode defaults ── */
-  --color-bg:               var(--color-white);
-  --color-surface:          var(--color-slate-50);
-  --color-surface-hover:        var(--color-slate-100);
-  --color-surface-pressed:      var(--color-slate-200);
-  --color-surface-raised:         var(--color-white);
+  --color-bg:               var(--color-slate-50);   /* page canvas — slightly off-white */
+  --color-surface:          var(--color-slate-100);  /* inset / recessed areas */
+  --color-surface-hover:        var(--color-slate-200);
+  --color-surface-pressed:      var(--color-slate-300);
+  --color-surface-raised:         var(--color-white);  /* elevated panels — cards, modals, popovers */
   --color-surface-raised-hover:   var(--color-slate-50);
   --color-surface-raised-pressed: var(--color-slate-100);
   --color-interaction-hover:    var(--color-black-a6);
@@ -149,13 +149,13 @@
 
 /* ── SEMANTIC: Dark mode overrides ── */
 .dark {
-  --color-bg:               var(--color-slate-950);
-  --color-surface:          var(--color-slate-800);
-  --color-surface-hover:        var(--color-slate-700);
-  --color-surface-pressed:      var(--color-slate-600);
-  --color-surface-raised:         var(--color-slate-900);
-  --color-surface-raised-hover:   var(--color-slate-800);
-  --color-surface-raised-pressed: var(--color-slate-700);
+  --color-bg:               var(--color-slate-950);  /* page canvas — darkest */
+  --color-surface:                var(--color-slate-900);  /* inset / recessed areas */
+  --color-surface-hover:          var(--color-slate-800);
+  --color-surface-pressed:        var(--color-slate-700);
+  --color-surface-raised:         var(--color-slate-800);  /* elevated panels */
+  --color-surface-raised-hover:   var(--color-slate-700);
+  --color-surface-raised-pressed: var(--color-slate-600);
   --color-interaction-hover:    var(--color-white-a8);
   --color-interaction-pressed:  var(--color-white-a15);
   --color-brand:            var(--color-blue-500);
