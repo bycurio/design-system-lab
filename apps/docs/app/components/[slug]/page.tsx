@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation'
+import { Icon } from '@ds/ui'
 import { componentDocs } from '@/lib/docs'
 import { PreviewSection } from '@/components/PreviewSection'
 import { PropsTable } from '@/components/PropsTable'
@@ -29,7 +30,7 @@ export default async function ComponentPage({ params }: { params: { slug: string
             <ul className="space-y-1.5">
               {doc.whenToUse.map((item, i) => (
                 <li key={i} className="text-sm text-(--color-text-primary) flex gap-2">
-                  <span className="text-(--color-success) font-bold shrink-0">✓</span>
+                  <Icon name="check" size={16} className="text-(--color-success) shrink-0 mt-0.5" />
                   {item}
                 </li>
               ))}
@@ -42,7 +43,7 @@ export default async function ComponentPage({ params }: { params: { slug: string
             <ul className="space-y-1.5">
               {doc.whenNotToUse.map((item, i) => (
                 <li key={i} className="text-sm text-(--color-text-primary) flex gap-2">
-                  <span className="text-(--color-danger) font-bold shrink-0">✗</span>
+                  <Icon name="close" size={16} className="text-(--color-danger) shrink-0 mt-0.5" />
                   {item}
                 </li>
               ))}

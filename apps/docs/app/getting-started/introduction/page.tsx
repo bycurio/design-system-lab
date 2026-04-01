@@ -1,3 +1,5 @@
+import { Icon } from '@ds/ui'
+
 export default function IntroductionPage() {
   return (
     <div className="max-w-3xl p-8">
@@ -10,11 +12,11 @@ export default function IntroductionPage() {
       <section className="mb-8">
         <h2 className="text-xl font-semibold text-(--color-text-primary) mb-3">What&apos;s included</h2>
         <ul className="space-y-2 text-(--color-text-primary)">
-          <li className="flex gap-2"><span className="text-(--color-success) font-bold">✓</span> 40 production-ready React components</li>
-          <li className="flex gap-2"><span className="text-(--color-success) font-bold">✓</span> Tailwind v4 semantic token system (light + dark)</li>
-          <li className="flex gap-2"><span className="text-(--color-success) font-bold">✓</span> Figma Variables mirroring every code token</li>
-          <li className="flex gap-2"><span className="text-(--color-success) font-bold">✓</span> Code Connect — real snippets in Figma Dev Mode</li>
-          <li className="flex gap-2"><span className="text-(--color-success) font-bold">✓</span> TypeScript prop types for every component</li>
+          <li className="flex gap-2"><Icon name="check" size={16} className="text-(--color-success) shrink-0 mt-1" /> 40 production-ready React components</li>
+          <li className="flex gap-2"><Icon name="check" size={16} className="text-(--color-success) shrink-0 mt-1" /> Tailwind v4 semantic token system (light + dark)</li>
+          <li className="flex gap-2"><Icon name="check" size={16} className="text-(--color-success) shrink-0 mt-1" /> Figma Variables mirroring every code token</li>
+          <li className="flex gap-2"><Icon name="check" size={16} className="text-(--color-success) shrink-0 mt-1" /> Code Connect — real snippets in Figma Dev Mode</li>
+          <li className="flex gap-2"><Icon name="check" size={16} className="text-(--color-success) shrink-0 mt-1" /> TypeScript prop types for every component</li>
         </ul>
       </section>
 
