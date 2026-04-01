@@ -129,8 +129,11 @@
   --color-info:             var(--color-sky-600);
 
   /* ── COMPONENT: Button ── */
-  --button-bg:     var(--color-brand);
-  --button-radius: var(--radius-md);
+  --button-bg:           var(--color-brand);
+  --button-radius:       var(--radius-md);
+  --button-padding-x-sm: var(--size-2);   /* 0.5rem  /  8px */
+  --button-padding-x-md: var(--size-3);   /* 0.75rem / 12px */
+  --button-padding-x-lg: var(--size-4);   /* 1rem    / 16px */
 
   /* ── COMPONENT: Badge / Chip ── */
   --badge-radius: var(--radius-full);
