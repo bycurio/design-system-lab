@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { createElement as h } from 'react'
-import { Input, Textarea, Select, Checkbox, Radio, Toggle, Slider, DatePicker } from '@ds/ui'
+import { Input, Icon, Textarea, Select, Checkbox, Radio, Toggle, Slider, DatePicker } from '@ds/ui'
 import type { ComponentDoc } from '@/lib/types'
 
 export const inputDoc: ComponentDoc = {
@@ -38,7 +38,7 @@ export const inputDoc: ComponentDoc = {
       label: 'With Icons',
       preview: () =>
         h('div', { className: 'flex flex-col gap-4 max-w-sm' },
-          h(Input, { label: 'Search', placeholder: 'Search…', leadingIcon: h('span', null, '🔍') }),
+          h(Input, { label: 'Search', placeholder: 'Search…', leadingIcon: h(Icon, { name: 'search' }) }),
           h(Input, { label: 'Price', placeholder: '0.00', leadingIcon: h('span', null, '$'), trailingIcon: h('span', null, 'USD') }),
         ),
     },

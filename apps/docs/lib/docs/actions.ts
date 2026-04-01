@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { createElement as h } from 'react'
-import { IconButton, Link, FAB, SplitButton } from '@ds/ui'
+import { IconButton, Icon, Link, FAB, SplitButton } from '@ds/ui'
 import type { ComponentDoc } from '@/lib/types'
 
 export const iconButtonDoc: ComponentDoc = {
@@ -20,45 +20,44 @@ export const iconButtonDoc: ComponentDoc = {
   ],
   preview: () =>
     h('div', { className: 'flex flex-wrap gap-3 items-center' },
-      h(IconButton, { variant: 'primary', 'aria-label': 'Add item', icon: h('span', null, '+') }),
-      h(IconButton, { variant: 'secondary', 'aria-label': 'Settings', icon: h('span', null, '⚙') }),
-      h(IconButton, { variant: 'ghost', 'aria-label': 'Close', icon: h('span', null, '✕') }),
-      h(IconButton, { variant: 'danger', 'aria-label': 'Delete', icon: h('span', null, '🗑') }),
+      h(IconButton, { variant: 'primary', 'aria-label': 'Add item', icon: h(Icon, { name: 'add' }) }),
+      h(IconButton, { variant: 'secondary', 'aria-label': 'Settings', icon: h(Icon, { name: 'settings' }) }),
+      h(IconButton, { variant: 'ghost', 'aria-label': 'Close', icon: h(Icon, { name: 'close' }) }),
+      h(IconButton, { variant: 'danger', 'aria-label': 'Delete', icon: h(Icon, { name: 'delete' }) }),
     ),
   variants: [
     {
       label: 'Variant',
       preview: () =>
         h('div', { className: 'flex flex-wrap gap-3 items-center' },
-          h(IconButton, { variant: 'primary', 'aria-label': 'Primary', icon: h('span', null, '★') }),
-          h(IconButton, { variant: 'secondary', 'aria-label': 'Secondary', icon: h('span', null, '★') }),
-          h(IconButton, { variant: 'ghost', 'aria-label': 'Ghost', icon: h('span', null, '★') }),
-          h(IconButton, { variant: 'danger', 'aria-label': 'Danger', icon: h('span', null, '★') }),
+          h(IconButton, { variant: 'primary', 'aria-label': 'Primary', icon: h(Icon, { name: 'star' }) }),
+          h(IconButton, { variant: 'secondary', 'aria-label': 'Secondary', icon: h(Icon, { name: 'star' }) }),
+          h(IconButton, { variant: 'ghost', 'aria-label': 'Ghost', icon: h(Icon, { name: 'star' }) }),
+          h(IconButton, { variant: 'danger', 'aria-label': 'Danger', icon: h(Icon, { name: 'star' }) }),
         ),
     },
     {
       label: 'Size',
       preview: () =>
         h('div', { className: 'flex flex-wrap gap-3 items-center' },
-          h(IconButton, { size: 'sm', 'aria-label': 'Small', icon: h('span', null, '✕') }),
-          h(IconButton, { size: 'md', 'aria-label': 'Medium', icon: h('span', null, '✕') }),
-          h(IconButton, { size: 'lg', 'aria-label': 'Large', icon: h('span', null, '✕') }),
+          h(IconButton, { size: 'sm', 'aria-label': 'Small', icon: h(Icon, { name: 'close' }) }),
+          h(IconButton, { size: 'md', 'aria-label': 'Medium', icon: h(Icon, { name: 'close' }) }),
+          h(IconButton, { size: 'lg', 'aria-label': 'Large', icon: h(Icon, { name: 'close' }) }),
         ),
     },
   ],
-  usage: `import { IconButton } from '@ds/ui'
-import { XMarkIcon } from '@heroicons/react/24/outline'
+  usage: `import { IconButton, Icon } from '@ds/ui'
 
 // Close a dialog
 <IconButton
   variant="ghost"
   size="sm"
   aria-label="Close dialog"
-  icon={<XMarkIcon />}
+  icon={<Icon name="close" />}
 />
 
 // Danger action in a row
-<IconButton variant="danger" size="md" aria-label="Delete row" icon={<TrashIcon />} />`,
+<IconButton variant="danger" size="md" aria-label="Delete row" icon={<Icon name="delete" />} />`,
   props: [
     { name: 'icon', type: 'ReactNode', required: true, description: 'The icon element to render inside the button.' },
     { name: 'aria-label', type: 'string', required: true, description: 'Accessible label describing the action. Required since there is no visible text.' },
@@ -156,28 +155,27 @@ export const fabDoc: ComponentDoc = {
   ],
   preview: () =>
     h('div', { className: 'flex flex-wrap gap-4 items-end' },
-      h(FAB, { 'aria-label': 'Add item', icon: h('span', null, '+') }),
-      h(FAB, { 'aria-label': 'Add item 2', icon: h('span', null, '✓') }),
+      h(FAB, { 'aria-label': 'Add item', icon: h(Icon, { name: 'add' }) }),
+      h(FAB, { 'aria-label': 'Add item 2', icon: h(Icon, { name: 'edit' }) }),
     ),
   variants: [
     {
       label: 'Example',
       preview: () =>
         h('div', { className: 'flex flex-wrap gap-4 items-end' },
-          h(FAB, { 'aria-label': 'Create', icon: h('span', null, '+') }),
-          h(FAB, { 'aria-label': 'Upload', icon: h('span', null, '↑') }),
+          h(FAB, { 'aria-label': 'Create', icon: h(Icon, { name: 'add' }) }),
+          h(FAB, { 'aria-label': 'Upload', icon: h(Icon, { name: 'upload' }) }),
         ),
     },
   ],
-  usage: `import { FAB } from '@ds/ui'
-import { PlusIcon } from '@heroicons/react/24/solid'
+  usage: `import { FAB, Icon } from '@ds/ui'
 
 // Fixed to bottom-right of viewport
 <div className="fixed bottom-6 right-6">
   <FAB
     aria-label="Create new document"
     size="md"
-    icon={<PlusIcon />}
+    icon={<Icon name="add" />}
     onClick={handleCreate}
   />
 </div>`,
