@@ -1,6 +1,6 @@
 'use client'
 import { useTheme } from 'next-themes'
-import { Sun, Moon } from 'lucide-react'
+import { Icon } from '@ds/ui'
 import { useEffect, useState } from 'react'
 
 export function ThemeToggle() {
@@ -17,7 +17,7 @@ export function ThemeToggle() {
       aria-label="Toggle theme"
       className="p-1.5 rounded-(--radius-md) text-(--color-text-secondary) hover:bg-(--color-bg) transition-colors"
     >
-      {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
+      {theme === 'dark' ? <Icon name="light_mode" size={16} /> : <Icon name="dark_mode" size={16} />}
     </button>
   )
 }
