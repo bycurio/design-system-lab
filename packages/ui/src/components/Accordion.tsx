@@ -1,7 +1,7 @@
 'use client'
 import { useState } from 'react'
-import { ChevronDown } from 'lucide-react'
 import { cn } from '../utils'
+import { Icon } from './Icon'
 import type { AccordionProps } from './Accordion.types'
 
 export function Accordion({ items, allowMultiple = false, defaultOpen = [], className }: AccordionProps) {
@@ -31,7 +31,7 @@ export function Accordion({ items, allowMultiple = false, defaultOpen = [], clas
               className="w-full flex items-center justify-between px-4 py-3 text-sm font-medium text-(--color-text-primary) hover:bg-(--color-surface) transition-colors text-left"
             >
               {item.title}
-              <ChevronDown size={16} aria-hidden="true" className={cn('text-(--color-text-secondary) transition-transform shrink-0', isOpen && 'rotate-180')} />
+              <Icon name="expand_more" size={16} className={cn('text-(--color-text-secondary) transition-transform shrink-0', isOpen && 'rotate-180')} />
             </button>
             {isOpen && (
               <div className="px-4 py-3 text-sm text-(--color-text-secondary) border-t border-(--color-border)">

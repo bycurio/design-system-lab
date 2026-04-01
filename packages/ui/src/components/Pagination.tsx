@@ -1,5 +1,5 @@
-import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { cn } from '../utils'
+import { Icon } from './Icon'
 import type { PaginationProps } from './Pagination.types'
 
 function getPages(page: number, total: number, siblings: number): (number | '…')[] {
@@ -26,7 +26,7 @@ export function Pagination({ page, totalPages, onPageChange, siblingCount = 1, c
         aria-label="Previous page"
         className={cn(btnBase, 'border border-(--color-border) text-(--color-text-secondary) hover:bg-(--color-surface) disabled:opacity-50 disabled:cursor-not-allowed')}
       >
-        <ChevronLeft size={14} aria-hidden="true" />
+        <Icon name="chevron_left" size={14} />
       </button>
       {pages.map((p, i) =>
         p === '…' ? (
@@ -54,7 +54,7 @@ export function Pagination({ page, totalPages, onPageChange, siblingCount = 1, c
         aria-label="Next page"
         className={cn(btnBase, 'border border-(--color-border) text-(--color-text-secondary) hover:bg-(--color-surface) disabled:opacity-50 disabled:cursor-not-allowed')}
       >
-        <ChevronRight size={14} aria-hidden="true" />
+        <Icon name="chevron_right" size={14} />
       </button>
     </nav>
   )

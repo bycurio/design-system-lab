@@ -1,7 +1,7 @@
 'use client'
 import { useState, useRef, useEffect } from 'react'
-import { ChevronDown } from 'lucide-react'
 import { cn } from '../utils'
+import { Icon } from './Icon'
 import type { SplitButtonProps } from './SplitButton.types'
 
 const variantClasses = {
@@ -46,7 +46,7 @@ export function SplitButton({
         onClick={() => setOpen((o) => !o)}
         className={cn(base, 'px-2 rounded-r-(--button-radius)')}
       >
-        <ChevronDown size={14} aria-hidden="true" />
+        <Icon name="expand_more" size={14} />
       </button>
       {open && (
         <div className="absolute top-full left-0 mt-1 w-48 rounded-(--popover-radius) border border-(--color-border) bg-(--color-bg) shadow-(--shadow-md) z-50">

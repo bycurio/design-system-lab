@@ -1,5 +1,5 @@
-import { ExternalLink } from 'lucide-react'
 import { cn } from '../utils'
+import { Icon } from './Icon'
 import type { LinkProps } from './Link.types'
 
 export function Link({ href, external = false, children, className, ...props }: LinkProps) {
@@ -15,7 +15,7 @@ export function Link({ href, external = false, children, className, ...props }: 
       {...props}
     >
       {children}
-      {external && <ExternalLink size={12} aria-hidden="true" />}
+      {external && <Icon name="open_in_new" size={12} />}
     </a>
   )
 }

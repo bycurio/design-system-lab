@@ -1,6 +1,6 @@
 import { forwardRef } from 'react'
-import { ChevronDown } from 'lucide-react'
 import { cn } from '../utils'
+import { Icon } from './Icon'
 import type { SelectProps } from './Select.types'
 
 export const Select = forwardRef<HTMLSelectElement, SelectProps>(
@@ -26,10 +26,10 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
             <option key={opt.value} value={opt.value}>{opt.label}</option>
           ))}
         </select>
-        <ChevronDown
+        <Icon
+          name="expand_more"
           size={14}
           className="absolute right-2.5 top-1/2 -translate-y-1/2 text-(--color-text-secondary) pointer-events-none"
-          aria-hidden="true"
         />
       </div>
       {error && errorMessage && (

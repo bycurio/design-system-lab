@@ -12,9 +12,7 @@
     "figma:unpublish": "figma connect unpublish",
     "figma:validate": "figma connect validate"
   },
-  "dependencies": {
-    "lucide-react": "^0.479.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@ds/tokens": "*",
     "@figma/code-connect": "^1.3.6",
