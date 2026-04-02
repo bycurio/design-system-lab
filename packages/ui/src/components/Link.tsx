@@ -15,8 +15,8 @@ export function Link({ href, variant = 'internal', children, className, ...props
       )}
       {...props}
     >
-      {children}
-      {isExternal && <Icon name="open_in_new" size={14} aria-hidden="true" />}
+      <span className="underline underline-offset-2">{children}</span>
+      {isExternal && <Icon name="open_in_new" size={16} aria-hidden="true" />}
     </a>
   )
 }
