@@ -168,6 +168,34 @@ For Button (wider due to label), measure the widest variant and lay out accordin
 
 Frame size: width = max column end + 16px padding; height = last row bottom + 16px padding.
 
+### Prototype interactions
+
+Every component with interactive states (hover, pressed) must have prototype reactions wired up after the component set is built.
+
+**Pattern:**
+- `state=default` → `ON_HOVER` → `state=hover` (150ms ease-out, Smart Animate)
+- `state=hover` → `ON_PRESS` → `state=pressed` (80ms ease-out, Smart Animate)
+
+`ON_HOVER` and `ON_PRESS` are "while" triggers — Figma auto-reverts when the interaction ends. No separate mouse-leave or mouse-up reactions needed.
+
+Disabled and loading states get no reactions — they don't respond to interaction.
+
+**Reaction shape** (use `actions`, not `action`):
+```js
+{
+  actions: [{
+    type: 'NODE',
+    destinationId: targetVariant.id,
+    navigation: 'CHANGE_TO',
+    transition: { type: 'SMART_ANIMATE', easing: { type: 'EASE_OUT' }, duration: 0.15 },
+    preserveScrollPosition: false,
+  }],
+  trigger: { type: 'ON_HOVER' }, // or 'ON_PRESS'
+}
+```
+
+Apply reactions **after** all variants exist. Parse variant properties from `comp.name` (e.g. `Size=md, Variant=primary, State=default`), strip the `state` key to find sibling variants.
+
 ### Figma Plugin API — common gotchas
 
 - **Page switching:** use `await figma.setCurrentPageAsync(page)`, not `figma.currentPage = page`
@@ -247,7 +275,8 @@ Cards, modals, drawers, and popovers use `bg-(--color-surface-raised)`, not `bg-
 
 These are fully built with the above conventions applied:
 
-- **Button** — 4 variants, 3 sizes, 5 states (default/hover/pressed/disabled/loading), hug sizing, Figma + web
-- **IconButton** — 4 variants, 3 sizes, 5 states, hug sizing, square, Figma + web
+- **Button** — 4 variants, 3 sizes, 5 states (default/hover/pressed/disabled/loading), hug sizing, prototype interactions, Figma + web
+- **IconButton** — 4 variants, 3 sizes, 5 states, hug sizing, square, prototype interactions, Figma + web
+- **Link** — 2 variants (internal/external), 2 states (default/hover), prototype interactions, Figma + web. Text underlined, icon (16px) not underlined.
 
 When building the next component, use Button and IconButton as the reference implementations.
