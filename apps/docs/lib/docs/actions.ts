@@ -176,15 +176,6 @@ export const fabDoc: ComponentDoc = {
     ),
   variants: [
     {
-      label: 'Size',
-      preview: () =>
-        h('div', { className: 'flex flex-wrap gap-4 items-end' },
-          h(FAB, { size: 'sm', 'aria-label': 'Small', iconName: 'add' }),
-          h(FAB, { size: 'md', 'aria-label': 'Medium', iconName: 'add' }),
-          h(FAB, { size: 'lg', 'aria-label': 'Large', iconName: 'add' }),
-        ),
-    },
-    {
       label: 'Extended',
       preview: () =>
         h('div', { className: 'flex flex-wrap gap-4 items-end' },
@@ -195,7 +186,7 @@ export const fabDoc: ComponentDoc = {
   ],
   usage: `import { FAB } from '@ds/ui'
 
-// Fixed to bottom-right of viewport
+// Circular — fixed to bottom-right of viewport
 <div className="fixed bottom-6 right-6">
   <FAB
     aria-label="Create new document"
@@ -204,18 +195,19 @@ export const fabDoc: ComponentDoc = {
   />
 </div>
 
-// Extended — icon + label
-<FAB
-  aria-label="New document"
-  iconName="add"
-  label="New document"
-  onClick={handleCreate}
-/>`,
+// Extended — icon + label, use when the action needs labelling for clarity
+<div className="fixed bottom-6 right-6">
+  <FAB
+    aria-label="New document"
+    iconName="add"
+    label="New document"
+    onClick={handleCreate}
+  />
+</div>`,
   props: [
-    { name: 'iconName', type: 'string', required: true, description: 'Material Symbol icon name. Icon size is set automatically based on the size prop.' },
+    { name: 'iconName', type: 'string', required: true, description: 'Material Symbol icon name. Renders at 24px.' },
     { name: 'aria-label', type: 'string', required: true, description: 'Accessible label for the action.' },
-    { name: 'size', type: "'sm' | 'md' | 'lg'", default: "'md'", description: 'Controls FAB diameter and icon size. sm=40px/20px icon, md=56px/24px icon, lg=64px/24px icon.' },
-    { name: 'label', type: 'string', description: 'Optional label text. When provided, renders an extended FAB with icon and label side by side.' },
+    { name: 'label', type: 'string', description: 'Optional label text. When provided, renders an extended (pill-shaped) FAB with icon and label.' },
     { name: 'disabled', type: 'boolean', default: 'false', description: 'Disables interaction.' },
     { name: 'className', type: 'string', description: 'Additional CSS classes.' },
     { name: '...rest', type: 'React.ButtonHTMLAttributes<HTMLButtonElement>', description: 'All native button attributes.' },
