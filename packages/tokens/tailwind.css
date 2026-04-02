@@ -72,8 +72,9 @@
   --color-sky-900: #0c4a6e;
 
   /* ── PRIMITIVES: Typography ── */
-  --font-sans: 'Inter', system-ui, sans-serif;
-  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  --font-sans:  'Inter', system-ui, sans-serif;
+  --font-mono:  'JetBrains Mono', 'Fira Code', monospace;
+  --font-icons: 'Material Symbols Rounded';
 
   --text-xs:   0.75rem;
   --text-sm:   0.875rem;
@@ -84,7 +85,7 @@
   --text-3xl:  1.875rem;
   --text-4xl:  2.25rem;
 
-  /* ── PRIMITIVES: Spacing ── */
+  /* ── PRIMITIVES: Size ── */
   --size-1:  0.25rem;
   --size-2:  0.5rem;
   --size-3:  0.75rem;

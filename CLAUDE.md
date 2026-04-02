@@ -31,26 +31,45 @@ Only create a component-level semantic token if:
 
 If neither condition is met, bind directly to the primitive.
 
-### Spacing primitives
+### Size primitives
 
-Values in the **Primitives** collection:
+Values in the **Primitives** collection, group `Size/`. Token names use the actual pixel value — no mapping needed.
 
 | Token | Value |
 |---|---|
-| `Spacing/1` | 4px |
-| `Spacing/2` | 8px |
-| `Spacing/3` | 12px |
-| `Spacing/4` | 16px |
-| `Spacing/5` | 20px |
-| `Spacing/6` | 24px |
-| `Spacing/6px` | 6px (half-step, used for sm button/icon padding) |
-| `Spacing/8` | 32px |
-| `Spacing/10` | 40px |
-| `Spacing/10px` | 10px (half-step, used for lg button/icon padding) |
-| `Spacing/12` | 48px |
-| `Spacing/16` | 64px |
+| `Size/4` | 4px |
+| `Size/8` | 8px |
+| `Size/12` | 12px |
+| `Size/16` | 16px |
+| `Size/20` | 20px |
+| `Size/24` | 24px |
+| `Size/32` | 32px |
+| `Size/40` | 40px |
+| `Size/48` | 48px |
+| `Size/64` | 64px |
 
-Half-step values (`6px`, `10px`) exist because button padding math requires them. Add further half-steps to Primitives only when a real sizing need demands them — not speculatively.
+### Component primitives
+
+Values that fall outside the regular 4px grid but are needed for specific component sizing targets. In the **Primitives** collection, group `Component/`.
+
+| Token | Value | Used for |
+|---|---|---|
+| `Component/button-padding-y-sm` | 6px | Button/IconButton sm vertical padding |
+| `Component/button-padding-y-lg` | 10px | Button/IconButton lg vertical padding |
+
+Only add to this group when a value is genuinely off-grid AND tied to a specific component sizing constraint. Do not add speculatively.
+
+### Font primitives
+
+STRING variables in the **Primitives** collection, group `Font/`. All text nodes in components must be bound to these rather than using hardcoded font family names.
+
+| Token | Value |
+|---|---|
+| `Font/sans` | `Inter` |
+| `Font/mono` | `JetBrains Mono` |
+| `Font/icons` | `Material Symbols Rounded` |
+
+**Note:** `Material Symbols Rounded` cannot be loaded via `figma.loadFontAsync()` as it is a variable font added at the file level. You can still bind STRING variables to text nodes using `node.setBoundVariable('fontFamily', fontVar)` without loading the font first. To modify the `fontName` property of icon text nodes, use the Figma UI directly.
 
 ---
 
@@ -69,31 +88,31 @@ Bind `paddingLeft`, `paddingRight`, `paddingTop`, `paddingBottom` to Spacing pri
 
 **Button padding by size:**
 
-| Size | Target height | padding-x | padding-y | Spacing tokens |
+| Size | Target height | padding-x | padding-y | Tokens |
 |---|---|---|---|---|
-| sm | 28px | 8px | 6px | `Spacing/2`, `Spacing/6px` |
-| md | 36px | 12px | 8px | `Spacing/3`, `Spacing/2` |
-| lg | 44px | 16px | 10px | `Spacing/4`, `Spacing/10px` |
+| sm | 28px | 8px | 6px | `Size/8`, `Component/button-padding-y-sm` |
+| md | 36px | 12px | 8px | `Size/12`, `Size/8` |
+| lg | 44px | 16px | 10px | `Size/16`, `Component/button-padding-y-lg` |
 
 **IconButton padding by size (equal all sides):**
 
-| Size | Target size | Padding | Spacing token |
+| Size | Target size | Padding | Token |
 |---|---|---|---|
-| sm | 28×28px | 6px | `Spacing/6px` |
-| md | 36×36px | 8px | `Spacing/2` |
-| lg | 44×44px | 10px | `Spacing/10px` |
+| sm | 28×28px | 6px | `Component/button-padding-y-sm` |
+| md | 36×36px | 8px | `Size/8` |
+| lg | 44×44px | 10px | `Component/button-padding-y-lg` |
 
 ### Icon sizes — consistent across Button and IconButton
 
 Icon size must be identical for the same size tier across all components. A `sm` Button and `sm` IconButton placed side by side must have the same icon size.
 
-| Size | Icon size | Spacing token |
+| Size | Icon size | Token |
 |---|---|---|
-| sm | 16px | `Spacing/4` |
-| md | 20px | `Spacing/5` |
-| lg | 24px | `Spacing/6` |
+| sm | 16px | `Size/16` |
+| md | 20px | `Size/20` |
+| lg | 24px | `Size/24` |
 
-Bind icon text node `fontSize` to the appropriate `Spacing/*` primitive.
+Bind icon text node `fontSize` to the appropriate `Size/*` primitive.
 
 ### Icon text nodes must be forced square
 
