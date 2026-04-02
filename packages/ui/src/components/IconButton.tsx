@@ -10,7 +10,7 @@ const variantClasses = {
   danger:    'bg-(--color-danger) text-(--color-text-inverse) hover:bg-(--color-danger-hover) active:bg-(--color-danger-pressed)',
 }
 const sizeClasses    = { sm: 'size-7',  md: 'size-9',  lg: 'size-11' }
-const iconSizePx     = { sm: 16,        md: 18,         lg: 20 }
+const iconSizePx     = { sm: 16,        md: 20,         lg: 24 }
 
 export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
   ({ icon, variant = 'secondary', size = 'md', loading = false, disabled, className, ...props }, ref) => (

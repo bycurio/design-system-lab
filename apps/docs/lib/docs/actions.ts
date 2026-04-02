@@ -45,6 +45,18 @@ export const iconButtonDoc: ComponentDoc = {
           h(IconButton, { size: 'lg', 'aria-label': 'Large', icon: h(Icon, { name: 'close' }) }),
         ),
     },
+    {
+      label: 'States',
+      preview: () =>
+        h('div', { className: 'flex flex-wrap gap-3 items-center' },
+          h(IconButton, { variant: 'primary', 'aria-label': 'Default', icon: h(Icon, { name: 'star' }) }),
+          h(IconButton, { variant: 'primary', disabled: true, 'aria-label': 'Disabled', icon: h(Icon, { name: 'star' }) }),
+          h(IconButton, { variant: 'primary', loading: true, 'aria-label': 'Loading' }),
+          h(IconButton, { variant: 'secondary', 'aria-label': 'Default', icon: h(Icon, { name: 'star' }) }),
+          h(IconButton, { variant: 'secondary', disabled: true, 'aria-label': 'Disabled', icon: h(Icon, { name: 'star' }) }),
+          h(IconButton, { variant: 'secondary', loading: true, 'aria-label': 'Loading' }),
+        ),
+    },
   ],
   usage: `import { IconButton, Icon } from '@ds/ui'
 
@@ -57,19 +69,28 @@ export const iconButtonDoc: ComponentDoc = {
 />
 
 // Danger action in a row
-<IconButton variant="danger" size="md" aria-label="Delete row" icon={<Icon name="delete" />} />`,
+<IconButton variant="danger" size="md" aria-label="Delete row" icon={<Icon name="delete" />} />
+
+// Loading state
+<IconButton variant="primary" size="md" aria-label="Saving" loading />`,
   props: [
     { name: 'icon', type: 'ReactNode', required: true, description: 'The icon element to render inside the button.' },
     { name: 'aria-label', type: 'string', required: true, description: 'Accessible label describing the action. Required since there is no visible text.' },
-    { name: 'variant', type: "'primary' | 'secondary' | 'ghost' | 'danger'", default: "'primary'", description: 'Visual style of the button.' },
-    { name: 'size', type: "'sm' | 'md' | 'lg'", default: "'md'", description: 'Controls the button dimensions.' },
+    { name: 'variant', type: "'primary' | 'secondary' | 'ghost' | 'danger'", default: "'secondary'", description: 'Visual style of the button.' },
+    { name: 'size', type: "'sm' | 'md' | 'lg'", default: "'md'", description: 'Controls button dimensions and icon size (sm=16px, md=20px, lg=24px). Matches Button heights at each tier.' },
+    { name: 'loading', type: 'boolean', default: 'false', description: 'Replaces the icon with a spinner and disables interaction. Sets aria-busy.' },
     { name: 'disabled', type: 'boolean', default: 'false', description: 'Disables interaction and reduces opacity.' },
     { name: 'className', type: 'string', description: 'Additional CSS classes.' },
     { name: '...rest', type: 'React.ButtonHTMLAttributes<HTMLButtonElement>', description: 'All native button attributes.' },
   ],
   tokens: [
     { name: '--button-radius', value: 'var(--radius-md)', description: 'Border radius shared with Button.' },
-    { name: '--color-brand', value: '#2563eb', description: 'Primary variant background color.' },
+    { name: '--color-brand', value: 'var(--color-blue-600)', description: 'Primary variant background.' },
+    { name: '--color-danger', value: 'var(--color-red-600)', description: 'Danger variant background.' },
+    { name: '--color-interaction-hover', value: 'rgba(0,0,0,0.06)', description: 'Secondary and ghost hover overlay — surface-agnostic.' },
+    { name: '--color-interaction-pressed', value: 'rgba(0,0,0,0.12)', description: 'Secondary and ghost pressed overlay — surface-agnostic.' },
+    { name: '--color-text-inverse', value: 'var(--color-white)', description: 'Icon colour on primary and danger variants.' },
+    { name: '--color-text-primary', value: 'var(--color-slate-900)', description: 'Icon colour on secondary and ghost variants.' },
   ],
 }
 

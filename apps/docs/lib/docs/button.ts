@@ -97,7 +97,7 @@ export const buttonDoc: ComponentDoc = {
       name: 'size',
       type: "'sm' | 'md' | 'lg'",
       default: "'md'",
-      description: 'Controls padding and font size.',
+      description: 'Controls height, padding, font size, and icon size (sm=16px, md=20px, lg=24px). Heights match IconButton at each tier.',
     },
     {
       name: 'icon',

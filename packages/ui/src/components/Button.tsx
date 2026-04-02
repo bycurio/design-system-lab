@@ -16,6 +16,8 @@ const sizeClasses = {
   lg: 'h-11 px-(--button-padding-x-lg) text-base gap-2',
 }
 
+const iconSizePx = { sm: 16, md: 20, lg: 24 }
+
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ variant = 'primary', size = 'md', loading = false, icon, disabled, className, children, ...props }, ref) => (
     <button
@@ -32,7 +34,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       )}
       {...props}
     >
-      {loading ? <Icon name="progress_activity" size={16} className="animate-spin shrink-0" /> : icon}
+      {loading ? <Icon name="progress_activity" size={iconSizePx[size]} className="animate-spin shrink-0" /> : icon}
       {children}
     </button>
   ),
