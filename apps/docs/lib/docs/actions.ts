@@ -98,11 +98,11 @@ export const linkDoc: ComponentDoc = {
   title: 'Link',
   slug: 'link',
   description:
-    'An inline text link for navigation. Wraps a native anchor element with design-system styling. Supports primary and secondary visual variants and can open in a new tab.',
+    'An inline text link for navigation. One visual style, two variants: internal links navigate within the app, external links open in a new tab and show an icon to signal that behaviour.',
   whenToUse: [
-    'Navigating to another page or URL',
     'Inline text links within body copy',
-    'External resource links that should open in a new tab',
+    'Navigation to another page within the app',
+    'Links to external resources that open in a new tab',
   ],
   whenNotToUse: [
     'Triggering actions — use Button instead',
@@ -111,51 +111,46 @@ export const linkDoc: ComponentDoc = {
   ],
   preview: () =>
     h('div', { className: 'flex flex-wrap gap-4' },
-      h(Link, { href: '#', children: 'Primary link' }),
-      h(Link, { href: '#', children: 'Secondary link' }),
-      h(Link, { href: 'https://example.com', external: true, children: 'Opens in new tab ↗' }),
+      h(Link, { href: '#', children: 'Internal link' }),
+      h(Link, { href: 'https://example.com', variant: 'external', children: 'External link' }),
     ),
   variants: [
     {
-      label: 'Variant',
+      label: 'Internal',
       preview: () =>
         h('div', { className: 'flex flex-wrap gap-4' },
-          h(Link, { href: '#', children: 'Primary' }),
-          h(Link, { href: '#', children: 'Secondary' }),
+          h(Link, { href: '#', children: 'Getting started' }),
+          h(Link, { href: '#', children: 'View documentation' }),
         ),
     },
     {
       label: 'External',
       preview: () =>
         h('div', { className: 'flex flex-wrap gap-4' },
-          h(Link, { href: 'https://docs.example.com', external: true, children: 'View documentation ↗' }),
-          h(Link, { href: 'https://github.com/example', external: true, children: 'GitHub ↗' }),
+          h(Link, { href: 'https://example.com', variant: 'external', children: 'View on example.com' }),
+          h(Link, { href: 'https://github.com/example', variant: 'external', children: 'GitHub repository' }),
         ),
     },
   ],
   usage: `import { Link } from '@ds/ui'
 
-// Inline navigation
-<p>Read the <Link href="/docs/getting-started" variant="primary">getting started guide</Link> first.</p>
+// Internal — navigates within the app
+<p>Read the <Link href="/docs/getting-started">getting started guide</Link> first.</p>
 
-// External link — opens in new tab
-<Link href="https://example.com" external variant="primary">
-  View on example.com ↗
-</Link>
-
-// Secondary for less prominent links
-<Link href="/privacy" variant="secondary">Privacy policy</Link>`,
+// External — opens in new tab, shows open_in_new icon automatically
+<Link href="https://example.com" variant="external">
+  View on example.com
+</Link>`,
   props: [
     { name: 'href', type: 'string', required: true, description: 'The URL the link navigates to.' },
-    { name: 'variant', type: "'primary' | 'secondary'", default: "'primary'", description: 'Controls link color and underline style.' },
-    { name: 'external', type: 'boolean', default: 'false', description: 'When true, adds target="_blank" and rel="noopener noreferrer".' },
+    { name: 'variant', type: "'internal' | 'external'", default: "'internal'", description: 'internal navigates within the app. external opens in a new tab and appends an icon.' },
     { name: 'children', type: 'ReactNode', required: true, description: 'The visible link text or content.' },
     { name: 'className', type: 'string', description: 'Additional CSS classes.' },
     { name: '...rest', type: 'React.AnchorHTMLAttributes<HTMLAnchorElement>', description: 'All native anchor attributes.' },
   ],
   tokens: [
-    { name: '--color-brand', value: '#2563eb', description: 'Primary link color.' },
-    { name: '--color-text-secondary', value: '#6b7280', description: 'Secondary variant link color.' },
+    { name: '--color-brand', value: 'var(--color-blue-600)', description: 'Link colour.' },
+    { name: '--color-brand-hover', value: 'var(--color-blue-700)', description: 'Link hover colour.' },
   ],
 }
 

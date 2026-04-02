@@ -13,13 +13,13 @@ describe('Link', () => {
     expect(screen.getByRole('link')).toHaveAttribute('href', '/docs')
   })
 
-  it('opens in new tab when external', () => {
-    render(<Link href="https://example.com" external>External</Link>)
+  it('opens in new tab when variant is external', () => {
+    render(<Link href="https://example.com" variant="external">External</Link>)
     expect(screen.getByRole('link')).toHaveAttribute('target', '_blank')
     expect(screen.getByRole('link')).toHaveAttribute('rel', 'noopener noreferrer')
   })
 
-  it('does not set target when not external', () => {
+  it('does not set target when variant is internal', () => {
     render(<Link href="/docs">Docs</Link>)
     expect(screen.getByRole('link')).not.toHaveAttribute('target')
   })
