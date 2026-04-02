@@ -40,6 +40,7 @@ Values in the **Primitives** collection, group `Size/`. Token names use the actu
 | `Size/4` | 4px |
 | `Size/8` | 8px |
 | `Size/12` | 12px |
+| `Size/14` | 14px (body/label text — off the 4px grid but justified as a standard type size) |
 | `Size/16` | 16px |
 | `Size/20` | 20px |
 | `Size/24` | 24px |
@@ -68,6 +69,11 @@ STRING variables in the **Primitives** collection, group `Font/`. All text nodes
 | `Font/sans` | `Inter` |
 | `Font/mono` | `JetBrains Mono` |
 | `Font/icons` | `Material Symbols Rounded` |
+| `Font/weight/regular` | 400 |
+| `Font/weight/medium` | 500 |
+| `Font/weight/bold` | 700 |
+
+All text nodes inside component sets must have `fontSize` bound to a `Size/*` token and `fontWeight` bound to a `Font/weight/*` token, in addition to `fontFamily` bound to a `Font/*` family token.
 
 **Note:** `Material Symbols Rounded` cannot be loaded via `figma.loadFontAsync()` as it is a variable font added at the file level. You can still bind STRING variables to text nodes using `node.setBoundVariable('fontFamily', fontVar)` without loading the font first. To modify the `fontName` property of icon text nodes, use the Figma UI directly.
 
