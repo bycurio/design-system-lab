@@ -1,6 +1,8 @@
-import type { ButtonHTMLAttributes, ReactNode } from 'react'
+import type { ButtonHTMLAttributes } from 'react'
+export type FABSize = 'sm' | 'md' | 'lg'
 export interface FABProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  icon: ReactNode
+  iconName: string
+  size?: FABSize
   label?: string
   'aria-label': string
 }

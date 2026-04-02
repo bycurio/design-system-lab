@@ -158,7 +158,7 @@ export const fabDoc: ComponentDoc = {
   title: 'FAB',
   slug: 'fab',
   description:
-    'A Floating Action Button. A prominent circular button fixed to the screen, representing the primary action on a page or view. Contains only an icon.',
+    'A Floating Action Button. A prominent circular button fixed to the screen, representing the primary action on a page or view. Icon size and button dimensions are built in — just pass the icon name.',
   whenToUse: [
     'Representing the single most important action on a mobile or dense layout',
     'Creating a new item (document, entry, message)',
@@ -171,41 +171,61 @@ export const fabDoc: ComponentDoc = {
   ],
   preview: () =>
     h('div', { className: 'flex flex-wrap gap-4 items-end' },
-      h(FAB, { 'aria-label': 'Add item', icon: h(Icon, { name: 'add' }) }),
-      h(FAB, { 'aria-label': 'Add item 2', icon: h(Icon, { name: 'edit' }) }),
+      h(FAB, { 'aria-label': 'Add item', iconName: 'add' }),
+      h(FAB, { 'aria-label': 'Edit item', iconName: 'edit' }),
     ),
   variants: [
     {
-      label: 'Example',
+      label: 'Size',
       preview: () =>
         h('div', { className: 'flex flex-wrap gap-4 items-end' },
-          h(FAB, { 'aria-label': 'Create', icon: h(Icon, { name: 'add' }) }),
-          h(FAB, { 'aria-label': 'Upload', icon: h(Icon, { name: 'upload' }) }),
+          h(FAB, { size: 'sm', 'aria-label': 'Small', iconName: 'add' }),
+          h(FAB, { size: 'md', 'aria-label': 'Medium', iconName: 'add' }),
+          h(FAB, { size: 'lg', 'aria-label': 'Large', iconName: 'add' }),
+        ),
+    },
+    {
+      label: 'Extended',
+      preview: () =>
+        h('div', { className: 'flex flex-wrap gap-4 items-end' },
+          h(FAB, { 'aria-label': 'Create document', iconName: 'add', label: 'New document' }),
+          h(FAB, { 'aria-label': 'Upload file', iconName: 'upload', label: 'Upload' }),
         ),
     },
   ],
-  usage: `import { FAB, Icon } from '@ds/ui'
+  usage: `import { FAB } from '@ds/ui'
 
 // Fixed to bottom-right of viewport
 <div className="fixed bottom-6 right-6">
   <FAB
     aria-label="Create new document"
-    size="md"
-    icon={<Icon name="add" />}
+    iconName="add"
     onClick={handleCreate}
   />
-</div>`,
+</div>
+
+// Extended — icon + label
+<FAB
+  aria-label="New document"
+  iconName="add"
+  label="New document"
+  onClick={handleCreate}
+/>`,
   props: [
-    { name: 'icon', type: 'ReactNode', required: true, description: 'Icon rendered inside the FAB.' },
+    { name: 'iconName', type: 'string', required: true, description: 'Material Symbol icon name. Icon size is set automatically based on the size prop.' },
     { name: 'aria-label', type: 'string', required: true, description: 'Accessible label for the action.' },
-    { name: 'size', type: "'sm' | 'md' | 'lg'", default: "'md'", description: 'Controls the FAB diameter.' },
+    { name: 'size', type: "'sm' | 'md' | 'lg'", default: "'md'", description: 'Controls FAB diameter and icon size. sm=40px/20px icon, md=56px/24px icon, lg=64px/24px icon.' },
+    { name: 'label', type: 'string', description: 'Optional label text. When provided, renders an extended FAB with icon and label side by side.' },
     { name: 'disabled', type: 'boolean', default: 'false', description: 'Disables interaction.' },
     { name: 'className', type: 'string', description: 'Additional CSS classes.' },
     { name: '...rest', type: 'React.ButtonHTMLAttributes<HTMLButtonElement>', description: 'All native button attributes.' },
   ],
   tokens: [
-    { name: '--color-brand', value: '#2563eb', description: 'FAB background color.' },
-    { name: '--fab-radius', value: '9999px', description: 'Full circular border radius.' },
+    { name: '--color-brand', value: 'var(--color-blue-600)', description: 'FAB background.' },
+    { name: '--color-brand-hover', value: 'var(--color-blue-700)', description: 'Hover background.' },
+    { name: '--color-brand-pressed', value: 'var(--color-blue-800)', description: 'Pressed background.' },
+    { name: '--color-text-inverse', value: 'var(--color-white)', description: 'Icon colour.' },
+    { name: '--shadow-lg', value: '...', description: 'Elevation shadow.' },
   ],
 }
 
