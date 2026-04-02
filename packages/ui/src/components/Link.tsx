@@ -10,13 +10,13 @@ export function Link({ href, variant = 'internal', children, className, ...props
       target={isExternal ? '_blank' : undefined}
       rel={isExternal ? 'noopener noreferrer' : undefined}
       className={cn(
-        'inline-flex items-center gap-1 text-(--color-brand) underline underline-offset-2 hover:text-(--color-brand-hover) transition-colors',
+        'inline-flex items-center gap-1 text-(--color-brand) hover:text-(--color-brand-hover) transition-colors',
         className,
       )}
       {...props}
     >
       {children}
-      {isExternal && <Icon name="open_in_new" size={12} aria-hidden="true" />}
+      {isExternal && <Icon name="open_in_new" size={14} aria-hidden="true" />}
     </a>
   )
 }
