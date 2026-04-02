@@ -12,7 +12,7 @@ export const FAB = forwardRef<HTMLButtonElement, FABProps>(
       className={cn(
         'inline-flex items-center justify-center bg-(--color-brand) text-(--color-text-inverse)',
         'hover:bg-(--color-brand-hover) active:bg-(--color-brand-pressed) transition-colors shadow-(--shadow-lg)',
-        label ? 'h-14 px-5 gap-2 rounded-full text-sm font-medium' : 'size-14 rounded-full',
+        label ? 'h-14 px-5 gap-2 rounded-full text-base font-medium' : 'size-14 rounded-full',
         'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--color-border-focus) focus-visible:ring-offset-2',
         'disabled:cursor-not-allowed',
         className,
