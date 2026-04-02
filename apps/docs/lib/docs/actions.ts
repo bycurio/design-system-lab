@@ -183,6 +183,14 @@ export const fabDoc: ComponentDoc = {
           h(FAB, { 'aria-label': 'Upload file', iconName: 'upload', label: 'Upload' }),
         ),
     },
+    {
+      label: 'Loading',
+      preview: () =>
+        h('div', { className: 'flex flex-wrap gap-4 items-end' },
+          h(FAB, { 'aria-label': 'Creating', iconName: 'add', loading: true }),
+          h(FAB, { 'aria-label': 'Uploading', iconName: 'upload', label: 'Uploading…', loading: true }),
+        ),
+    },
   ],
   usage: `import { FAB } from '@ds/ui'
 
@@ -207,8 +215,8 @@ export const fabDoc: ComponentDoc = {
   props: [
     { name: 'iconName', type: 'string', required: true, description: 'Material Symbol icon name. Renders at 24px.' },
     { name: 'aria-label', type: 'string', required: true, description: 'Accessible label for the action.' },
+    { name: 'loading', type: 'boolean', default: 'false', description: 'Replaces the icon with a spinner and disables interaction. Use when the FAB triggers an async operation.' },
     { name: 'label', type: 'string', description: 'Optional label text. When provided, renders an extended (pill-shaped) FAB with icon and label.' },
-    { name: 'disabled', type: 'boolean', default: 'false', description: 'Disables interaction.' },
     { name: 'className', type: 'string', description: 'Additional CSS classes.' },
     { name: '...rest', type: 'React.ButtonHTMLAttributes<HTMLButtonElement>', description: 'All native button attributes.' },
   ],

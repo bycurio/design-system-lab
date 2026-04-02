@@ -18,8 +18,10 @@ describe('FAB', () => {
     expect(screen.getByRole('button', { name: 'Create' })).toBeInTheDocument()
   })
 
-  it('is disabled when disabled prop passed', () => {
-    render(<FAB iconName="add" aria-label="Create" disabled />)
-    expect(screen.getByRole('button')).toBeDisabled()
+  it('is disabled and aria-busy when loading', () => {
+    render(<FAB iconName="add" aria-label="Create" loading />)
+    const btn = screen.getByRole('button')
+    expect(btn).toBeDisabled()
+    expect(btn).toHaveAttribute('aria-busy', 'true')
   })
 })

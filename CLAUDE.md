@@ -278,6 +278,6 @@ These are fully built with the above conventions applied:
 - **Button** — 4 variants, 3 sizes, 5 states (default/hover/pressed/disabled/loading), hug sizing, prototype interactions, Figma + web
 - **IconButton** — 4 variants, 3 sizes, 5 states, hug sizing, square, prototype interactions, Figma + web
 - **Link** — 2 variants (internal/external), 2 states (default/hover), prototype interactions, Figma + web. Text underlined, icon (16px) not underlined.
-- **FAB** — single size (56px/24px icon), 2 types (circular/extended), 4 states (default/hover/pressed/disabled), prototype interactions, Figma + web. Uses `iconName: string` — icon size is intrinsic. Extended type (with `label`) is pill-shaped (`rounded-full`). No size prop — use IconButton for smaller circular actions.
+- **FAB** — single size (56px/24px icon), 2 types (circular/extended), 4 states (default/hover/pressed/loading), prototype interactions, Figma + web. Uses `iconName: string` — icon size is intrinsic. Extended type (with `label`) is pill-shaped (`rounded-full`). No disabled state — hide the FAB instead. No size prop — use IconButton for smaller circular actions.
 
 When building the next component, use Button and IconButton as the reference implementations.
