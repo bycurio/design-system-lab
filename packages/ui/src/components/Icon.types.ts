@@ -1,7 +1,8 @@
-export interface IconProps {
+import type { HTMLAttributes } from 'react'
+
+export interface IconProps extends Pick<HTMLAttributes<HTMLSpanElement>, 'role' | 'className'> {
   name: string
   size?: number
-  className?: string
-  'aria-hidden'?: boolean | 'true' | 'false'
+  'aria-hidden'?: boolean | 'true' | 'false' | undefined
   'aria-label'?: string
 }
