@@ -1,19 +1,20 @@
 import figma from '@figma/code-connect'
 import { Input } from './Input'
 
-figma.connect(Input, 'https://www.figma.com/design/ITyTagLQEj5b75iqsmPyl6/Design-System-Lab?node-id=34-20', {
+figma.connect(Input, 'https://www.figma.com/design/ITyTagLQEj5b75iqsmPyl6/Design-System-Lab?node-id=332-16', {
   props: {
-    placeholder: figma.string('placeholder'),
-    error: figma.boolean('error'),
-    errorMessage: figma.string('errorMessage'),
-    disabled: figma.boolean('disabled'),
+    disabled: figma.enum('State', {
+      disabled: true,
+    }),
+    error: figma.enum('State', {
+      error: true,
+    }),
   },
   example: (props) => (
     <Input
-      placeholder={props.placeholder}
-      error={props.error}
-      errorMessage={props.errorMessage}
       disabled={props.disabled}
+      error={props.error}
+      placeholder="Placeholder text"
     />
   ),
 })

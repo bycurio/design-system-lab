@@ -12,10 +12,14 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
           aria-invalid={error || undefined}
           className={cn(
             'w-full h-9 pl-3 pr-8 text-sm rounded-(--input-radius) border border-(--input-border)',
-            'bg-(--color-bg) text-(--color-text-primary) appearance-none',
-            'focus:outline-none focus:ring-2 focus:ring-(--color-border-focus) focus:ring-offset-1',
-            'disabled:opacity-50 disabled:cursor-not-allowed',
-            error && 'border-(--color-danger) focus:ring-(--color-danger)',
+            'bg-(--color-surface-raised) text-(--color-text-primary) appearance-none',
+            'transition-colors',
+            'enabled:hover:bg-(--color-surface-raised-hover)',
+            'focus:outline-none focus:ring-2 focus:ring-offset-0',
+            'disabled:bg-(--color-surface) disabled:opacity-40 disabled:cursor-not-allowed',
+            error
+              ? 'border-(--color-danger) focus:ring-(--color-danger) focus:border-(--color-danger)'
+              : 'focus:ring-(--color-brand) focus:border-(--color-brand)',
             className,
           )}
           onChange={(e) => { onChange?.(e); onValueChange?.(e.target.value) }}
@@ -28,7 +32,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
         </select>
         <Icon
           name="expand_more"
-          size={14}
+          size={16}
           className="absolute right-2.5 top-1/2 -translate-y-1/2 text-(--color-text-secondary) pointer-events-none"
         />
       </div>

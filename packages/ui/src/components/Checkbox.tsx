@@ -1,15 +1,25 @@
 'use client'
-import { forwardRef, useId } from 'react'
+import { forwardRef, useId, useEffect, useRef } from 'react'
 import { cn } from '../utils'
 import type { CheckboxProps } from './Checkbox.types'
 
 export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
-  ({ label, onChange, className, disabled, ...props }, ref) => {
+  ({ label, onChange, className, disabled, indeterminate, ...props }, ref) => {
     const id = useId()
+    const localRef = useRef<HTMLInputElement | null>(null)
+
+    useEffect(() => {
+      if (localRef.current) localRef.current.indeterminate = !!indeterminate
+    }, [indeterminate])
+
     return (
-      <label htmlFor={id} className={cn('inline-flex items-center gap-2 cursor-pointer', disabled && 'opacity-50 cursor-not-allowed', className)}>
+      <label htmlFor={id} className={cn('inline-flex items-center gap-2 cursor-pointer', disabled && 'opacity-40 cursor-not-allowed', className)}>
         <input
-          ref={ref}
+          ref={(node) => {
+            localRef.current = node
+            if (typeof ref === 'function') ref(node)
+            else if (ref) ref.current = node
+          }}
           id={id}
           type="checkbox"
           disabled={disabled}

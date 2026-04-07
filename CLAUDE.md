@@ -227,6 +227,82 @@ Apply reactions **after** all variants exist. Parse variant properties from `com
 - **Variant properties:** keys are capitalised — `Size=sm`, `Variant=primary`, `State=default`. Parse with regex: `v.name.match(/Size=(\w+)/i)?.[1]`
 - **Variable aliases:** `figma.variables.createVariableAlias(variable)` — create a fresh alias for every `setBoundVariable` call; do not reuse the same alias object
 - **Finding component sets across pages:** iterate `figma.root.children` (pages), not just `figma.currentPage`
+- **`loadFontAsync` is reliable:** Inter and JetBrains Mono resolve in ~3ms via the MCP plugin runner. Font loading is NOT the cause of plugin failures — errors elsewhere in async plugin code are. Always confirm root cause before assuming timing.
+- **Full rollback on any async error:** Any unhandled error (or even a caught error that prevents `figma.closePlugin()` from being called) causes the entire plugin's document changes to roll back. Structure every async build as one top-level `try/catch` that always reaches `figma.closePlugin()`.
+- **`clipsContent`:** Set `clipsContent = true` on any auto-layout frame that has a `cornerRadius` and children that could overflow (e.g. inner frames with borders). Without it the border corners bleed outside the parent.
+- **Individual stroke sides:** `strokeTopWeight`, `strokeRightWeight`, `strokeBottomWeight`, `strokeLeftWeight` are valid on frames. Use `strokeAlign = 'INSIDE'` when adding partial-side strokes to auto-layout children (e.g. row dividers).
+
+---
+
+## Form Component Conventions
+
+### Input sizing
+
+Inputs are a **single size** — no size variants. Consistent height across all forms is the goal; multiple sizes would cause field alignment issues.
+
+| Height | padding-x | padding-y | Text size | Tokens |
+|---|---|---|---|---|
+| 36px (h-9) | 12px | 8px | text-sm / 14px | `Size/12`, `Size/8`, `Size/14` |
+
+### Input states
+
+Five states: default, hover, focused, error, disabled. No pressed/loading state — inputs don't have those.
+
+| State | Border token | Background token | Notes |
+|---|---|---|---|
+| default | `color/border` | `color/surface-raised` | |
+| hover | `color/border` | `color/surface-raised-hover` | background lightens slightly |
+| focused | `color/brand` | `color/surface-raised` | border switches to brand |
+| error | `color/danger` | `color/surface-raised` | border switches to danger |
+| disabled | `color/border` | `color/surface` | recessed bg; text/icon at 40% opacity |
+
+No new semantic tokens needed — reference `color/brand` and `color/danger` directly for focus/error border. `--input-border` and `--input-radius` already exist in `tailwind.css`.
+
+### Input web classes
+
+```tsx
+// Height classes — same as Button
+const sizeClasses = {
+  sm: 'h-7 text-xs px-2',   // 28px
+  md: 'h-9 text-sm px-3',   // 36px
+  lg: 'h-11 text-base px-4', // 44px
+}
+
+// Border/focus/error state classes
+const baseClasses = 'border border-(--color-border) bg-(--color-surface-raised) rounded-(--input-radius)'
+const focusClasses = 'outline-none focus:border-(--color-brand) focus:ring-2 focus:ring-(--color-brand) focus:ring-offset-0 focus:ring-opacity-20'
+const errorClasses = 'border-(--color-danger) focus:ring-(--color-danger)'
+const disabledClasses = 'bg-(--color-surface) opacity-40 cursor-not-allowed'
+```
+
+### Input Figma component structure
+
+- **Variant properties:** `Size` (sm/md/lg), `State` (default/hover/focused/error/disabled)
+- **Phase 1:** 3 × 5 = 15 variants (base input, no icon variants)
+- **Reference width:** 240px per variant (fixed — inputs don't hug horizontally)
+- **Figma sizing:** hug height via padding (same as Button), fixed width set to 240px for the component set reference
+
+**Prototype interactions:**
+- `State=default` → `ON_HOVER` → `State=hover` (150ms ease-out, Smart Animate)
+- `State=hover` → `ON_PRESS` → `State=focused` (80ms ease-out) — ON_PRESS is the closest Figma analog to click-to-focus
+- Error and disabled states: no reactions
+
+**Component set grid layout (5 variants):**
+- 5 columns (states), 1 row
+- Column x positions (240px wide + 16px gap): `[16, 272, 528, 784, 1040]`
+- Frame size: 1296 × 68px
+
+**Input structure (Figma):**
+```
+InputFrame [HORIZONTAL auto-layout, hug height, fixed width 240px]
+  └─ ValueText [TEXT — 'Input value' or placeholder text]
+```
+Stroke bound to state-appropriate border token. Background fill bound to state-appropriate surface token. Radius bound to `Radius/md`.
+
+For the focused state, simulate the focus ring with a drop shadow:
+```js
+{ type: 'DROP_SHADOW', color: { r: brandR, g: brandG, b: brandB, a: 0.25 }, offset: {x:0,y:0}, radius: 0, spread: 3, visible: true, blendMode: 'NORMAL' }
+```
 
 ---
 
@@ -304,5 +380,8 @@ These are fully built with the above conventions applied:
 - **IconButton** — 4 variants, 3 sizes, 5 states, hug sizing, square, prototype interactions, Figma + web
 - **Link** — 2 variants (internal/external), 2 states (default/hover), prototype interactions, Figma + web. Text underlined, icon (16px) not underlined.
 - **FAB** — single size (56px/24px icon), 2 types (circular/extended), 4 states (default/hover/pressed/loading), prototype interactions, Figma + web. Uses `iconName: string` — icon size is intrinsic. Extended type (with `label`) is pill-shaped (`rounded-full`). No disabled state — hide the FAB instead. No size prop — use IconButton for smaller circular actions.
+- **SplitButton** — 3 variants (primary/secondary/danger), 3 sizes (sm/md/lg), 4 states (default/hover/pressed/disabled), prototype interactions, Figma + web. Secondary variant uses outer wrapper border (`border border-(--color-border)`); primary/danger use `border-r border-white/20` divider. Chevron sizes: `{ sm: 14, md: 16, lg: 16 }`. Note: Figma chevron icon nodes use Material Icons font — select all `Icon` layers inside the SplitButton set and manually update font to Material Symbols Rounded.
+- **Input** — single size (36px / h-9), 5 states (default/hover/focused/error/disabled), prototype interactions, Figma + web. No size variants — inputs are one consistent height. Fixed `--color-border-focus` (non-existent token) → `--color-brand`. Background `--color-surface-raised`; disabled uses `--color-surface` + `opacity-40`. Focus ring via `focus:ring-2 focus:ring-offset-0`. `enabled:hover:` suppresses hover on disabled. Code Connect maps `State=error` → `error={true}`; `State=disabled` → `disabled={true}`; hover/focused are visual only.
+- **Foundations documentation frames** — 5 frames on the Foundations page (Colors, Typography, Spacing, Elevation, Icons). Non-component frames. All color fills and text colors bound to semantic variables; size rectangle dimensions bound to `Size/*` primitives. Icons Sizes section labels use plain prose ("Button sm, IconButton sm") — no token-path syntax.
 
 When building the next component, use Button and IconButton as the reference implementations.

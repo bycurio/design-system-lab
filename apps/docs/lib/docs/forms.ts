@@ -245,7 +245,7 @@ export const checkboxDoc: ComponentDoc = {
         h('div', { className: 'flex flex-col gap-3' },
           h(Checkbox, { label: 'Unchecked', checked: false, onChange: () => {} }),
           h(Checkbox, { label: 'Checked', checked: true, onChange: () => {} }),
-          h(Checkbox, { label: 'Error', checked: false, onChange: () => {}, error: 'You must accept the terms' }),
+          h(Checkbox, { label: 'Indeterminate', checked: false, indeterminate: true, onChange: () => {} }),
           h(Checkbox, { label: 'Disabled', checked: false, onChange: () => {}, disabled: true }),
         ),
     },
@@ -259,23 +259,25 @@ export const checkboxDoc: ComponentDoc = {
   onChange={checked => setPrefs({ ...prefs, weeklyDigest: checked })}
 />
 
-// With validation
+// Indeterminate — "select all" with mixed selection
 <Checkbox
-  label="I agree to the terms of service"
-  checked={agreed}
-  onChange={setAgreed}
-  error={errors.agreed}
+  label="Select all"
+  checked={allSelected}
+  indeterminate={someSelected && !allSelected}
+  onChange={toggleAll}
 />`,
   props: [
     { name: 'label', type: 'string', required: true, description: 'Visible label for the checkbox.' },
-    { name: 'checked', type: 'boolean', required: true, description: 'Whether the checkbox is checked.' },
+    { name: 'checked', type: 'boolean', description: 'Whether the checkbox is checked.' },
+    { name: 'indeterminate', type: 'boolean', default: 'false', description: 'Renders the indeterminate (dash) state. Typically used for "select all" when only some items are selected.' },
     { name: 'onChange', type: '(checked: boolean) => void', required: true, description: 'Called with the new boolean value on change.' },
     { name: 'disabled', type: 'boolean', default: 'false', description: 'Disables interaction.' },
-    { name: 'error', type: 'string', description: 'Validation error message shown below the checkbox.' },
+    { name: '...rest', type: 'React.InputHTMLAttributes<HTMLInputElement>', description: 'Native input attributes (excluding type and onChange).' },
   ],
   tokens: [
-    { name: '--color-brand', value: '#2563eb', description: 'Checked state fill color.' },
-    { name: '--color-danger', value: '#dc2626', description: 'Error state indicator color.' },
+    { name: '--color-brand', value: 'var(--color-blue-600)', description: 'Checked and indeterminate fill color.' },
+    { name: '--color-brand-hover', value: 'var(--color-blue-700)', description: 'Hover fill color when checked.' },
+    { name: '--color-border', value: 'var(--color-slate-200)', description: 'Unchecked border color.' },
   ],
 }
 

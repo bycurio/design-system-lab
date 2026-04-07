@@ -14,7 +14,7 @@ export default function TypographyPage() {
     <div className="max-w-3xl p-8">
       <h1 className="text-3xl font-bold text-(--color-text-primary) mb-2">Typography</h1>
       <p className="text-(--color-text-secondary) mb-10">
-        Inter for UI text, JetBrains Mono for code. Sizes from{' '}
+        Inter for UI text, JetBrains Mono for code, Material Symbols Rounded for icons. Sizes from{' '}
         <code className="font-mono text-sm text-(--color-brand)">--text-xs</code> (12px) to{' '}
         <code className="font-mono text-sm text-(--color-brand)">--text-4xl</code> (36px).
       </p>
@@ -41,7 +41,7 @@ export default function TypographyPage() {
 
       <section className="mb-10">
         <h2 className="text-xl font-semibold text-(--color-text-primary) mb-4">Fonts</h2>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-3 gap-4">
           <div className="p-4 border border-(--color-border) rounded-(--radius-lg)">
             <p className="text-xs font-semibold text-(--color-text-secondary) mb-2">--font-sans</p>
             <p className="font-sans text-lg text-(--color-text-primary)">Inter</p>
@@ -54,6 +54,15 @@ export default function TypographyPage() {
             <p className="font-mono text-lg text-(--color-text-primary)">JetBrains Mono</p>
             <p className="font-mono text-sm text-(--color-text-secondary)">const x = 42</p>
             <p className="font-mono text-sm text-(--color-text-secondary)">{'<Button variant="primary" />'}</p>
+          </div>
+          <div className="p-4 border border-(--color-border) rounded-(--radius-lg)">
+            <p className="text-xs font-semibold text-(--color-text-secondary) mb-2">--font-icons</p>
+            <p className="font-sans text-lg text-(--color-text-primary)">Material Symbols Rounded</p>
+            <div className="flex gap-3 mt-2">
+              {['add', 'home', 'search', 'settings', 'favorite', 'delete'].map(name => (
+                <span key={name} className="material-symbols-rounded text-2xl text-(--color-text-primary)">{name}</span>
+              ))}
+            </div>
           </div>
         </div>
       </section>

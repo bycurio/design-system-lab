@@ -1,19 +1,25 @@
 import figma from '@figma/code-connect'
 import { Checkbox } from './Checkbox'
 
-figma.connect(Checkbox, 'https://www.figma.com/design/ITyTagLQEj5b75iqsmPyl6/Design-System-Lab?node-id=34-29', {
+figma.connect(Checkbox, 'https://www.figma.com/design/ITyTagLQEj5b75iqsmPyl6/Design-System-Lab?node-id=349-46', {
   props: {
-    label: figma.string('label'),
-    checked: figma.boolean('checked'),
-    disabled: figma.boolean('disabled'),
-    error: figma.boolean('error'),
+    label: figma.string('Label'),
+    checked: figma.enum('Checked', {
+      true: true,
+    }),
+    indeterminate: figma.enum('Checked', {
+      indeterminate: true,
+    }),
+    disabled: figma.enum('State', {
+      disabled: true,
+    }),
   },
   example: (props) => (
     <Checkbox
       label={props.label}
       checked={props.checked}
+      indeterminate={props.indeterminate}
       disabled={props.disabled}
-      error={props.error}
       onChange={() => {}}
     />
   ),
