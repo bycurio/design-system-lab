@@ -66,8 +66,9 @@ export const inputDoc: ComponentDoc = {
 <Input label="Account ID" value={user.id} disabled />`,
   props: [
     { name: 'label', type: 'string', description: 'Field label rendered above the input.' },
+    { name: 'hint', type: 'string', description: 'Helper text shown below the input when there is no error.' },
     { name: 'placeholder', type: 'string', description: 'Placeholder text shown when the input is empty.' },
-    { name: 'error', type: 'string', description: 'Error message shown below the input. Also sets aria-invalid.' },
+    { name: 'error', type: 'string', description: 'Error message shown below the input. Replaces hint and sets aria-invalid.' },
     { name: 'leadingIcon', type: 'ReactNode', description: 'Icon or element rendered at the left of the input.' },
     { name: 'trailingIcon', type: 'ReactNode', description: 'Icon or element rendered at the right of the input.' },
     { name: 'disabled', type: 'boolean', default: 'false', description: 'Disables the input.' },
@@ -124,8 +125,9 @@ export const textareaDoc: ComponentDoc = {
 />`,
   props: [
     { name: 'label', type: 'string', description: 'Field label rendered above the textarea.' },
+    { name: 'hint', type: 'string', description: 'Helper text shown below the textarea when there is no error.' },
     { name: 'placeholder', type: 'string', description: 'Placeholder text.' },
-    { name: 'error', type: 'string', description: 'Validation error message shown below the field.' },
+    { name: 'error', type: 'string', description: 'Validation error message shown below the field. Replaces hint.' },
     { name: 'rows', type: 'number', default: '3', description: 'Number of visible text rows.' },
     { name: 'disabled', type: 'boolean', default: 'false', description: 'Disables the textarea.' },
     { name: '...rest', type: 'React.TextareaHTMLAttributes<HTMLTextAreaElement>', description: 'All native textarea attributes.' },
@@ -207,7 +209,8 @@ export const selectDoc: ComponentDoc = {
   props: [
     { name: 'options', type: '{ value: string; label: string }[]', required: true, description: 'The list of selectable options.' },
     { name: 'label', type: 'string', description: 'Field label.' },
-    { name: 'error', type: 'string', description: 'Validation error message.' },
+    { name: 'hint', type: 'string', description: 'Helper text shown below the select when there is no error.' },
+    { name: 'error', type: 'string', description: 'Validation error message. Replaces hint.' },
     { name: 'onValueChange', type: '(value: string) => void', description: 'Called when the selected value changes.' },
     { name: 'disabled', type: 'boolean', default: 'false', description: 'Disables the select.' },
     { name: '...rest', type: 'React.SelectHTMLAttributes<HTMLSelectElement>', description: 'Native select attributes including value and defaultValue.' },

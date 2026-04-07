@@ -1,8 +1,9 @@
 import type { InputHTMLAttributes, ReactNode } from 'react'
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
-  error?: boolean
-  errorMessage?: string
+  label?: string
+  hint?: string
+  error?: string
   leadingIcon?: ReactNode
   trailingIcon?: ReactNode
 }

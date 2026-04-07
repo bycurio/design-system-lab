@@ -1,5 +1,7 @@
 import type { TextareaHTMLAttributes } from 'react'
+
 export interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
-  error?: boolean
-  errorMessage?: string
+  label?: string
+  hint?: string
+  error?: string
 }
