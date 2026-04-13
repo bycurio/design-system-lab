@@ -290,13 +290,37 @@ export const splitButtonDoc: ComponentDoc = {
           }),
         ),
     },
+    {
+      label: 'Size',
+      preview: () =>
+        h('div', { className: 'flex flex-wrap gap-4 items-center' },
+          h(SplitButton, {
+            label: 'Small',
+            onClick: () => {},
+            size: 'sm',
+            actions: [{ label: 'Option A', onClick: () => {} }],
+          }),
+          h(SplitButton, {
+            label: 'Medium',
+            onClick: () => {},
+            size: 'md',
+            actions: [{ label: 'Option A', onClick: () => {} }],
+          }),
+          h(SplitButton, {
+            label: 'Large',
+            onClick: () => {},
+            size: 'lg',
+            actions: [{ label: 'Option A', onClick: () => {} }],
+          }),
+        ),
+    },
   ],
   usage: `import { SplitButton } from '@ds/ui'
 
 <SplitButton
   variant="primary"
-  mainLabel="Save"
-  onMainClick={handleSave}
+  label="Save"
+  onClick={handleSave}
   actions={[
     { label: 'Save as draft', onClick: handleSaveDraft },
     { label: 'Save and publish', onClick: handlePublish },
@@ -304,16 +328,19 @@ export const splitButtonDoc: ComponentDoc = {
   ]}
 />`,
   props: [
-    { name: 'mainLabel', type: 'string', required: true, description: 'Label for the primary action button.' },
-    { name: 'onMainClick', type: '() => void', required: true, description: 'Handler for the primary action.' },
+    { name: 'label', type: 'string', required: true, description: 'Label for the primary action button.' },
+    { name: 'onClick', type: '() => void', required: true, description: 'Handler for the primary action.' },
     { name: 'actions', type: "{ label: string; onClick: () => void }[]", required: true, description: 'List of secondary actions shown in the dropdown.' },
-    { name: 'variant', type: "'primary' | 'secondary' | 'danger'", default: "'primary'", description: 'Visual style of the button.' },
+    { name: 'variant', type: "'primary' | 'secondary' | 'danger'", default: "'primary'", description: 'Visual style. Secondary renders with a border instead of a filled background.' },
+    { name: 'size', type: "'sm' | 'md' | 'lg'", default: "'md'", description: 'Controls height and padding. Matches Button heights at each tier (28/36/44px).' },
     { name: 'disabled', type: 'boolean', default: 'false', description: 'Disables both the primary action and the dropdown.' },
     { name: 'className', type: 'string', description: 'Additional CSS classes.' },
   ],
   tokens: [
-    { name: '--button-bg', value: 'var(--color-brand)', description: 'Primary variant background.' },
-    { name: '--button-radius', value: 'var(--radius-md)', description: 'Border radius for the button segments.' },
-    { name: '--color-border', value: '#e5e7eb', description: 'Divider between main and chevron sections.' },
+    { name: '--color-brand', value: 'var(--color-blue-600)', description: 'Primary variant background.' },
+    { name: '--color-danger', value: 'var(--color-red-600)', description: 'Danger variant background.' },
+    { name: '--color-border', value: 'var(--color-slate-200)', description: 'Secondary variant outer border and segment divider.' },
+    { name: '--button-radius', value: 'var(--radius-md)', description: 'Border radius.' },
+    { name: '--color-interaction-hover', value: 'rgba(0,0,0,0.06)', description: 'Secondary hover overlay.' },
   ],
 }

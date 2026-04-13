@@ -127,7 +127,7 @@
   --color-text-primary:     var(--color-slate-900);
   --color-text-secondary:   var(--color-slate-600);
   --color-text-inverse:     var(--color-white);
-  --color-border:           var(--color-slate-200);
+  --color-border:           var(--color-slate-300);
   --color-danger:           var(--color-red-600);
   --color-danger-hover:     var(--color-red-700);
   --color-danger-pressed:   var(--color-red-800);
@@ -171,7 +171,7 @@
   --color-text-primary:     var(--color-slate-100);
   --color-text-secondary:   var(--color-slate-400);
   --color-text-inverse:     var(--color-slate-900);
-  --color-border:           var(--color-slate-700);
+  --color-border:           var(--color-slate-800);
   --color-danger:           var(--color-red-500);
   --color-danger-hover:     var(--color-red-400);
   --color-danger-pressed:   var(--color-red-600);

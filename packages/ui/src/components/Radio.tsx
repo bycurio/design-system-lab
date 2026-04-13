@@ -7,7 +7,7 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
   ({ label, value, name, onChange, className, disabled, ...props }, ref) => {
     const id = useId()
     return (
-      <label htmlFor={id} className={cn('inline-flex items-center gap-2 cursor-pointer', disabled && 'opacity-50 cursor-not-allowed', className)}>
+      <label htmlFor={id} className={cn('inline-flex items-center gap-2 cursor-pointer', disabled && 'opacity-40 cursor-not-allowed', className)}>
         <input
           ref={ref}
           id={id}

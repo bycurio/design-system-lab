@@ -19,8 +19,8 @@ export const Toggle = forwardRef<HTMLInputElement, ToggleProps>(
             onChange={(e) => onChange?.(e.target.checked)}
             {...props}
           />
-          <div className="w-10 h-6 rounded-full border border-(--color-border) bg-(--color-surface) peer-checked:bg-(--color-brand) peer-checked:border-(--color-brand) transition-colors" />
-          <div className="absolute top-1 left-1 size-4 rounded-full bg-(--color-white) shadow-sm transition-transform peer-checked:translate-x-4" />
+          <div className="w-10 h-6 rounded-full border border-(--color-border) bg-(--color-surface-raised) hover:bg-(--color-surface-raised-hover) peer-checked:bg-(--color-brand) peer-checked:border-(--color-brand) peer-checked:hover:bg-(--color-brand-hover) transition-colors" />
+          <div className="absolute top-1 left-1 size-4 rounded-full bg-(--color-brand) transition-[transform,background-color] peer-checked:translate-x-4 peer-checked:bg-white" />
         </div>
         <span className="text-sm text-(--color-text-primary)">{label}</span>
       </label>
