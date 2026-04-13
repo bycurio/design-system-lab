@@ -8,7 +8,7 @@ export const Slider = forwardRef<HTMLInputElement, SliderProps>(
     const id = useId()
     return (
       <div className={cn('flex flex-col gap-1', className)}>
-        <label htmlFor={id} className="text-sm text-(--color-text-secondary)">{label}</label>
+        <label htmlFor={id} className="text-sm text-(--color-text-primary)">{label}</label>
         <input
           ref={ref}
           id={id}
