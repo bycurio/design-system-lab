@@ -1,5 +1,13 @@
 import type { ReactNode } from 'react'
-export interface TabItem { label: string; value: string; content: ReactNode }
+
+export interface TabItem {
+  label: string
+  value: string
+  icon?: string
+  disabled?: boolean
+  content: ReactNode
+}
+
 export interface TabsProps {
   tabs: TabItem[]
   defaultValue?: string
