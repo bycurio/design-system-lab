@@ -402,8 +402,8 @@ These are fully built with the above conventions applied:
 
 **Do NOT call `setBoundVariable('fontFamily', fontIconsVar)` on icon text nodes inside components that will be used as sub-components (instances nested inside other components).** When this binding is applied, Figma changes `fontName.family` to "Material Symbols Rounded". Subsequent `appendChild` of any instance of that component via the Plugin API fails with "unloaded font Material Symbols Rounded Regular" — because Material Symbols Rounded is a variable font loaded at the file level, not available via `loadFontAsync`.
 
-**Rule:** All icon text nodes must keep `fontName = { family: 'Material Icons', style: 'Regular' }` as their base font. Do NOT bind fontFamily to `Font/icons`. This means icons render as Material Icons Regular glyphs in the Plugin API context; they will visually match Material Symbols Rounded when viewed in the Figma UI (if the file has the font).
+**Rule (Plugin API builds only):** When creating icon text nodes via the Plugin API, use `fontName = { family: 'Material Icons', style: 'Regular' }` as the base font. Do NOT bind fontFamily to `Font/icons` on nodes that will be nested as sub-component instances. The font can be corrected to Material Symbols Rounded afterwards in the Figma UI by selecting all icon layers and changing the font family — this is safe to do after the Plugin API build is complete.
 
-This applies to: NavButton (fixed), and any future component that may be nested inside another component built via the Plugin API.
+**Web:** The `Icon` component uses `className="material-symbols-rounded"` with the font loaded via Google Fonts CDN (`Material Symbols Rounded`). All icon name strings are valid in Material Symbols Rounded. No web changes are needed when updating icon font in Figma.
 
-When building the next component, use Button and IconButton as the reference implementations.
+This applies to all components built via the Plugin API. When building the next component, use Button and IconButton as the reference implementations.
