@@ -38,6 +38,7 @@ Values in the **Primitives** collection, group `Size/`. Token names use the actu
 | Token | Value |
 |---|---|
 | `Size/4` | 4px |
+| `Size/6` | 6px (icon-to-label gap in NavButton, TabButton) |
 | `Size/8` | 8px |
 | `Size/12` | 12px |
 | `Size/14` | 14px (body/label text — off the 4px grid but justified as a standard type size) |
@@ -73,7 +74,7 @@ STRING variables in the **Primitives** collection, group `Font/`. All text nodes
 | `Font/weight/medium` | 500 |
 | `Font/weight/bold` | 700 |
 
-All text nodes inside component sets must have `fontSize` bound to a `Size/*` token and `fontWeight` bound to a `Font/weight/*` token, in addition to `fontFamily` bound to a `Font/*` family token.
+All text nodes inside component sets must have `fontSize` bound to a `Size/*` token and `fontWeight` bound to a `Font/weight/*` token, in addition to `fontFamily` bound to a `Font/*` family token. In addition, **apply a named Figma text style** to every label text node using `textNode.textStyleId = style.id`. Available text styles: `text-xs / Regular`, `text-xs / Medium`, `text-sm / Regular`, `text-sm / Medium`, `text-base / Regular`, `text-base / Medium`. Variable bindings and text style should both be applied — the text style drives display in the Figma inspector; the variable bindings drive token traceability.
 
 **Note:** `Material Symbols Rounded` cannot be loaded via `figma.loadFontAsync()` as it is a variable font added at the file level. You can still bind STRING variables to text nodes using `node.setBoundVariable('fontFamily', fontVar)` without loading the font first. To modify the `fontName` property of icon text nodes, use the Figma UI directly.
 
@@ -140,6 +141,12 @@ For non-icon text nodes (labels), set explicit line-height to match Tailwind's s
 ### Border radius
 
 Bind all four corner radius properties (`topLeftRadius`, `topRightRadius`, `bottomLeftRadius`, `bottomRightRadius`) directly to `Radius/md` (from Primitives). Do not create a component-level wrapper token for this.
+
+**Exception — tab-style components:** Components that sit flush against a bottom border (e.g. TabButton) must have `bottomLeftRadius = 0` and `bottomRightRadius = 0` with no variable binding. Only the top corners get `Radius/md`. Mixing a rounded bottom corner with a bottom stroke creates a visual artefact where the stroke clips inside the curve. Set via:
+```js
+variant.setBoundVariable('bottomLeftRadius', null);  variant.bottomLeftRadius = 0;
+variant.setBoundVariable('bottomRightRadius', null); variant.bottomRightRadius = 0;
+```
 
 ### Color bindings
 
