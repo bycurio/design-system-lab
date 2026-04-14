@@ -1,9 +1,16 @@
 import type { ReactNode } from 'react'
-export interface SidebarNavItem { label: string; href: string; active?: boolean }
-export interface SidebarNavGroup { title: string; items: SidebarNavItem[] }
+
+export interface SidebarItem {
+  label: string
+  href: string
+  icon?: string
+  active?: boolean
+  disabled?: boolean
+}
+
 export interface SidebarProps {
-  groups: SidebarNavGroup[]
-  header?: ReactNode
-  footer?: ReactNode
+  logo?: ReactNode
+  sectionLabel?: string
+  items: SidebarItem[]
   className?: string
 }

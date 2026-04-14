@@ -1,25 +1,17 @@
 import figma from '@figma/code-connect'
 import { Sidebar } from './Sidebar'
 
-figma.connect(Sidebar, 'https://www.figma.com/design/ITyTagLQEj5b75iqsmPyl6/Design-System-Lab?node-id=34-54', {
-  props: {},
+figma.connect(Sidebar, 'https://www.figma.com/design/ITyTagLQEj5b75iqsmPyl6/Design-System-Lab?node-id=503-175', {
   example: () => (
     <Sidebar
-      groups={[
-        {
-          title: 'Main',
-          items: [
-            { label: 'Dashboard', href: '/dashboard', active: true },
-            { label: 'Analytics', href: '/analytics' },
-          ],
-        },
-        {
-          title: 'Settings',
-          items: [
-            { label: 'Profile', href: '/profile' },
-            { label: 'Billing', href: '/billing' },
-          ],
-        },
+      sectionLabel="Main menu"
+      items={[
+        { label: 'Home',       href: '/',          icon: 'home',      active: true },
+        { label: 'Dashboard',  href: '/dashboard', icon: 'dashboard' },
+        { label: 'Products',   href: '/products',  icon: 'inventory_2' },
+        { label: 'Orders',     href: '/orders',    icon: 'receipt_long' },
+        { label: 'Customers',  href: '/customers', icon: 'group' },
+        { label: 'Settings',   href: '/settings',  icon: 'settings' },
       ]}
     />
   ),
