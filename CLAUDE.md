@@ -76,6 +76,27 @@ STRING variables in the **Primitives** collection, group `Font/`. All text nodes
 
 All text nodes inside component sets must have `fontSize` bound to a `Size/*` token and `fontWeight` bound to a `Font/weight/*` token, in addition to `fontFamily` bound to a `Font/*` family token. In addition, **apply a named Figma text style** to every label text node using `textNode.textStyleId = style.id`. Available text styles: `text-xs / Regular`, `text-xs / Medium`, `text-sm / Regular`, `text-sm / Medium`, `text-base / Regular`, `text-base / Medium`. Variable bindings and text style should both be applied — the text style drives display in the Figma inspector; the variable bindings drive token traceability.
 
+**Icon text node bindings (required on every icon node):**
+| Property | Variable | Notes |
+|---|---|---|
+| `fontFamily` | `Font/icons` | Bind via `setBoundVariable('fontFamily', fontIconsVar)` — no font load needed |
+| `fontWeight` | `Font/weight/regular` | Always regular weight for icons |
+| `fontSize` | `Size/16`, `Size/20`, `Size/24` etc. | Match to the icon size tier; skip if no matching `Size/*` primitive exists |
+
+After completing any Plugin API component build, run the audit pattern below to verify no icon nodes have missing bindings. This was a recurring gap — fontFamily was sometimes applied but fontWeight was not, or neither was applied on nodes in sub-components.
+
+```js
+// Audit snippet — paste into a use_figma call to check a page
+const allVars = await figma.variables.getLocalVariablesAsync();
+const iconNodes = figma.currentPage.findAll(n => {
+  if (n.type !== 'TEXT') return false;
+  return n.name.toLowerCase() === 'icon' || (n.fontName?.family || '').toLowerCase().includes('material');
+});
+return iconNodes
+  .filter(n => { const bv = n.boundVariables || {}; return !bv.fontFamily || !bv.fontWeight; })
+  .map(n => ({ id: n.id, name: n.name, hasFontFamily: !!n.boundVariables?.fontFamily, hasFontWeight: !!n.boundVariables?.fontWeight }));
+```
+
 **Note:** `Material Symbols Rounded` cannot be loaded via `figma.loadFontAsync()` as it is a variable font added at the file level. You can still bind STRING variables to text nodes using `node.setBoundVariable('fontFamily', fontVar)` without loading the font first. To modify the `fontName` property of icon text nodes, use the Figma UI directly.
 
 ---
