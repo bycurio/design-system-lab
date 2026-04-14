@@ -1,16 +1,16 @@
 import { cn } from '../utils'
 import { Icon } from './Icon'
-import type { SidebarItem, SidebarProps } from './Sidebar.types'
+import type { SidebarItem, SidebarGroup, SidebarProps } from './Sidebar.types'
 
 function SidebarNavItem({ label, href, icon, active, disabled }: SidebarItem) {
   return (
-    <li>
+    <li className="w-full">
       <a
         href={disabled ? undefined : href}
         aria-current={active ? 'page' : undefined}
         aria-disabled={disabled || undefined}
         className={cn(
-          'flex items-center gap-1.5 w-full h-9 px-3 text-sm rounded-(--button-radius) transition-colors',
+          'flex items-center justify-start gap-1.5 w-full h-9 px-3 text-sm rounded-(--button-radius) transition-colors',
           'outline-none focus-visible:ring-2 focus-visible:ring-(--color-brand) focus-visible:ring-offset-2',
           active
             ? 'bg-(--color-brand-subtle) text-(--color-brand) font-medium'
@@ -25,7 +25,24 @@ function SidebarNavItem({ label, href, icon, active, disabled }: SidebarItem) {
   )
 }
 
-export function Sidebar({ logo, sectionLabel, items, className }: SidebarProps) {
+function SidebarNavGroup({ label, items }: SidebarGroup) {
+  return (
+    <div className="w-full">
+      {label && (
+        <p className="px-3 py-1 text-xs font-medium text-(--color-text-secondary) uppercase tracking-wider">
+          {label}
+        </p>
+      )}
+      <ul className="w-full">
+        {items.map((item) => (
+          <SidebarNavItem key={item.href} {...item} />
+        ))}
+      </ul>
+    </div>
+  )
+}
+
+export function Sidebar({ logo, groups, className }: SidebarProps) {
   return (
     <aside
       className={cn(
@@ -38,17 +55,10 @@ export function Sidebar({ logo, sectionLabel, items, className }: SidebarProps) 
           {logo}
         </div>
       )}
-      <nav className="flex flex-col flex-1 px-3 py-3 gap-1 overflow-y-auto">
-        {sectionLabel && (
-          <p className="px-3 py-1 text-xs font-medium text-(--color-text-secondary) uppercase tracking-wider">
-            {sectionLabel}
-          </p>
-        )}
-        <ul className="flex flex-col gap-1">
-          {items.map((item) => (
-            <SidebarNavItem key={item.href} {...item} />
-          ))}
-        </ul>
+      <nav className="flex-1 overflow-y-auto px-3 py-3 space-y-4">
+        {groups.map((group, i) => (
+          <SidebarNavGroup key={group.label ?? i} {...group} />
+        ))}
       </nav>
     </aside>
   )

@@ -8,9 +8,13 @@ export interface SidebarItem {
   disabled?: boolean
 }
 
+export interface SidebarGroup {
+  label?: string
+  items: SidebarItem[]
+}
+
 export interface SidebarProps {
   logo?: ReactNode
-  sectionLabel?: string
-  items: SidebarItem[]
+  groups: SidebarGroup[]
   className?: string
 }
