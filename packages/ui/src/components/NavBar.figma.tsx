@@ -1,17 +1,15 @@
 import figma from '@figma/code-connect'
 import { NavBar } from './NavBar'
 
-figma.connect(NavBar, 'https://www.figma.com/design/ITyTagLQEj5b75iqsmPyl6/Design-System-Lab?node-id=34-45', {
-  props: {
-    brand: figma.string('brand'),
-  },
-  example: (props) => (
+figma.connect(NavBar, 'https://www.figma.com/design/ITyTagLQEj5b75iqsmPyl6/Design-System-Lab?node-id=481-166', {
+  example: () => (
     <NavBar
-      brand={props.brand}
+      logo={<span>Logo</span>}
       links={[
-        { label: 'Home', href: '/', active: true },
-        { label: 'About', href: '/about' },
-        { label: 'Contact', href: '/contact' },
+        { label: 'Home', href: '/', icon: 'home', active: true },
+        { label: 'Products', href: '/products', icon: 'inventory_2' },
+        { label: 'Pricing', href: '/pricing', icon: 'sell' },
+        { label: 'About', href: '/about', icon: 'info' },
       ]}
     />
   ),
