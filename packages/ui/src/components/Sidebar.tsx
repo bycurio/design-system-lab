@@ -29,7 +29,7 @@ function SidebarNavGroup({ label, items }: SidebarGroup) {
   return (
     <div className="w-full">
       {label && (
-        <p className="px-3 py-1 text-xs font-medium text-(--color-text-secondary) uppercase tracking-wider">
+        <p className="px-3 py-1 mb-1 text-xs font-medium text-(--color-text-secondary) uppercase tracking-wider">
           {label}
         </p>
       )}
@@ -42,11 +42,11 @@ function SidebarNavGroup({ label, items }: SidebarGroup) {
   )
 }
 
-export function Sidebar({ logo, groups, className }: SidebarProps) {
+export function Sidebar({ logo, groups, footer, className }: SidebarProps) {
   return (
     <aside
       className={cn(
-        'flex flex-col w-60 border-r border-(--color-border) bg-(--color-surface-raised)',
+        'flex flex-col w-60 h-full border-r border-(--color-border) bg-(--color-surface-raised)',
         className,
       )}
     >
@@ -55,11 +55,16 @@ export function Sidebar({ logo, groups, className }: SidebarProps) {
           {logo}
         </div>
       )}
-      <nav className="flex-1 overflow-y-auto px-3 py-3 space-y-4">
+      <nav className="flex-1 min-h-0 overflow-y-auto px-3 py-3 space-y-4">
         {groups.map((group, i) => (
           <SidebarNavGroup key={group.label ?? i} {...group} />
         ))}
       </nav>
+      {footer && (
+        <div className="flex items-center gap-0 px-2 py-2 border-t border-(--color-border) shrink-0">
+          {footer}
+        </div>
+      )}
     </aside>
   )
 }

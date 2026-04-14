@@ -16,5 +16,6 @@ export interface SidebarGroup {
 export interface SidebarProps {
   logo?: ReactNode
   groups: SidebarGroup[]
+  footer?: ReactNode
   className?: string
 }

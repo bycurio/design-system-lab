@@ -1,5 +1,6 @@
 import figma from '@figma/code-connect'
 import { Sidebar } from './Sidebar'
+import { IconButton } from './IconButton'
 
 figma.connect(Sidebar, 'https://www.figma.com/design/ITyTagLQEj5b75iqsmPyl6/Design-System-Lab?node-id=503-175', {
   example: () => (
@@ -22,6 +23,13 @@ figma.connect(Sidebar, 'https://www.figma.com/design/ITyTagLQEj5b75iqsmPyl6/Desi
           ],
         },
       ]}
+      footer={
+        <>
+          <IconButton icon="notifications" variant="ghost" size="md" aria-label="Alerts" />
+          <IconButton icon="person"        variant="ghost" size="md" aria-label="Profile" />
+          <IconButton icon="dark_mode"     variant="ghost" size="md" aria-label="Toggle theme" />
+        </>
+      }
     />
   ),
 })
