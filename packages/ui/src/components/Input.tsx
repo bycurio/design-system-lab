@@ -42,8 +42,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
               error
                 ? 'border-(--color-danger) focus:ring-(--color-danger) focus:border-(--color-danger)'
                 : 'focus:ring-(--color-brand) focus:border-(--color-brand)',
-              leadingIcon && 'pl-9',
-              trailingIcon && 'pr-9',
+              !!leadingIcon && 'pl-9',
+              !!trailingIcon && 'pr-9',
               className,
             )}
             {...props}
