@@ -151,24 +151,33 @@ export const toastDoc: ComponentDoc = {
     },
   ],
   usage: `import { Toast } from '@ds/ui'
-import { useToast } from '@ds/ui'
 
-// Trigger from a mutation
-const { addToast } = useToast()
+<Toast
+  variant="success"
+  title="Changes saved"
+  description="Your draft has been updated."
+  onClose={() => setOpen(false)}
+/>
 
-async function handleSave() {
-  await save(data)
-  addToast({ variant: 'success', title: 'Saved', description: 'Draft updated.' })
-}`,
+// All variants
+<Toast variant="info"    title="Update available" description="Reload to get v2.4.0." onClose={close} />
+<Toast variant="success" title="Saved"            description="Your changes have been saved." onClose={close} />
+<Toast variant="warning" title="Taking longer"    description="This may take a moment." onClose={close} />
+<Toast variant="danger"  title="Payment failed"   description="Update your billing details." onClose={close} />`,
   props: [
-    { name: 'variant', type: "'info' | 'success' | 'warning' | 'danger'", default: "'info'", description: 'Semantic color variant.' },
     { name: 'title', type: 'string', required: true, description: 'Short toast headline.' },
     { name: 'description', type: 'string', description: 'Optional supporting detail text.' },
-    { name: 'onClose', type: '() => void', required: true, description: 'Called when the dismiss button is clicked or the auto-dismiss timer expires.' },
+    { name: 'variant', type: "'info' | 'success' | 'warning' | 'danger'", default: "'info'", description: 'Semantic color variant — controls border and icon colour.' },
+    { name: 'open', type: 'boolean', default: 'true', description: 'Controls visibility. Set to false to hide without unmounting.' },
+    { name: 'onClose', type: '() => void', description: 'Called when the dismiss button is clicked or the auto-dismiss timer fires.' },
+    { name: 'duration', type: 'number', default: '3000', description: 'Auto-dismiss delay in ms. Pass 0 to disable auto-dismiss.' },
+    { name: 'className', type: 'string', description: 'Additional CSS classes.' },
   ],
   tokens: [
-    { name: '--color-success-surface', value: '#dcfce7', description: 'Success variant background.' },
-    { name: '--color-danger', value: '#dc2626', description: 'Danger variant icon and border color.' },
+    { name: '--color-surface-raised', value: 'white / slate-800', description: 'Toast background — floats above page content.' },
+    { name: '--color-{variant}-border', value: 'e.g. sky-200 / sky-800', description: 'Full border colour matching the semantic variant (light/dark).' },
+    { name: '--color-{variant}-text', value: 'e.g. sky-700 / sky-200', description: 'Icon colour — WCAG AA compliant on surface-raised.' },
+    { name: '--shadow-lg', value: '0 10px 15px…', description: 'Elevation shadow — positions toast visually above page content.' },
   ],
 }
 

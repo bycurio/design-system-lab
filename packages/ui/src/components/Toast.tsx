@@ -2,16 +2,16 @@
 import { useEffect } from 'react'
 import { cn } from '../utils'
 import { Icon } from './Icon'
-import type { ToastProps } from './Toast.types'
+import type { ToastProps, ToastVariant } from './Toast.types'
 
-const config = {
-  info:    { icon: 'info', classes: 'border-l-4 border-(--color-info) bg-(--color-info-surface)' },
-  success: { icon: 'check_circle', classes: 'border-l-4 border-(--color-success) bg-(--color-success-surface)' },
-  warning: { icon: 'warning', classes: 'border-l-4 border-(--color-warning) bg-(--color-warning-surface)' },
-  danger:  { icon: 'error', classes: 'border-l-4 border-(--color-danger) bg-(--color-danger-surface)' },
+const config: Record<ToastVariant, { icon: string; iconClass: string; borderClass: string }> = {
+  info:    { icon: 'info',         iconClass: 'text-(--color-info-text)',    borderClass: 'border-(--color-info-border)'    },
+  success: { icon: 'check_circle', iconClass: 'text-(--color-success-text)', borderClass: 'border-(--color-success-border)' },
+  warning: { icon: 'warning',      iconClass: 'text-(--color-warning-text)', borderClass: 'border-(--color-warning-border)' },
+  danger:  { icon: 'error',        iconClass: 'text-(--color-danger-text)',  borderClass: 'border-(--color-danger-border)'  },
 }
 
-export function Toast({ message, variant = 'info', open = true, onClose, duration = 3000, className }: ToastProps) {
+export function Toast({ title, description, variant = 'info', open = true, onClose, duration = 3000, className }: ToastProps) {
   useEffect(() => {
     if (!open || !onClose || !duration) return
     const t = setTimeout(onClose, duration)
@@ -20,15 +20,32 @@ export function Toast({ message, variant = 'info', open = true, onClose, duratio
 
   if (!open) return null
 
-  const { icon, classes } = config[variant]
+  const { icon, iconClass, borderClass } = config[variant]
 
   return (
-    <div role="alert" className={cn('flex items-center gap-3 p-4 rounded-(--radius-md) shadow-(--shadow-md) text-sm text-(--color-text-primary)', classes, className)}>
-      <Icon name={icon} size={16} className="shrink-0" />
-      <span className="flex-1">{message}</span>
+    <div
+      role="alert"
+      className={cn(
+        'flex items-start gap-3 p-4 w-80 rounded-(--radius-lg) shadow-(--shadow-lg)',
+        'bg-(--color-surface-raised) border',
+        borderClass,
+        className,
+      )}
+    >
+      <Icon name={icon} size={20} className={cn('shrink-0 mt-0.5', iconClass)} />
+      <div className="flex-1 min-w-0">
+        <p className="text-sm font-medium text-(--color-text-primary)">{title}</p>
+        {description && (
+          <p className="mt-0.5 text-sm text-(--color-text-secondary)">{description}</p>
+        )}
+      </div>
       {onClose && (
-        <button onClick={onClose} aria-label="Dismiss" className="text-(--color-text-secondary) hover:text-(--color-text-primary)">
-          <Icon name="close" size={14} />
+        <button
+          onClick={onClose}
+          aria-label="Dismiss"
+          className="shrink-0 -mt-0.5 text-(--color-text-secondary) hover:text-(--color-text-primary) transition-colors"
+        >
+          <Icon name="close" size={16} />
         </button>
       )}
     </div>

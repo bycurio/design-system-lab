@@ -1,6 +1,7 @@
 export type ToastVariant = 'info' | 'success' | 'warning' | 'danger'
 export interface ToastProps {
-  message: string
+  title: string
+  description?: string
   variant?: ToastVariant
   open?: boolean
   onClose?: () => void
