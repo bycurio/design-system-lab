@@ -43,7 +43,7 @@ export { Toggle } from './Toggle'
 export { Tooltip } from './Tooltip'
 
 export type { AccordionItem, AccordionProps } from './Accordion.types'
-export type { AlertProps, AlertVariant } from './Alert.types'
+export type { AlertProps, AlertVariant, AlertAction } from './Alert.types'
 export type { AvatarProps, AvatarSize } from './Avatar.types'
 export type { BadgeProps, BadgeVariant, BadgeStrength } from './Badge.types'
 export type { BodyProps, BodySize } from './Body.types'

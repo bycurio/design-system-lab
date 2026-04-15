@@ -1,26 +1,52 @@
 import { cn } from '../utils'
 import { Icon } from './Icon'
-import type { AlertProps } from './Alert.types'
+import type { AlertProps, AlertVariant } from './Alert.types'
 
-const config = {
-  info:    { icon: 'info', classes: 'border border-(--color-info) bg-(--color-info-surface) text-(--color-info)' },
-  success: { icon: 'check_circle', classes: 'border border-(--color-success) bg-(--color-success-surface) text-(--color-success)' },
-  warning: { icon: 'warning', classes: 'border border-(--color-warning) bg-(--color-warning-surface) text-(--color-warning)' },
-  danger:  { icon: 'error', classes: 'border border-(--color-danger) bg-(--color-danger-surface) text-(--color-danger)' },
+const config: Record<AlertVariant, { icon: string; borderClass: string; bgClass: string; iconClass: string }> = {
+  info:    { icon: 'info',         borderClass: 'border-(--color-info-border)',    bgClass: 'bg-(--color-info-surface)',    iconClass: 'text-(--color-info-text)'    },
+  success: { icon: 'check_circle', borderClass: 'border-(--color-success-border)', bgClass: 'bg-(--color-success-surface)', iconClass: 'text-(--color-success-text)' },
+  warning: { icon: 'warning',      borderClass: 'border-(--color-warning-border)', bgClass: 'bg-(--color-warning-surface)', iconClass: 'text-(--color-warning-text)' },
+  danger:  { icon: 'error',        borderClass: 'border-(--color-danger-border)',  bgClass: 'bg-(--color-danger-surface)',  iconClass: 'text-(--color-danger-text)'  },
 }
 
-export function Alert({ variant, title, message, onClose, className }: AlertProps) {
-  const { icon, classes } = config[variant]
+export function Alert({ variant, title, description, action, onDismiss, className }: AlertProps) {
+  const { icon, borderClass, bgClass, iconClass } = config[variant]
+
   return (
-    <div role="alert" className={cn('flex gap-3 p-4 rounded-(--radius-md)', classes, className)}>
-      <Icon name={icon} size={18} className="shrink-0 mt-0.5" />
+    <div
+      role="alert"
+      className={cn(
+        'flex items-start gap-3 p-4 rounded-(--radius-lg) border',
+        bgClass,
+        borderClass,
+        className,
+      )}
+    >
+      <Icon name={icon} size={20} className={cn('shrink-0 mt-0.5', iconClass)} />
+
       <div className="flex-1 min-w-0">
-        <p className="text-sm font-semibold">{title}</p>
-        <p className="text-sm text-(--color-text-primary) mt-0.5">{message}</p>
+        <p className="text-sm font-medium text-(--color-text-primary)">{title}</p>
+        {description && (
+          <p className="mt-0.5 text-sm text-(--color-text-secondary)">{description}</p>
+        )}
       </div>
-      {onClose && (
-        <button onClick={onClose} aria-label="Dismiss alert" className="text-(--color-text-secondary) hover:text-(--color-text-primary) shrink-0">
-          <Icon name="close" size={14} />
+
+      {action && (
+        <button
+          onClick={action.onClick}
+          className={cn('shrink-0 text-sm font-medium whitespace-nowrap hover:opacity-75 transition-opacity', iconClass)}
+        >
+          {action.label}
+        </button>
+      )}
+
+      {onDismiss && (
+        <button
+          onClick={onDismiss}
+          aria-label="Dismiss alert"
+          className="shrink-0 text-(--color-text-secondary) hover:text-(--color-text-primary) transition-colors"
+        >
+          <Icon name="close" size={16} />
         </button>
       )}
     </div>

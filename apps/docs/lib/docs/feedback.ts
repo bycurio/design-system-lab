@@ -198,46 +198,81 @@ export const alertDoc: ComponentDoc = {
   ],
   preview: () =>
     h('div', { className: 'flex flex-col gap-3' },
-      h(Alert, { variant: 'info', title: 'New version available', description: 'Refresh to load v2.4.0.' }),
-      h(Alert, { variant: 'warning', title: 'Unsaved changes', description: 'You have 3 unsaved fields.' }),
-      h(Alert, { variant: 'danger', title: 'Payment failed', description: 'Update your billing details to continue.', onDismiss: () => {} }),
+      h(Alert, { variant: 'info', title: 'New version available', description: 'Refresh to load v2.4.0.', action: { label: 'Reload', onClick: () => {} } }),
+      h(Alert, { variant: 'warning', title: 'Unsaved changes', description: 'You have 3 unsaved fields.', onDismiss: () => {} }),
+      h(Alert, { variant: 'danger', title: 'Payment failed', description: 'Update your billing details to continue.', action: { label: 'Update billing', onClick: () => {} }, onDismiss: () => {} }),
     ),
   variants: [
     {
       label: 'All variants',
       preview: () =>
         h('div', { className: 'flex flex-col gap-3' },
-          h(Alert, { variant: 'info', title: 'Info', description: 'Informational message.' }),
+          h(Alert, { variant: 'info',    title: 'Info',    description: 'Informational message.' }),
           h(Alert, { variant: 'success', title: 'Success', description: 'Everything is working.' }),
           h(Alert, { variant: 'warning', title: 'Warning', description: 'Proceed with caution.' }),
-          h(Alert, { variant: 'danger', title: 'Error', description: 'Action required.' }),
+          h(Alert, { variant: 'danger',  title: 'Error',   description: 'Action required.' }),
         ),
+    },
+    {
+      label: 'With action',
+      preview: () =>
+        h('div', { className: 'flex flex-col gap-3' },
+          h(Alert, { variant: 'info',    title: 'Update available',  description: 'v2.4.0 is ready.',             action: { label: 'Reload', onClick: () => {} } }),
+          h(Alert, { variant: 'danger',  title: 'Subscription lapsed', description: 'Renew to restore access.',   action: { label: 'Renew now', onClick: () => {} } }),
+        ),
+    },
+    {
+      label: 'With dismiss',
+      preview: () =>
+        h('div', { className: 'flex flex-col gap-3' },
+          h(Alert, { variant: 'success', title: 'Import complete', description: '1,204 records imported.', onDismiss: () => {} }),
+          h(Alert, { variant: 'warning', title: 'Unsaved changes', description: 'You have 3 unsaved fields.', onDismiss: () => {} }),
+        ),
+    },
+    {
+      label: 'With action and dismiss',
+      preview: () =>
+        h(Alert, { variant: 'danger', title: 'Payment failed', description: 'Update your billing details to continue.', action: { label: 'Update billing', onClick: () => {} }, onDismiss: () => {} }),
     },
   ],
   usage: `import { Alert } from '@ds/ui'
 
-// Form-level error summary
-{errors.form && (
-  <Alert
-    variant="danger"
-    title="Could not submit form"
-    description={errors.form}
-    onDismiss={() => clearError('form')}
-  />
-)}
+// With action and dismiss
+<Alert
+  variant="danger"
+  title="Payment failed"
+  description="Update your billing details to continue."
+  action={{ label: 'Update billing', onClick: () => router.push('/billing') }}
+  onDismiss={() => setVisible(false)}
+/>
 
-// Persistent info banner
-<Alert variant="info" title="Scheduled maintenance" description="The service will be down on Jan 5 from 2–4 AM UTC." />`,
+// Info with action only
+<Alert
+  variant="info"
+  title="New version available"
+  description="Reload to get v2.4.0."
+  action={{ label: 'Reload', onClick: () => window.location.reload() }}
+/>
+
+// Dismissible with no action
+<Alert
+  variant="success"
+  title="Import complete"
+  description="1,204 records imported successfully."
+  onDismiss={() => setVisible(false)}
+/>`,
   props: [
-    { name: 'variant', type: "'info' | 'success' | 'warning' | 'danger'", default: "'info'", description: 'Semantic color variant.' },
+    { name: 'variant', type: "'info' | 'success' | 'warning' | 'danger'", required: true, description: 'Semantic color variant — controls background, border, and icon colour.' },
     { name: 'title', type: 'string', required: true, description: 'Alert headline.' },
-    { name: 'description', type: 'string', description: 'Supporting detail text.' },
-    { name: 'onDismiss', type: '() => void', description: 'When provided, renders a dismiss button.' },
+    { name: 'description', type: 'string', description: 'Optional supporting detail text.' },
+    { name: 'action', type: '{ label: string; onClick: () => void }', description: 'Optional action button rendered to the right of the content.' },
+    { name: 'onDismiss', type: '() => void', description: 'When provided, renders a dismiss (×) button to the right of the action.' },
     { name: 'className', type: 'string', description: 'Additional CSS classes.' },
   ],
   tokens: [
-    { name: '--color-warning-surface', value: '#fef9c3', description: 'Warning variant background.' },
-    { name: '--color-info', value: '#2563eb', description: 'Info variant icon and border color.' },
+    { name: '--color-{variant}-surface', value: 'e.g. sky-100 / sky-900', description: 'Alert background (light/dark).' },
+    { name: '--color-{variant}-border', value: 'e.g. sky-200 / sky-800', description: 'Alert border (light/dark).' },
+    { name: '--color-{variant}-text', value: 'e.g. sky-700 / sky-200', description: 'Icon and action button colour — WCAG AA on the surface background.' },
   ],
 }
 
