@@ -7,10 +7,11 @@ export const badgeDoc: ComponentDoc = {
   title: 'Badge',
   slug: 'badge',
   description:
-    'A small inline label used to communicate status, category, or counts. Renders as a styled span with semantic color variants. Supports any inline content.',
+    'A small inline label used to communicate status, category, or counts. Comes in subtle (tinted background + border) and strong (bold background + white text) strengths across five semantic variants.',
   whenToUse: [
     'Communicating status: Active, Draft, Archived',
     'Labeling items by category or priority',
+    'Highlighting one high-importance badge in a row of multiple badges — use strong',
     'Showing a count or numeric indicator',
   ],
   whenNotToUse: [
@@ -19,16 +20,25 @@ export const badgeDoc: ComponentDoc = {
     'Navigation labels — use Tabs or NavBar',
   ],
   preview: () =>
-    h('div', { className: 'flex flex-wrap gap-2' },
-      h(Badge, { variant: 'info' }, 'Info'),
-      h(Badge, { variant: 'success' }, 'Active'),
-      h(Badge, { variant: 'warning' }, 'Pending'),
-      h(Badge, { variant: 'danger' }, 'Failed'),
-      h(Badge, { variant: 'neutral' }, 'Draft'),
+    h('div', { className: 'flex flex-col gap-3' },
+      h('div', { className: 'flex flex-wrap gap-2' },
+        h(Badge, { variant: 'info' }, 'Info'),
+        h(Badge, { variant: 'success' }, 'Active'),
+        h(Badge, { variant: 'warning' }, 'Pending'),
+        h(Badge, { variant: 'danger' }, 'Failed'),
+        h(Badge, { variant: 'neutral' }, 'Draft'),
+      ),
+      h('div', { className: 'flex flex-wrap gap-2' },
+        h(Badge, { variant: 'info', strength: 'strong' }, 'Info'),
+        h(Badge, { variant: 'success', strength: 'strong' }, 'Active'),
+        h(Badge, { variant: 'warning', strength: 'strong' }, 'Pending'),
+        h(Badge, { variant: 'danger', strength: 'strong' }, 'Failed'),
+        h(Badge, { variant: 'neutral', strength: 'strong' }, 'Draft'),
+      ),
     ),
   variants: [
     {
-      label: 'Semantic variants',
+      label: 'Subtle (default)',
       preview: () =>
         h('div', { className: 'flex flex-wrap gap-2' },
           h(Badge, { variant: 'info' }, 'In review'),
@@ -36,6 +46,26 @@ export const badgeDoc: ComponentDoc = {
           h(Badge, { variant: 'warning' }, 'Expiring soon'),
           h(Badge, { variant: 'danger' }, 'Overdue'),
           h(Badge, { variant: 'neutral' }, 'Draft'),
+        ),
+    },
+    {
+      label: 'Strong',
+      preview: () =>
+        h('div', { className: 'flex flex-wrap gap-2' },
+          h(Badge, { variant: 'info', strength: 'strong' }, 'In review'),
+          h(Badge, { variant: 'success', strength: 'strong' }, 'Published'),
+          h(Badge, { variant: 'warning', strength: 'strong' }, 'Expiring soon'),
+          h(Badge, { variant: 'danger', strength: 'strong' }, 'Overdue'),
+          h(Badge, { variant: 'neutral', strength: 'strong' }, 'Draft'),
+        ),
+    },
+    {
+      label: 'Mixed row — one strong to signal priority',
+      preview: () =>
+        h('div', { className: 'flex items-center gap-2' },
+          h(Badge, { variant: 'neutral' }, 'Draft'),
+          h(Badge, { variant: 'success' }, 'Reviewed'),
+          h(Badge, { variant: 'danger', strength: 'strong' }, 'Blocked'),
         ),
     },
     {
@@ -49,24 +79,41 @@ export const badgeDoc: ComponentDoc = {
   ],
   usage: `import { Badge } from '@ds/ui'
 
-// Status column in a table
+// Subtle (default) — status column in a table
 <Badge variant={statusVariant[order.status]}>{order.status}</Badge>
 
-// All variants
+// Strong — highlight the most important badge in a row
+<Badge variant="neutral">Draft</Badge>
+<Badge variant="success">Reviewed</Badge>
+<Badge variant="danger" strength="strong">Blocked</Badge>
+
+// All subtle variants
 <Badge variant="info">Info</Badge>
 <Badge variant="success">Active</Badge>
 <Badge variant="warning">Pending</Badge>
 <Badge variant="danger">Failed</Badge>
-<Badge variant="neutral">Draft</Badge>`,
+<Badge variant="neutral">Draft</Badge>
+
+// All strong variants
+<Badge variant="info" strength="strong">Info</Badge>
+<Badge variant="success" strength="strong">Active</Badge>
+<Badge variant="warning" strength="strong">Pending</Badge>
+<Badge variant="danger" strength="strong">Failed</Badge>
+<Badge variant="neutral" strength="strong">Draft</Badge>`,
   props: [
     { name: 'variant', type: "'info' | 'success' | 'warning' | 'danger' | 'neutral'", default: "'neutral'", description: 'Semantic color variant.' },
+    { name: 'strength', type: "'subtle' | 'strong'", default: "'subtle'", description: 'Visual weight. Subtle: tinted background + matching border + accessible text color. Strong: bold solid background + white text + darker border for definition. Use strong to make one badge stand out in a row.' },
     { name: 'children', type: 'ReactNode', required: true, description: 'Badge content — typically short text.' },
     { name: 'className', type: 'string', description: 'Additional CSS classes.' },
   ],
   tokens: [
-    { name: '--badge-radius', value: 'var(--radius-full)', description: 'Border radius — pill shape by default.' },
-    { name: '--color-success-surface', value: '#dcfce7', description: 'Success variant background.' },
-    { name: '--color-danger', value: '#dc2626', description: 'Danger variant text color.' },
+    { name: '--badge-radius', value: 'var(--radius-full)', description: 'Border radius — pill shape.' },
+    { name: '--color-{variant}-surface', value: 'e.g. sky-100 / sky-900', description: 'Subtle variant background (light/dark).' },
+    { name: '--color-{variant}-border', value: 'e.g. sky-200 / sky-800', description: 'Subtle variant border (light/dark).' },
+    { name: '--color-{variant}-text', value: 'darker shade / lighter shade', description: 'Subtle variant text — dedicated token for each variant ensuring WCAG AA 4.5:1 on its surface. Info: sky-700/sky-200. Success: green-800/green-200. Warning: amber-800/amber-200. Danger: red-700/red-200. Neutral uses color/neutral (slate-600/slate-400 — passes without a dedicated token).' },
+    { name: '--color-{variant}-strong-border', value: 'one step darker than fill', description: 'Strong variant border — one shade darker than the fill for each variant to add definition. Info: sky-700/sky-600. Success: green-700/green-600. Warning: amber-800 (both). Danger: red-700/red-600. Neutral: slate-700/slate-600.' },
+    { name: '--color-warning-strong', value: 'amber-700', description: 'Warning strong background — amber-700 used instead of amber-600 to meet WCAG AA contrast with white text.' },
+    { name: '--color-neutral-strong', value: 'slate-600 / slate-500', description: 'Neutral strong background (light/dark) — slate-400 (default neutral in dark) is too light for white text.' },
   ],
 }
 
