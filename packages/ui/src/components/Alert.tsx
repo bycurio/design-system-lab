@@ -1,5 +1,7 @@
 import { cn } from '../utils'
 import { Icon } from './Icon'
+import { Button } from './Button'
+import { IconButton } from './IconButton'
 import type { AlertProps, AlertVariant } from './Alert.types'
 
 const config: Record<AlertVariant, { icon: string; borderClass: string; bgClass: string; iconClass: string }> = {
@@ -16,13 +18,13 @@ export function Alert({ variant, title, description, action, onDismiss, classNam
     <div
       role="alert"
       className={cn(
-        'flex items-start gap-3 p-4 rounded-(--radius-lg) border',
+        'flex items-center gap-3 p-4 rounded-(--radius-lg) border',
         bgClass,
         borderClass,
         className,
       )}
     >
-      <Icon name={icon} size={20} className={cn('shrink-0 mt-0.5', iconClass)} />
+      <Icon name={icon} size={20} className={cn('shrink-0', iconClass)} />
 
       <div className="flex-1 min-w-0">
         <p className="text-sm font-medium text-(--color-text-primary)">{title}</p>
@@ -32,22 +34,20 @@ export function Alert({ variant, title, description, action, onDismiss, classNam
       </div>
 
       {action && (
-        <button
-          onClick={action.onClick}
-          className={cn('shrink-0 text-sm font-medium whitespace-nowrap hover:opacity-75 transition-opacity', iconClass)}
-        >
+        <Button variant="ghost" size="sm" onClick={action.onClick} className="shrink-0">
           {action.label}
-        </button>
+        </Button>
       )}
 
       {onDismiss && (
-        <button
-          onClick={onDismiss}
+        <IconButton
+          variant="ghost"
+          size="sm"
+          icon={<Icon name="close" size={16} />}
           aria-label="Dismiss alert"
-          className="shrink-0 text-(--color-text-secondary) hover:text-(--color-text-primary) transition-colors"
-        >
-          <Icon name="close" size={16} />
-        </button>
+          onClick={onDismiss}
+          className="shrink-0"
+        />
       )}
     </div>
   )
