@@ -1,21 +1,19 @@
 import figma from '@figma/code-connect'
 import { Progress } from './Progress'
 
-figma.connect(Progress, 'https://www.figma.com/design/ITyTagLQEj5b75iqsmPyl6/Design-System-Lab?node-id=34-73', {
+figma.connect(Progress, 'https://www.figma.com/design/ITyTagLQEj5b75iqsmPyl6/Design-System-Lab?node-id=638-254', {
   props: {
-    label: figma.string('label'),
-    variant: figma.enum('variant', {
+    variant: figma.enum('Variant', {
       default: 'default',
       success: 'success',
     }),
-    showLabel: figma.boolean('showLabel'),
   },
   example: (props) => (
     <Progress
       value={65}
-      label={props.label}
+      label="Uploading…"
       variant={props.variant}
-      showLabel={props.showLabel}
+      showLabel
     />
   ),
 })
