@@ -6,6 +6,7 @@ figma.connect(Progress, 'https://www.figma.com/design/ITyTagLQEj5b75iqsmPyl6/Des
     variant: figma.enum('Variant', {
       default: 'default',
       success: 'success',
+      error:   'error',
     }),
   },
   example: (props) => (

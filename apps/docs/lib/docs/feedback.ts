@@ -365,42 +365,57 @@ export const progressDoc: ComponentDoc = {
   ],
   preview: () =>
     h('div', { className: 'flex flex-col gap-4 max-w-sm' },
-      h(Progress, { value: 35, label: 'Uploading file…', variant: 'default' }),
+      h(Progress, { value: 35, label: 'Uploading file…', showLabel: true }),
       h(Progress, { value: 100, label: 'Complete', variant: 'success', showLabel: true }),
-      h(Progress, { value: 68, showLabel: true }),
+      h(Progress, { value: 50, label: 'Upload failed', variant: 'error', showLabel: true }),
     ),
   variants: [
     {
       label: 'Variant',
       preview: () =>
         h('div', { className: 'flex flex-col gap-4 max-w-sm' },
-          h(Progress, { value: 60, label: 'Uploading', variant: 'default', showLabel: true }),
-          h(Progress, { value: 100, label: 'Done', variant: 'success', showLabel: true }),
+          h(Progress, { value: 60, label: 'Uploading…', showLabel: true }),
+          h(Progress, { value: 100, label: 'Complete', variant: 'success', showLabel: true }),
+          h(Progress, { value: 50, label: 'Upload failed', variant: 'error', showLabel: true }),
+        ),
+    },
+    {
+      label: 'Error with Alert',
+      preview: () =>
+        h('div', { className: 'flex flex-col gap-3 max-w-sm' },
+          h(Progress, { value: 50, label: 'Upload failed', variant: 'error', showLabel: true }),
+          h(Alert, { variant: 'danger', title: 'Upload failed', description: 'The file could not be uploaded. Check your connection and try again.', action: { label: 'Retry', onClick: () => {} } }),
         ),
     },
   ],
   usage: `import { Progress } from '@ds/ui'
 
-// Upload progress
+// In progress
 <Progress value={uploadPercent} label="Uploading…" showLabel />
 
-// Storage usage
-<Progress
-  value={Math.round((usedBytes / totalBytes) * 100)}
-  label="Storage used"
-  variant={usedBytes > totalBytes * 0.9 ? 'default' : 'success'}
+// Success
+<Progress value={100} label="Complete" variant="success" showLabel />
+
+// Error — pair with Alert for context
+<Progress value={stoppedAt} label="Upload failed" variant="error" showLabel />
+<Alert
+  variant="danger"
+  title="Upload failed"
+  description="Check your connection and try again."
+  action={{ label: 'Retry', onClick: retry }}
 />`,
   props: [
     { name: 'value', type: 'number', required: true, description: 'Progress percentage from 0 to 100.' },
     { name: 'label', type: 'string', description: 'Accessible label and visible caption above the bar.' },
-    { name: 'variant', type: "'default' | 'success'", default: "'default'", description: 'Color variant of the filled track.' },
+    { name: 'variant', type: "'default' | 'success' | 'error'", default: "'default'", description: 'Color of the filled track. Use error when a process has failed — pair with an Alert for the error message.' },
     { name: 'showLabel', type: 'boolean', default: 'false', description: 'Shows the numeric percentage next to the bar.' },
     { name: 'className', type: 'string', description: 'Additional CSS classes.' },
   ],
   tokens: [
-    { name: '--color-brand', value: '#2563eb', description: 'Default filled track color.' },
-    { name: '--color-success', value: '#16a34a', description: 'Success variant track color.' },
-    { name: '--color-surface', value: '#f9fafb', description: 'Unfilled track background.' },
+    { name: '--color-brand', value: 'blue-600 / blue-500', description: 'Default filled track color (light/dark).' },
+    { name: '--color-success', value: 'green-600 / green-500', description: 'Success variant track color (light/dark).' },
+    { name: '--color-danger', value: 'red-600 / red-500', description: 'Error variant track color (light/dark).' },
+    { name: '--color-surface', value: 'slate-100 / slate-900', description: 'Unfilled track background (light/dark).' },
   ],
 }
 

@@ -13,7 +13,7 @@ export function Progress({ value, label, variant = 'default', showLabel = false,
       )}
       <div className="w-full h-2 rounded-full bg-(--color-surface) border border-(--color-border)" role="progressbar" aria-valuenow={clamped} aria-valuemin={0} aria-valuemax={100} aria-label={label}>
         <div
-          className={cn('h-full rounded-full transition-all', variant === 'success' ? 'bg-(--color-success)' : 'bg-(--color-brand)')}
+          className={cn('h-full rounded-full transition-all', variant === 'success' ? 'bg-(--color-success)' : variant === 'error' ? 'bg-(--color-danger)' : 'bg-(--color-brand)')}
           style={{ width: `${clamped}%` }}
         />
       </div>
