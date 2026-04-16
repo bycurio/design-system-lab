@@ -1,7 +1,7 @@
 import figma from '@figma/code-connect'
 import { Tooltip } from './Tooltip'
 
-figma.connect(Tooltip, 'https://www.figma.com/design/ITyTagLQEj5b75iqsmPyl6/Design-System-Lab?node-id=34-70', {
+figma.connect(Tooltip, 'https://www.figma.com/design/ITyTagLQEj5b75iqsmPyl6/Design-System-Lab?node-id=634-224', {
   props: {
     content: figma.string('content'),
     placement: figma.enum('placement', {

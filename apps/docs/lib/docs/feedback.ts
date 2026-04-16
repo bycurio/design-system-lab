@@ -320,20 +320,32 @@ export const tooltipDoc: ComponentDoc = {
         ),
     },
   ],
-  usage: `import { Tooltip } from '@ds/ui'
-import { IconButton } from '@ds/ui'
-import { TrashIcon } from '@heroicons/react/24/outline'
+  usage: `import { Tooltip, IconButton, Icon } from '@ds/ui'
 
+// Wrapping an icon button
 <Tooltip content="Delete record" placement="top">
-  <IconButton variant="ghost" aria-label="Delete" icon={<TrashIcon />} />
+  <IconButton variant="ghost" size="sm" icon={<Icon name="delete" size={16} />} aria-label="Delete" />
+</Tooltip>
+
+// Wrapping any element
+<Tooltip content="Opens in a new tab">
+  <a href="/docs">Read the docs ↗</a>
+</Tooltip>
+
+// Custom delay
+<Tooltip content="Keyboard shortcut: ⌘S" delayMs={0}>
+  <button>Save</button>
 </Tooltip>`,
   props: [
-    { name: 'content', type: 'string', required: true, description: 'The tooltip text content.' },
-    { name: 'children', type: 'ReactNode', required: true, description: 'The element that triggers the tooltip on hover/focus.' },
-    { name: 'placement', type: "'top' | 'bottom' | 'left' | 'right'", default: "'top'", description: 'Preferred tooltip position relative to the trigger.' },
+    { name: 'content', type: 'string', required: true, description: 'The tooltip text.' },
+    { name: 'children', type: 'ReactNode', required: true, description: 'The element that triggers the tooltip on hover or focus.' },
+    { name: 'placement', type: "'top' | 'bottom' | 'left' | 'right'", default: "'top'", description: 'Position of the tooltip relative to the trigger.' },
+    { name: 'delayMs', type: 'number', default: '300', description: 'Delay in ms before the tooltip appears. Pass 0 for instant.' },
   ],
   tokens: [
-    { name: '--color-text', value: '#111827', description: 'Tooltip text color (typically inverted).' },
+    { name: '--tooltip-bg', value: 'slate-900 / slate-700', description: 'Tooltip background — stays dark in both light and dark modes.' },
+    { name: '--tooltip-radius', value: 'var(--radius-md)', description: 'Tooltip border radius.' },
+    { name: '--color-white', value: '#ffffff', description: 'Tooltip text color.' },
   ],
 }
 

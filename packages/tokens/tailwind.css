@@ -180,6 +180,10 @@
   /* ── COMPONENT: Input ── */
   --input-border: var(--color-border);
   --input-radius: var(--radius-md);
+
+  /* ── COMPONENT: Tooltip ── */
+  --tooltip-bg:     var(--color-slate-900);
+  --tooltip-radius: var(--radius-md);
 }
 
 /* ── SEMANTIC: Dark mode overrides ── */
@@ -231,4 +235,7 @@
   --color-neutral-strong-border:  var(--color-slate-600);
   --color-warning-strong:   var(--color-amber-700);
   --color-neutral-strong:   var(--color-slate-500);
+
+  /* ── COMPONENT: Tooltip ── */
+  --tooltip-bg: var(--color-slate-700);
 }
