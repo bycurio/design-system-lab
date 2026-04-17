@@ -25,7 +25,7 @@ export function Tooltip({ content, children, placement = 'top', delayMs = 300 }:
           role="tooltip"
           className={cn(
             'absolute z-50 px-2 py-1 text-xs rounded-(--tooltip-radius)',
-            'bg-(--tooltip-bg) text-(--color-white) whitespace-nowrap pointer-events-none',
+            'bg-(--tooltip-bg) text-(--tooltip-text) whitespace-nowrap pointer-events-none',
             placementClasses[placement],
           )}
         >

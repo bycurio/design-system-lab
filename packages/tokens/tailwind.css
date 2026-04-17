@@ -183,6 +183,7 @@
 
   /* ── COMPONENT: Tooltip ── */
   --tooltip-bg:     var(--color-slate-900);
+  --tooltip-text:   var(--color-white);
   --tooltip-radius: var(--radius-md);
 }
 
